@@ -983,11 +983,7 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
     </div>
     <div class="login-footer">
       <span>Schoolers.io · UCAM · 2026</span>
-      <div style="margin-top:8px;">
-        <button onclick="showAdminAccess()" style="background:none; border:none; cursor:pointer; font-size:10px; color:rgba(0,0,0,0.25); font-family:'Geist',sans-serif; padding:4px 8px; border-radius:4px; transition:color 0.2s;" onmouseenter="this.style.color='var(--text-light)'" onmouseleave="this.style.color='rgba(0,0,0,0.25)'">
-          <i class="fas fa-cog"></i> Administración
-        </button>
-      </div>
+      <!-- Panel de administración heredado retirado: su función (crear cuentas) se hace por servidor (Supabase). -->
     </div>
   </div>
 </div>
@@ -2307,7 +2303,7 @@ function deleteStudent(email) {
 }
 
 // ── ADMIN PANEL (visual) ──
-const ADMIN_KEY = 'schoolers2026'; // Cambiad esta clave
+const ADMIN_KEY = ''; // Panel admin heredado retirado del preview (la gestión de cuentas va por servidor/Supabase).
 
 function showAdminAccess() {
   document.getElementById('admin-screen').classList.remove('hidden');
