@@ -4988,7 +4988,7 @@ async function createTutoria(){
   try { if (window.sb.functions) await window.sb.functions.invoke('notify-tutoria', { body:{ id: r.data.id } }); } catch(e){}
   msg.style.color='#2f855a'; msg.textContent='Tutoría convocada'+(type==='grupal'?' para todos los alumnos.':'.')+' (El aviso por correo se activará al conectar el email.)';
   document.getElementById('tut-title').value=''; document.getElementById('tut-datetime').value=''; document.getElementById('tut-zoom').value='';
-  loadTutorTutorias();
+  setTimeout(loadTutorTutorias, 400);
 }
 /* ── Vista del alumno: comentarios del tutor y sus tutorías (se inyecta en "Tu tutor/a") ── */
 async function renderStudentTutorStuff(){
