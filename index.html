@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TFM · Máster de Formación Permanente en Executive Global Hospitality</title>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --primary: #1a365d;
   --primary-light: #2b4c7e;
-  --accent: #c9a84c;
-  --accent-light: #e8d5a0;
+  --accent: #f9b233;
+  --accent-light: #fce3b3;
   --bg: #f7f8fc;
   --sidebar-bg: #0f2440;
   --sidebar-hover: #1a365d;
@@ -30,7 +30,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Geist', sans-serif;
+  font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
   display: flex;
@@ -123,7 +123,7 @@ body {
 }
 
 .nav-item.active {
-  background: linear-gradient(135deg, var(--accent), #d98f1a);
+  background: linear-gradient(135deg, var(--accent), #d98f16);
   color: var(--primary);
   font-weight: 600;
 }
@@ -156,7 +156,7 @@ body {
 .avatar {
   width: 42px; height: 42px; min-width: 42px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), #d98f1a);
+  background: linear-gradient(135deg, var(--accent), #d98f16);
   display: flex; align-items: center; justify-content: center;
   font-weight: 700; font-size: 14px; color: var(--primary);
   cursor: pointer; position: relative; overflow: hidden;
@@ -453,7 +453,7 @@ body {
   padding: 10px 18px;
   font-size: 14px;
   outline: none;
-  font-family: 'Geist', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .chatbot-input input:focus { border-color: var(--accent); }
@@ -541,7 +541,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 13px;
-  font-family: 'Geist', sans-serif;
+  font-family: 'Inter', sans-serif;
   outline: none;
 }
 
@@ -558,7 +558,7 @@ body {
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  font-family: 'Geist', sans-serif;
+  font-family: 'Inter', sans-serif;
   transition: all 0.2s;
 }
 
@@ -567,7 +567,7 @@ body {
   color: var(--primary);
 }
 
-.btn-primary:hover { background: #d98f1a; }
+.btn-primary:hover { background: #d98f16; }
 
 .btn-outline {
   background: none;
@@ -614,7 +614,7 @@ body {
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent), #e8d5a0);
+  background: linear-gradient(90deg, var(--accent), #fce3b3);
   border-radius: 4px;
   transition: width 0.6s ease;
 }
@@ -713,7 +713,7 @@ body {
   position: fixed; inset: 0; z-index: 10000;
   background: linear-gradient(135deg, #0f2440 0%, #1a365d 40%, #2b4c7e 100%);
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Geist', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 #login-screen.hidden, #admin-screen.hidden { display: none !important; }
 
@@ -749,7 +749,7 @@ body {
 }
 .login-tab {
   flex: 1; padding: 10px; border: none; background: none;
-  font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 600;
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
   color: var(--text-light); cursor: pointer; border-radius: 8px;
   transition: all 0.2s;
 }
@@ -766,7 +766,7 @@ body {
 .login-field input {
   width: 100%; padding: 12px 14px;
   border: 1.5px solid var(--border); border-radius: 10px;
-  font-size: 14px; font-family: 'Geist', sans-serif;
+  font-size: 14px; font-family: 'Inter', sans-serif;
   outline: none; transition: border-color 0.2s;
   color: var(--text);
 }
@@ -782,9 +782,9 @@ body {
 
 .login-btn {
   width: 100%; padding: 14px;
-  background: linear-gradient(135deg, var(--accent), #d98f1a);
+  background: linear-gradient(135deg, var(--accent), #d98f16);
   border: none; border-radius: 10px;
-  font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 700;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
   color: var(--primary); cursor: pointer;
   transition: all 0.2s; margin-top: 8px;
   letter-spacing: 0.3px;
@@ -809,127 +809,10 @@ body {
   background: none; border: none; cursor: pointer;
   color: rgba(255,255,255,0.4); font-size: 11px;
   padding: 4px 8px; border-radius: 6px;
-  transition: all 0.15s; font-family: 'Geist', sans-serif;
+  transition: all 0.15s; font-family: 'Inter', sans-serif;
   display: flex; align-items: center; gap: 5px;
 }
 .logout-btn:hover { color: #fff; background: rgba(255,255,255,0.08); }
-</style>
-<style>
-/* ═══════ TEMA TCS (columna centrada, tipo ChatGPT) · acento naranja Schoolers #f9b233 ═══════
-   Mata la sidebar, centra el contenido y pone pestañas arriba. Modo claro. El naranja es acento
-   fino (pestaña activa, iconos, puntos), nunca texto sobre blanco ni en botones primarios. */
-:root {
-  --primary:#0d0d0d; --primary-light:#2a2a2a;
-  --accent:#f9b233; --accent-light:#ffe8bf;
-  --bg:#ffffff; --surface:#f4f4f4; --card-bg:#ffffff;
-  --text:#0d0d0d; --text-light:#6e6e6e; --border:#ececec;
-  --shadow:0 1px 2px rgba(0,0,0,.04); --shadow-lg:0 8px 30px rgba(0,0,0,.08);
-  --radius:16px;
-}
-body { display:block !important; background:var(--bg); color:var(--text); font-family:'Geist',system-ui,sans-serif; min-height:100vh; }
-.mobile-toggle, .sidebar { display:none !important; }
-.main { margin:0 auto !important; max-width:860px !important; width:100% !important; padding:24px 20px 96px !important; }
-
-/* Header centrado */
-.app-header { max-width:860px; margin:0 auto; padding:18px 20px 6px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-.app-brand { display:flex; align-items:center; gap:10px; min-width:0; }
-.app-brand img { height:30px; width:auto; }
-.app-brand .t { font-size:12px; color:var(--text-light); font-weight:500; white-space:nowrap; }
-.app-user { display:flex; align-items:center; gap:10px; }
-.app-user .who { line-height:1.2; text-align:right; }
-.app-user .nm { font-size:13px; font-weight:600; outline:none; }
-.app-user .role { font-size:11px; color:var(--text-light); }
-.app-user .av { width:34px; height:34px; border-radius:50%; background:var(--accent); color:#0d0d0d; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; cursor:pointer; position:relative; overflow:hidden; flex-shrink:0; }
-.app-user .av .avatar-overlay { position:absolute; inset:0; background:rgba(0,0,0,.45); color:#fff; display:none; align-items:center; justify-content:center; font-size:12px; }
-.app-user .av:hover .avatar-overlay { display:flex; }
-.app-iconbtn { background:#fff; border:1px solid var(--border); border-radius:999px; padding:7px 12px; font-size:12px; color:var(--text); cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-family:inherit; }
-.app-iconbtn:hover { background:var(--surface); }
-
-/* Pestañas sticky */
-.app-tabs { position:sticky; top:0; z-index:30; background:rgba(255,255,255,.9); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
-.app-tabs-inner { max-width:860px; margin:0 auto; display:flex; gap:4px; overflow-x:auto; padding:8px 16px; scrollbar-width:none; }
-.app-tabs-inner::-webkit-scrollbar { display:none; }
-.nav-item { white-space:nowrap; display:inline-flex; align-items:center; gap:7px; padding:8px 14px; border-radius:999px; font-size:13px; font-weight:500; color:var(--text-light); background:transparent; cursor:pointer; border:none; text-decoration:none; }
-.nav-item:hover { background:var(--surface); color:var(--text); }
-.nav-item.active { background:var(--surface); color:var(--text); font-weight:600; box-shadow:inset 0 -2px 0 var(--accent); }
-.nav-item.active i { color:var(--accent); }
-.nav-item .badge { background:var(--accent); color:#0d0d0d; border-radius:999px; font-size:10px; padding:1px 6px; font-weight:700; }
-
-/* Tipografía TCS: todo Geist (sin serif) */
-.section-header h2, .hero h2, .stat-card .stat-number, .card h3, h1, h2, h3 { font-family:'Geist',system-ui,sans-serif !important; }
-
-/* Hero claro */
-.hero { background:var(--surface) !important; color:var(--text) !important; border-radius:var(--radius); padding:26px 28px !important; margin-bottom:20px; }
-.hero::before, .hero::after { display:none !important; }
-.hero h2 { color:var(--text) !important; }
-.hero p { color:var(--text-light) !important; }
-
-/* Cards: ring fino + esquina 2xl, sombra mínima */
-.card { background:var(--card-bg); border:1px solid var(--border); box-shadow:none; border-radius:var(--radius); }
-.card:hover { box-shadow:var(--shadow-lg); border-color:#e2e2e2; }
-.stat-card .stat-icon { color:var(--accent); }
-.stat-card .stat-number { color:var(--text); }
-
-/* Botones píldora */
-.btn, .btn-primary, .btn-outline { border-radius:999px; font-weight:600; }
-.btn-primary { background:var(--primary); color:#fff; }
-.btn-primary:hover { background:#2a2a2a; }
-.btn-outline { border:1px solid var(--border); color:var(--text); background:#fff; }
-.btn-outline:hover { border-color:var(--accent); background:#fff8ec; color:#0d0d0d; }
-.login-btn { border-radius:999px; background:var(--primary); color:#fff; box-shadow:0 4px 24px rgba(0,0,0,.14); }
-.login-btn:hover { transform:translateY(-1px); }
-
-/* ── Normalización TCS del resto de secciones (patrones heredados del diseño viejo) ── */
-/* Fuera las barras de color a la izquierda: TCS usa card plana con ring fino */
-[style*="border-left"] { border-left-width:1px !important; border-left-color:var(--border) !important; }
-/* Inputs/areas/selects → estilo TCS (crema, redondeado) */
-input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="time"], input[type="search"], textarea, select {
-  border-radius:12px !important; background:var(--surface) !important; border:1px solid var(--border) !important; font-family:'Geist',system-ui,sans-serif;
-}
-input:focus, textarea:focus, select:focus { outline:none !important; border-color:var(--accent) !important; }
-/* Enlaces y textos de acento sobre blanco → tinta (TCS: el naranja no va en texto) */
-a[style*="var(--accent)"], a[style*="#975a16"], a[style*="color: #4299e1"] { color:var(--text) !important; font-weight:600; }
-/* Chips/badges de color heredados → sistema TCS monocromo + naranja */
-[style*="background: #4299e1"], [style*="background:#4299e1"] { background:var(--text) !important; color:#fff !important; }   /* azul → chip tinta */
-[style*="background: #48bb78"], [style*="background:#48bb78"] { background:var(--accent) !important; color:#0d0d0d !important; } /* verde deco → naranja */
-/* Botón celeste "Cargar estructura…" y similares (fondo azul claro) → secundario TCS */
-button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important; color:var(--text) !important; border:1px solid var(--border) !important; border-radius:999px !important; }
-/* Fondos pálidos de panel (verde/azul/amarillo/teal) heredados → superficie neutra TCS */
-[style*="#f0fff4"], [style*="#ebf8ff"], [style*="#fffff0"], [style*="#fffbea"], [style*="#fffaf0"], [style*="#e6fffa"], [style*="#f8fafc"] { background:var(--surface) !important; }
-/* Degradados oscuros (navy viejo) en avatares/cabeceras → acento/tinta */
-[style*="#0f2440"], [style*="#1a365d"] { background:var(--primary) !important; }
-/* Texto azul heredado (#4299e1) sobre blanco → muted TCS (el chip con background queda aparte) */
-[style*="color: #4299e1"], [style*="color:#4299e1"] { color:var(--text-light) !important; }
-
-/* ── Login en clave TCS (fuera el navy) + ojo + enlace de recuperación ── */
-#login-screen { background:var(--surface) !important; }
-.login-container { border:1px solid var(--border); box-shadow:var(--shadow-lg) !important; }
-.login-header { background:#fff !important; border-bottom:1px solid var(--border); }
-.login-header h2 { color:var(--text) !important; }
-.login-header p { color:var(--text-light) !important; }
-.login-field label { color:var(--text) !important; }
-.field-icon { position:relative; }
-.field-icon input[type="password"], .field-icon input[type="text"] { padding-right:40px !important; }
-.pw-toggle { position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--text-light); cursor:pointer; padding:4px; font-size:14px; line-height:1; }
-.pw-toggle:hover { color:var(--text); }
-.login-forgot { display:block; text-align:center; margin-top:14px; font-size:12px; color:var(--text-light); text-decoration:none; }
-.login-forgot:hover { color:var(--text); text-decoration:underline; }
-
-/* Marca del header: wordmark TCS (EGH Máster.) */
-.app-wordmark { font-weight:500; font-size:16px; color:var(--text); letter-spacing:-0.01em; white-space:nowrap; }
-.app-wordmark strong { font-weight:700; }
-.app-wordmark .dot { color:var(--accent); font-weight:700; }
-/* Iconos de categoría de Biblioteca → monocromo TCS (fuera los colores por tipo) */
-.library-icon { background:var(--surface) !important; color:var(--text-light) !important; }
-
-/* ── Móvil (TCS): la fila de pestañas pasa a barra inferior fija ── */
-@media (max-width: 640px) {
-  .app-header { flex-wrap:wrap; padding:12px 16px 4px; gap:8px; }
-  .app-user .who { display:none; }                 /* ahorra ancho en móvil */
-  .app-tabs { position:fixed; top:auto; bottom:0; left:0; right:0; border-top:1px solid var(--border); border-bottom:none; box-shadow:0 -2px 12px rgba(0,0,0,.05); padding-bottom:env(safe-area-inset-bottom); }
-  .app-tabs-inner { padding:8px 12px; }
-  .main { padding-bottom:90px !important; }          /* hueco para que la barra no tape contenido */
-}
 </style>
 </head>
 <body>
@@ -967,13 +850,11 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
           <div class="field-icon">
             <i class="fas fa-lock"></i>
             <input type="password" id="login-password" placeholder="Tu contraseña" onkeypress="if(event.key==='Enter')doLogin()">
-            <button type="button" class="pw-toggle" id="pw-toggle" onclick="togglePw()" title="Mostrar u ocultar contraseña" aria-label="Mostrar u ocultar contraseña"><i class="fas fa-eye"></i></button>
           </div>
         </div>
         <button class="login-btn" onclick="doLogin()">
           <i class="fas fa-sign-in-alt" style="margin-right: 6px;"></i>Entrar
         </button>
-        <a href="#" class="login-forgot" onclick="forgotPassword(); return false;">¿Olvidaste tu contraseña?</a>
       </div>
 
       <!-- Info for first-time users -->
@@ -983,13 +864,12 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
     </div>
     <div class="login-footer">
       <span>Schoolers.io · UCAM · 2026</span>
-      <!-- Panel de administración heredado retirado: su función (crear cuentas) se hace por servidor (Supabase). -->
     </div>
   </div>
 </div>
 
 <!-- ══════════════ ADMIN PANEL ══════════════ -->
-<div id="admin-screen" class="hidden" style="position:fixed; inset:0; z-index:10001; background:linear-gradient(135deg, #0f2440 0%, #1a365d 40%, #2b4c7e 100%); display:flex; align-items:center; justify-content:center; font-family:'Geist',sans-serif;">
+<div id="admin-screen" class="hidden" style="position:fixed; inset:0; z-index:10001; background:linear-gradient(135deg, #0f2440 0%, #1a365d 40%, #2b4c7e 100%); display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif;">
   <div style="width:600px; max-width:95vw; max-height:90vh; background:#fff; border-radius:20px; box-shadow:0 25px 60px rgba(0,0,0,0.3); overflow:hidden; display:flex; flex-direction:column; animation:loginSlideUp 0.4s ease-out;">
     <!-- Admin Header -->
     <div style="background:#0f2440; padding:24px 28px; display:flex; align-items:center; justify-content:space-between;">
@@ -997,7 +877,7 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
         <div style="font-size:16px; font-weight:700; color:#fff;"><i class="fas fa-shield-alt" style="color:var(--accent); margin-right:8px;"></i>Panel de Administración</div>
         <div style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:2px;">Gestión de cuentas de alumnos</div>
       </div>
-      <button onclick="closeAdmin()" style="background:rgba(255,255,255,0.1); border:none; cursor:pointer; padding:8px 12px; border-radius:8px; color:#fff; font-size:13px; font-family:'Geist',sans-serif; transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.2)'" onmouseleave="this.style.background='rgba(255,255,255,0.1)'">
+      <button onclick="closeAdmin()" style="background:rgba(255,255,255,0.1); border:none; cursor:pointer; padding:8px 12px; border-radius:8px; color:#fff; font-size:13px; font-family:'Inter',sans-serif; transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.2)'" onmouseleave="this.style.background='rgba(255,255,255,0.1)'">
         <i class="fas fa-times" style="margin-right:4px;"></i>Cerrar
       </button>
     </div>
@@ -1025,10 +905,10 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
           <i class="fas fa-user-plus" style="color:var(--accent); margin-right:6px;"></i>Crear cuenta de alumno
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <input type="text" id="admin-new-name" placeholder="Nombre completo" style="flex:1; min-width:150px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; font-family:'Geist',sans-serif; outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-          <input type="email" id="admin-new-email" placeholder="Email" style="flex:1; min-width:150px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; font-family:'Geist',sans-serif; outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-          <input type="text" id="admin-new-pw" placeholder="Contraseña" style="width:130px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; font-family:'Geist',sans-serif; outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-          <button onclick="adminCreateStudent()" style="padding:10px 18px; background:linear-gradient(135deg, var(--accent), #d98f1a); border:none; border-radius:8px; cursor:pointer; font-family:'Geist',sans-serif; font-size:13px; font-weight:600; color:var(--primary); white-space:nowrap; transition:transform 0.15s;" onmouseenter="this.style.transform='translateY(-1px)'" onmouseleave="this.style.transform='none'">
+          <input type="text" id="admin-new-name" placeholder="Nombre completo" style="flex:1; min-width:150px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; font-family:'Inter',sans-serif; outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          <input type="email" id="admin-new-email" placeholder="Email" style="flex:1; min-width:150px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; font-family:'Inter',sans-serif; outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          <input type="text" id="admin-new-pw" placeholder="Contraseña" style="width:130px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; font-family:'Inter',sans-serif; outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          <button onclick="adminCreateStudent()" style="padding:10px 18px; background:linear-gradient(135deg, var(--accent), #d98f16); border:none; border-radius:8px; cursor:pointer; font-family:'Inter',sans-serif; font-size:13px; font-weight:600; color:var(--primary); white-space:nowrap; transition:transform 0.15s;" onmouseenter="this.style.transform='translateY(-1px)'" onmouseleave="this.style.transform='none'">
             <i class="fas fa-plus" style="margin-right:4px;"></i>Crear
           </button>
         </div>
@@ -1048,37 +928,74 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
 </div>
 
 <!-- Mobile toggle -->
-<!-- ══════════════ HEADER (TCS) ══════════════ -->
-<header class="app-header">
-  <div class="app-brand">
-    <span class="app-wordmark"><strong>EGH</strong> Máster<span class="dot">.</span></span>
-    <span class="t">Tu Trabajo Fin de Máster</span>
+<button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+  <i class="fas fa-bars"></i>
+</button>
+
+<!-- ══════════════ SIDEBAR ══════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo" style="justify-content: center;">
+      <div class="logo-icon"><img src="data:image/png;base64,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" alt="EGH Master - Schoolers.io - UCAM" /></div>
+    </div>
+    <div class="subtitle">Tu Trabajo Fin de Máster</div>
   </div>
-  <div class="app-user">
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-title">Principal</div>
+    <a class="nav-item active" data-section="inicio" onclick="showSection('inicio')">
+      <i class="fas fa-home"></i> Inicio
+    </a>
+    <!-- EGH oculto temporalmente
+    <a class="nav-item" data-section="egh" onclick="showSection('egh')">
+      <i class="fas fa-graduation-cap"></i> Executive Global Hospitality
+    </a>
+    -->
+    <a class="nav-item" data-section="guia" onclick="showSection('guia')">
+      <i class="fas fa-book-open"></i> Guía Académica
+    </a>
+    <a class="nav-item" data-section="tutor" onclick="showSection('tutor')">
+      <i class="fas fa-user-tie"></i> Tu tutor/a
+    </a>
+
+    <div class="nav-section-title">Tu trabajo</div>
+    <a class="nav-item" data-section="hoja-ruta" onclick="showSection('hoja-ruta')">
+      <i class="fas fa-route"></i> Hoja de ruta
+    </a>
+    <a class="nav-item" data-section="ideas" onclick="showSection('ideas')">
+      <i class="fas fa-lightbulb"></i> Mis ideas
+    </a>
+    <a class="nav-item" data-section="documento" onclick="showSection('documento')">
+      <i class="fas fa-file-pen"></i> Mi TFM
+    </a>
+
+    <div class="nav-section-title">Recursos</div>
+    <a class="nav-item" data-section="biblioteca" onclick="showSection('biblioteca')">
+      <i class="fas fa-bookmark"></i> Mi Biblioteca
+      <span class="badge" id="library-badge">0</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer" style="flex-wrap: wrap;">
     <input type="file" id="avatar-upload" accept="image/*" style="display:none" onchange="handleAvatarUpload(this)">
-    <div class="av" id="user-avatar" onclick="document.getElementById('avatar-upload').click()" title="Haz clic para subir tu foto">
+    <div class="avatar" id="user-avatar" onclick="document.getElementById('avatar-upload').click()" title="Haz clic para subir tu foto">
       <span id="avatar-initial">A</span>
       <div class="avatar-overlay"><i class="fas fa-camera"></i></div>
     </div>
-    <div class="who">
-      <div class="nm" id="user-name" contenteditable="true" spellcheck="false" title="Haz clic para editar tu nombre">Nombre y Apellidos</div>
+    <div class="user-info">
+      <div class="name" id="user-name" contenteditable="true" spellcheck="false" title="Haz clic para editar tu nombre">Nombre y Apellidos</div>
       <div class="role">Máster EGH · 2026-27</div>
     </div>
-    <button class="app-iconbtn" onclick="showChangePasswordModal()" title="Cambiar contraseña"><i class="fas fa-key"></i></button>
-    <button class="app-iconbtn" onclick="doLogout()" title="Cerrar sesión"><i class="fas fa-sign-out-alt"></i> Salir</button>
+    <div style="display:flex; gap:4px; width:100%; margin-top:6px;">
+      <button class="logout-btn" onclick="showChangePasswordModal()" title="Cambiar contraseña" style="flex:1; justify-content:center;">
+        <i class="fas fa-key"></i> Contraseña
+      </button>
+      <button class="logout-btn" onclick="doLogout()" title="Cerrar sesión" style="flex:1; justify-content:center;">
+        <i class="fas fa-sign-out-alt"></i> Salir
+      </button>
+    </div>
   </div>
-</header>
-<!-- ══════════════ TABS (TCS) ══════════════ -->
-<div class="app-tabs"><div class="app-tabs-inner">
-  <a class="nav-item active" data-section="inicio" onclick="showSection('inicio')"><i class="fas fa-home"></i> Inicio</a>
-  <a class="nav-item" data-section="guia" onclick="showSection('guia')"><i class="fas fa-book-open"></i> Guía Académica</a>
-  <a class="nav-item" data-section="tutor" onclick="showSection('tutor')"><i class="fas fa-user-tie"></i> Tu tutor/a</a>
-  <a class="nav-item" data-section="hoja-ruta" onclick="showSection('hoja-ruta')"><i class="fas fa-route"></i> Hoja de ruta</a>
-  <a class="nav-item" data-section="ideas" onclick="showSection('ideas')"><i class="fas fa-lightbulb"></i> Mis ideas</a>
-  <a class="nav-item" data-section="documento" onclick="showSection('documento')"><i class="fas fa-file-pen"></i> Mi TFM</a>
-  <a class="nav-item" data-section="asistente" onclick="showSection('asistente')"><i class="fas fa-robot"></i> Asistente IA <span style="margin-left:6px; background:var(--surface); color:var(--text-light); font-size:9px; font-weight:700; padding:1px 6px; border-radius:999px; text-transform:uppercase;">Pronto</span></a>
-  <a class="nav-item" data-section="biblioteca" onclick="showSection('biblioteca')"><i class="fas fa-bookmark"></i> Mi Biblioteca <span class="badge" id="library-badge">0</span></a>
-</div></div>
+</aside>
 
 <!-- ══════════════ MAIN CONTENT ══════════════ -->
 <main class="main">
@@ -1123,10 +1040,6 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
         <h3><i class="fas fa-pen-nib"></i> Continuar escribiendo</h3>
         <p>Accede a tu editor de TFM y sigue trabajando en tu documento.</p>
       </div>
-      <div class="card" style="cursor:pointer" onclick="showSection('asistente')">
-        <h3><i class="fas fa-robot"></i> Consultar al asistente</h3>
-        <p>Pregunta sobre contenidos del máster para fundamentar tu trabajo.</p>
-      </div>
     </div>
   </div>
 
@@ -1163,28 +1076,28 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
           <label style="font-size: 13px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 6px;">
             <i class="fas fa-video" style="color: #4299e1; margin-right: 6px;"></i>Temáticas para webinars
           </label>
-          <textarea id="egh-sug-webinars" rows="2" placeholder="¿Sobre qué temas te gustaría que organizásemos webinars?" style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Geist', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
+          <textarea id="egh-sug-webinars" rows="2" placeholder="¿Sobre qué temas te gustaría que organizásemos webinars?" style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Inter', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
         </div>
         <!-- Contenido que falta -->
         <div>
           <label style="font-size: 13px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 6px;">
             <i class="fas fa-plus-circle" style="color: #48bb78; margin-right: 6px;"></i>Contenido que echas de menos
           </label>
-          <textarea id="egh-sug-contenido" rows="2" placeholder="¿Hay algún tema o contenido que te gustaría que incluyésemos en el curso?" style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Geist', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
+          <textarea id="egh-sug-contenido" rows="2" placeholder="¿Hay algún tema o contenido que te gustaría que incluyésemos en el curso?" style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Inter', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
         </div>
         <!-- Foros de debate -->
         <div>
           <label style="font-size: 13px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 6px;">
             <i class="fas fa-users" style="color: #9f7aea; margin-right: 6px;"></i>Foros de debate
           </label>
-          <textarea id="egh-sug-foros" rows="2" placeholder="¿Sobre qué temas te gustaría debatir con tus compañeros/as?" style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Geist', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
+          <textarea id="egh-sug-foros" rows="2" placeholder="¿Sobre qué temas te gustaría debatir con tus compañeros/as?" style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Inter', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
         </div>
         <!-- Otras sugerencias -->
         <div>
           <label style="font-size: 13px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 6px;">
             <i class="fas fa-lightbulb" style="color: var(--accent); margin-right: 6px;"></i>Otras sugerencias
           </label>
-          <textarea id="egh-sug-otras" rows="2" placeholder="Cualquier otra idea o sugerencia que quieras compartir..." style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Geist', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
+          <textarea id="egh-sug-otras" rows="2" placeholder="Cualquier otra idea o sugerencia que quieras compartir..." style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Inter', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
         </div>
       </div>
     </div>
@@ -1237,7 +1150,7 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
         <!-- Fase 1 -->
         <div style="background: #f8f9fc; border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; border-left: 3px solid #4299e1;">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-            <span style="background: var(--surface); color: var(--text); border: 1px solid var(--border); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px;">FASE 1</span>
+            <span style="background: #4299e1; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;">FASE 1</span>
             <span style="font-size: 14px; font-weight: 700; color: var(--primary);">Executive Global Hospitality — Campus online</span>
           </div>
           <div style="font-size: 12px; color: var(--text); line-height: 1.8; padding-left: 4px;">
@@ -1264,7 +1177,7 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
         <!-- Fase 2 -->
         <div style="background: #f8f9fc; border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; border-left: 3px solid var(--accent);">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-            <span style="background: var(--surface); color: var(--text); border: 1px solid var(--border); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px;">FASE 2</span>
+            <span style="background: var(--accent); color: var(--primary); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;">FASE 2</span>
             <span style="font-size: 14px; font-weight: 700; color: var(--primary);">Trabajo Fin de Máster (TFM)</span>
           </div>
           <div style="font-size: 12px; color: var(--text); line-height: 1.8; padding-left: 4px;">
@@ -1276,7 +1189,7 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
         <!-- Fase 3 -->
         <div style="background: #f8f9fc; border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; border-left: 3px solid #48bb78;">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-            <span style="background: var(--surface); color: var(--text); border: 1px solid var(--border); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px;">FASE 3</span>
+            <span style="background: #48bb78; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;">FASE 3</span>
             <span style="font-size: 14px; font-weight: 700; color: var(--primary);">Semana presencial en la UCAM</span>
             <span style="font-size: 10px; color: var(--text-light); background: #f0f4f8; padding: 2px 8px; border-radius: 4px;">Opcional</span>
           </div>
@@ -1476,11 +1389,11 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <div>
                 <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Fecha</label>
-                <input type="date" id="tutoria-date" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Geist', sans-serif; outline: none;">
+                <input type="date" id="tutoria-date" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;">
               </div>
               <div>
                 <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Hora</label>
-                <input type="time" id="tutoria-time" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Geist', sans-serif; outline: none;">
+                <input type="time" id="tutoria-time" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;">
               </div>
             </div>
             <div style="margin-top: 10px;">
@@ -1506,7 +1419,7 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
             </div>
             <div style="margin-top: 10px;">
               <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Asunto / tema a tratar</label>
-              <input type="text" id="tutoria-subject" placeholder="Ej: Revisión del marco teórico..." style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Geist', sans-serif; outline: none;">
+              <input type="text" id="tutoria-subject" placeholder="Ej: Revisión del marco teórico..." style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;">
             </div>
             <button class="btn btn-primary" onclick="addTutoria()" style="margin-top: 12px; width: 100%; padding: 9px;">
               <i class="fas fa-calendar-check" style="margin-right: 4px;"></i> Agendar tutoría
@@ -1559,7 +1472,7 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
               </button>
               <input type="file" id="msg-file-input" style="display: none;" onchange="handleMsgAttachment(this)">
               <div style="flex: 1; position: relative;">
-                <textarea id="tutor-msg-input" placeholder="Escribe tu mensaje al tutor/a..." rows="2" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Geist', sans-serif; outline: none; resize: none; line-height: 1.5;" onkeypress="if(event.key==='Enter' && !event.shiftKey){event.preventDefault();sendTutorMsg();}"></textarea>
+                <textarea id="tutor-msg-input" placeholder="Escribe tu mensaje al tutor/a..." rows="2" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif; outline: none; resize: none; line-height: 1.5;" onkeypress="if(event.key==='Enter' && !event.shiftKey){event.preventDefault();sendTutorMsg();}"></textarea>
               </div>
               <button onclick="sendTutorMsg()" style="background: var(--accent); border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; color: var(--primary); font-size: 14px; font-weight: 600; transition: all 0.15s; height: 42px;">
                 <i class="fas fa-paper-plane"></i>
@@ -1600,13 +1513,13 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
           <label style="display: block; font-size: 12px; font-weight: 600; color: var(--primary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">
             <i class="fas fa-play" style="color: var(--success); margin-right: 4px;"></i> Inicio oficial (80% superado)
           </label>
-          <input type="date" id="date-start" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Geist', sans-serif; outline: none;" onchange="recalcTimeline()">
+          <input type="date" id="date-start" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none;" onchange="recalcTimeline()">
         </div>
         <div style="flex: 1; min-width: 200px;">
           <label style="display: block; font-size: 12px; font-weight: 600; color: var(--primary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">
             <i class="fas fa-flag-checkered" style="color: var(--warning); margin-right: 4px;"></i> Fecha de entrega final
           </label>
-          <input type="date" id="date-end" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Geist', sans-serif; outline: none;" onchange="recalcTimeline()">
+          <input type="date" id="date-end" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none;" onchange="recalcTimeline()">
         </div>
       </div>
       <div id="date-summary" style="margin-top: 16px; padding: 14px 18px; background: #f0f4f8; border-radius: 8px; font-size: 13px; color: var(--text-light); display: none;">
@@ -1694,15 +1607,15 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
         <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end;">
           <div style="flex: 1; min-width: 180px;">
             <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Título</label>
-            <input type="text" id="gt-title" placeholder="Ej: Tutoría grupal — Avances TFM" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Geist', sans-serif;">
+            <input type="text" id="gt-title" placeholder="Ej: Tutoría grupal — Avances TFM" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Inter', sans-serif;">
           </div>
           <div style="min-width: 140px;">
             <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Fecha y hora</label>
-            <input type="datetime-local" id="gt-datetime" style="padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Geist', sans-serif;">
+            <input type="datetime-local" id="gt-datetime" style="padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Inter', sans-serif;">
           </div>
           <div style="min-width: 120px;">
             <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Enlace (opcional)</label>
-            <input type="url" id="gt-link" placeholder="https://zoom.us/..." style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Geist', sans-serif;">
+            <input type="url" id="gt-link" placeholder="https://zoom.us/..." style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Inter', sans-serif;">
           </div>
           <button onclick="addGroupTutoring()" style="padding: 8px 16px; background: #4299e1; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Publicar</button>
         </div>
@@ -1732,11 +1645,11 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
         <div style="display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap;">
           <div style="flex: 1; min-width: 200px;">
             <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 4px;">Nueva tarea</label>
-            <input type="text" id="new-phase-name" placeholder="Ej: Revisión anti-plagio, Ensayo de presentación..." style="width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Geist', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addCustomPhase()">
+            <input type="text" id="new-phase-name" placeholder="Ej: Revisión anti-plagio, Ensayo de presentación..." style="width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addCustomPhase()">
           </div>
           <div style="min-width: 140px;">
             <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 4px;">Fecha límite</label>
-            <input type="date" id="new-phase-deadline" style="width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Geist', sans-serif; outline: none;">
+            <input type="date" id="new-phase-deadline" style="width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif; outline: none;">
           </div>
           <button class="btn btn-primary" onclick="addCustomPhase()" style="height: 40px;"><i class="fas fa-plus"></i> Añadir</button>
         </div>
@@ -1758,15 +1671,15 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
       <h3 style="margin-bottom: 6px;"><i class="fas fa-list-ol" style="color: #4299e1;"></i> Borrador de índice</h3>
       <p style="font-size: 12px; color: var(--text-light); margin-bottom: 12px;">Esboza la estructura de tu TFM. Puedes reorganizarlo tantas veces como quieras antes de llevarlo al documento.</p>
       <div id="draft-index-empty" style="text-align: center; padding: 20px; display: none;">
-        <button onclick="loadProposedIndex()" class="btn" style="background: #ebf8ff; border: 1px solid #bee3f8; color: #2b6cb0; font-size: 13px; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: 'Geist', sans-serif;">
+        <button onclick="loadProposedIndex()" class="btn" style="background: #ebf8ff; border: 1px solid #bee3f8; color: #2b6cb0; font-size: 13px; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: 'Inter', sans-serif;">
           <i class="fas fa-magic" style="margin-right: 6px;"></i>Cargar estructura propuesta del TFM
         </button>
         <p style="font-size: 11px; color: var(--text-light); margin-top: 8px;">Basada en la Guía Académica. Podrás modificarla a tu gusto.</p>
       </div>
       <div id="draft-index-list" style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px;"></div>
       <div style="display: flex; gap: 8px; align-items: center;">
-        <input type="text" id="draft-index-input" placeholder="Ej: 1. Introducción, 2.1 Marco teórico..." style="flex: 1; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Geist', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addDraftIndexItem()">
-        <select id="draft-index-level" style="padding: 9px 8px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Geist', sans-serif; outline: none; cursor: pointer;">
+        <input type="text" id="draft-index-input" placeholder="Ej: 1. Introducción, 2.1 Marco teórico..." style="flex: 1; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addDraftIndexItem()">
+        <select id="draft-index-level" style="padding: 9px 8px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none; cursor: pointer;">
           <option value="0">Título</option>
           <option value="1">Subtítulo</option>
           <option value="2">Apartado</option>
@@ -1774,7 +1687,7 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
         <button class="btn btn-primary" onclick="addDraftIndexItem()" style="white-space: nowrap;"><i class="fas fa-plus"></i> Añadir</button>
       </div>
       <div id="draft-index-send" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);">
-        <button onclick="sendDraftIndexToEditor()" class="btn" style="background: #ebf8ff; border: 1px solid #bee3f8; color: #2b6cb0; font-size: 12px; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: 'Geist', sans-serif;">
+        <button onclick="sendDraftIndexToEditor()" class="btn" style="background: #ebf8ff; border: 1px solid #bee3f8; color: #2b6cb0; font-size: 12px; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: 'Inter', sans-serif;">
           <i class="fas fa-arrow-right" style="margin-right: 6px;"></i>Enviar estructura a Mi TFM
         </button>
       </div>
@@ -1784,9 +1697,9 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
     <div class="card" style="border-left: 4px solid var(--accent); margin-bottom: 20px;">
       <h3><i class="fas fa-sticky-note" style="color: var(--accent);"></i> Notas</h3>
       <div style="display: flex; gap: 10px; margin-top: 10px;">
-        <textarea id="quick-note" placeholder="Escribe una idea, duda, algo importante..." rows="2" style="flex: 1; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Geist', sans-serif; outline: none; resize: none; line-height: 1.6;"></textarea>
+        <textarea id="quick-note" placeholder="Escribe una idea, duda, algo importante..." rows="2" style="flex: 1; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none; resize: none; line-height: 1.6;"></textarea>
         <div style="display: flex; flex-direction: column; gap: 6px;">
-          <select id="note-color" style="padding: 8px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Geist', sans-serif; outline: none; cursor: pointer;">
+          <select id="note-color" style="padding: 8px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none; cursor: pointer;">
             <option value="#fffbeb">💡 Idea</option>
             <option value="#faf5ff">❓ Duda</option>
             <option value="#fff5f5">🔥 Importante</option>
@@ -1801,12 +1714,12 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
     <!-- Filtros -->
     <div style="display: flex; gap: 6px; margin: 0 0 16px 0; flex-wrap: wrap; align-items: center;">
       <span style="font-size: 12px; color: var(--text-light); font-weight: 600; margin-right: 4px;">Filtrar:</span>
-      <button class="note-filter active" onclick="filterNotes('all', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: var(--primary); color: #fff; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Geist', sans-serif;">Todas</button>
-      <button class="note-filter" onclick="filterNotes('#fffbeb', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Geist', sans-serif;">💡 Ideas</button>
-      <button class="note-filter" onclick="filterNotes('#faf5ff', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Geist', sans-serif;">❓ Dudas</button>
-      <button class="note-filter" onclick="filterNotes('#fff5f5', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Geist', sans-serif;">🔥 Importantes</button>
-      <button class="note-filter" onclick="filterNotes('#e6fffa', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Geist', sans-serif;">💬 Tutor/a</button>
-      <button class="note-filter" onclick="filterNotes('#ebf8ff', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Geist', sans-serif;">🔍 Buscar</button>
+      <button class="note-filter active" onclick="filterNotes('all', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: var(--primary); color: #fff; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;">Todas</button>
+      <button class="note-filter" onclick="filterNotes('#fffbeb', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;">💡 Ideas</button>
+      <button class="note-filter" onclick="filterNotes('#faf5ff', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;">❓ Dudas</button>
+      <button class="note-filter" onclick="filterNotes('#fff5f5', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;">🔥 Importantes</button>
+      <button class="note-filter" onclick="filterNotes('#e6fffa', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;">💬 Tutor/a</button>
+      <button class="note-filter" onclick="filterNotes('#ebf8ff', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;">🔍 Buscar</button>
       <span style="margin-left: auto; font-size: 12px; color: var(--text-light);" id="note-count">0 notas</span>
     </div>
 
@@ -1841,7 +1754,7 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
             <i class="fas fa-search" style="margin-right: 6px; color: var(--accent);"></i>Buscar en el texto
           </div>
           <div style="display: flex; gap: 6px;">
-            <input type="text" id="word-search" placeholder="Buscar palabra..." onkeypress="if(event.key==='Enter')searchInDoc()" style="flex:1; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Geist', sans-serif; outline: none;">
+            <input type="text" id="word-search" placeholder="Buscar palabra..." onkeypress="if(event.key==='Enter')searchInDoc()" style="flex:1; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;">
             <button onclick="searchInDoc()" style="background: var(--accent); border: none; padding: 8px 10px; border-radius: 6px; cursor: pointer; color: var(--primary); font-size: 12px;">
               <i class="fas fa-search"></i>
             </button>
@@ -1934,21 +1847,21 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
         </div>
 
         <!-- Barra de acciones de archivo -->
-        <div style="display: flex; gap: 6px; padding: 8px 12px; background: var(--surface); border: 1px solid var(--border); border-top: none; flex-wrap: wrap; align-items: center;">
-          <button class="btn" onclick="saveDoc()" style="padding: 7px 16px; font-size: 12px; background: var(--primary); color: #fff; border-radius: 999px;">
+        <div style="display: flex; gap: 6px; padding: 8px 12px; background: #f0f4f8; border: 1px solid var(--border); border-top: none; flex-wrap: wrap; align-items: center;">
+          <button class="btn" onclick="saveDoc()" style="padding: 6px 14px; font-size: 12px; background: var(--success); color: #fff; border-radius: 6px;">
             <i class="fas fa-save" style="margin-right: 4px;"></i>Guardar
           </button>
-          <button class="btn" onclick="exportWord()" style="padding: 7px 14px; font-size: 12px; background: #fff; color: var(--text); border: 1px solid var(--border); border-radius: 999px;">
-            <i class="fas fa-file-word" style="margin-right: 4px; color: var(--text-light);"></i>Exportar Word
+          <button class="btn" onclick="exportWord()" style="padding: 6px 14px; font-size: 12px; background: #2b6cb0; color: #fff; border-radius: 6px;">
+            <i class="fas fa-file-word" style="margin-right: 4px;"></i>Exportar Word
           </button>
-          <button class="btn" onclick="exportPDF()" style="padding: 7px 14px; font-size: 12px; background: #fff; color: var(--text); border: 1px solid var(--border); border-radius: 999px;">
-            <i class="fas fa-file-pdf" style="margin-right: 4px; color: var(--text-light);"></i>Exportar PDF
+          <button class="btn" onclick="exportPDF()" style="padding: 6px 14px; font-size: 12px; background: #c53030; color: #fff; border-radius: 6px;">
+            <i class="fas fa-file-pdf" style="margin-right: 4px;"></i>Exportar PDF
           </button>
-          <button class="btn" onclick="createBackup()" style="padding: 7px 14px; font-size: 12px; background: #fff; color: var(--text); border: 1px solid var(--border); border-radius: 999px;">
-            <i class="fas fa-shield-alt" style="margin-right: 4px; color: var(--accent);"></i>Copia de seguridad
+          <button class="btn" onclick="createBackup()" style="padding: 6px 14px; font-size: 12px; background: #975a16; color: #fff; border-radius: 6px;">
+            <i class="fas fa-shield-alt" style="margin-right: 4px;"></i>Copia de seguridad
           </button>
-          <button class="btn" onclick="loadBackup()" style="padding: 7px 14px; font-size: 12px; background: #fff; color: var(--text); border: 1px solid var(--border); border-radius: 999px;">
-            <i class="fas fa-upload" style="margin-right: 4px; color: var(--text-light);"></i>Restaurar copia
+          <button class="btn" onclick="loadBackup()" style="padding: 6px 14px; font-size: 12px; background: var(--card-bg); color: var(--text); border: 1px solid var(--border); border-radius: 6px;">
+            <i class="fas fa-upload" style="margin-right: 4px;"></i>Restaurar copia
           </button>
           <span id="save-indicator" style="margin-left: auto; font-size: 11px; color: var(--text-light); display: none;">
             <i class="fas fa-check-circle" style="color: var(--success);"></i> Guardado
@@ -1985,26 +1898,6 @@ button[style*="#ebf8ff"], button[style*="#4299e1"] { background:#fff !important;
       </div>
     </div>
   </div>
-
-  <!-- ── ASISTENTE IA ── -->
-  <div class="section" id="sec-asistente">
-    <div class="section-header">
-      <h2>Asistente IA</h2>
-      <p>Un asistente entrenado con los contenidos del Máster para resolver dudas sobre tu TFM.</p>
-    </div>
-    <div class="card" style="text-align:center; padding:48px 28px;">
-      <div style="width:56px; height:56px; border-radius:50%; background:var(--surface); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;">
-        <i class="fas fa-robot" style="font-size:24px; color:var(--accent);"></i>
-      </div>
-      <div style="display:inline-block; background:var(--surface); color:var(--text-light); font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:4px 12px; border-radius:999px; margin-bottom:14px;">Próximamente</div>
-      <h3 style="border:none; margin:0 0 8px; justify-content:center;">Estamos preparando tu asistente</h3>
-      <p style="max-width:470px; margin:0 auto; color:var(--text-light); font-size:14px; line-height:1.65;">
-        Estará entrenado con los contenidos del Máster para ayudarte con dudas sobre estructura, formato APA y los módulos cursados. Lo activaremos más adelante. Mientras tanto, tienes toda la <a href="#" onclick="showSection('guia'); return false;" style="color:var(--text); font-weight:600;">Guía Académica</a> y el apoyo de tu <a href="#" onclick="showSection('tutor'); return false;" style="color:var(--text); font-weight:600;">tutor/a</a>.
-      </p>
-    </div>
-  </div>
-
-
 
   <!-- ── BIBLIOTECA ── -->
   <div class="section" id="sec-biblioteca">
@@ -2303,7 +2196,7 @@ function deleteStudent(email) {
 }
 
 // ── ADMIN PANEL (visual) ──
-const ADMIN_KEY = ''; // Panel admin heredado retirado del preview (la gestión de cuentas va por servidor/Supabase).
+const ADMIN_KEY = ''; // Panel admin heredado retirado del preview.
 
 function showAdminAccess() {
   document.getElementById('admin-screen').classList.remove('hidden');
@@ -2394,7 +2287,7 @@ function renderAdminStudentList() {
   container.innerHTML = entries.map(([email, u]) => {
     const date = u.createdAt ? new Date(u.createdAt).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) : '--';
     return `<div style="display:flex; align-items:center; gap:12px; padding:12px 14px; border:1px solid var(--border); border-radius:10px; margin-bottom:8px; background:#fff; transition:box-shadow 0.15s;" onmouseenter="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.06)'" onmouseleave="this.style.boxShadow='none'">
-      <div style="width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg, var(--accent), #d98f1a); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:var(--primary); flex-shrink:0;">
+      <div style="width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg, var(--accent), #d98f16); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:var(--primary); flex-shrink:0;">
         ${u.name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase()}
       </div>
       <div style="flex:1; min-width:0;">
@@ -2463,45 +2356,14 @@ async function setCurrentUserFrom(user) {
   currentUser = { id: user.id, email: user.email, name: name };
 }
 
-// Mostrar / ocultar contraseña (ojo)
-function togglePw() {
-  const inp = document.getElementById('login-password');
-  const icon = document.querySelector('#pw-toggle i');
-  if (inp.type === 'password') { inp.type = 'text'; icon.className = 'fas fa-eye-slash'; }
-  else { inp.type = 'password'; icon.className = 'fas fa-eye'; }
-}
-
-// "¿Olvidaste tu contraseña?" → enlace de restablecimiento por correo (Supabase).
-// Anti-enumeración: el mismo mensaje exista o no la cuenta.
-async function forgotPassword() {
-  let email = document.getElementById('login-email').value.trim().toLowerCase();
-  if (!email || !email.includes('@')) {
-    email = (prompt('Escribe tu email y te enviaremos un enlace para restablecer la contraseña:') || '').trim().toLowerCase();
-  }
-  if (!email || !email.includes('@')) return;
-  if (!window.sb) return showLoginError('No se pudo conectar con el servidor. Recarga la página.');
-  try { await window.sb.auth.resetPasswordForEmail(email, { redirectTo: window.location.href }); } catch (e) {}
-  showLoginSuccess('Si hay una cuenta con ese email, te hemos enviado un enlace para restablecer la contraseña. Revisa tu correo.');
-}
-
-// Al volver desde el enlace de recuperación, Supabase emite PASSWORD_RECOVERY → pedir nueva contraseña.
-if (window.sb && window.sb.auth && window.sb.auth.onAuthStateChange) {
-  window.sb.auth.onAuthStateChange(async (event) => {
-    if (event !== 'PASSWORD_RECOVERY') return;
-    const np = prompt('Introduce tu nueva contraseña (mínimo 6 caracteres):');
-    if (np && np.length >= 6) {
-      const { error } = await window.sb.auth.updateUser({ password: np });
-      alert(error ? 'No se pudo cambiar la contraseña. Pide otro enlace.' : 'Contraseña actualizada. Ya puedes entrar.');
-    }
-  });
-}
-
 async function doLogout() {
   try { if (window.sb) await window.sb.auth.signOut(); } catch (e) {}
   currentUser = null;
   // Show login, hide app
   document.getElementById('login-screen').classList.remove('hidden');
-  ['.app-header','.app-tabs','.main'].forEach(sel => { const el = document.querySelector(sel); if (el) el.style.display = 'none'; });
+  document.querySelector('.sidebar').style.display = 'none';
+  document.querySelector('.main').style.display = 'none';
+  document.querySelector('.mobile-toggle').style.display = 'none';
   // Clear form fields and reset view
   document.getElementById('login-email').value = '';
   document.getElementById('login-password').value = '';
@@ -2531,7 +2393,7 @@ function showChangePasswordModal() {
     <div class="login-field"><label>Nueva contraseña</label><div class="field-icon"><i class="fas fa-lock"></i><input type="password" id="modal-pw-new" placeholder="Mínimo 6 caracteres"></div></div>
     <div class="login-field"><label>Repetir nueva contraseña</label><div class="field-icon"><i class="fas fa-lock"></i><input type="password" id="modal-pw-new2" placeholder="Repite la nueva contraseña"></div></div>
     <button class="login-btn" onclick="doModalChangePassword()"><i class="fas fa-save" style="margin-right:6px;"></i>Guardar</button>
-    <button onclick="document.getElementById('pw-modal-overlay').remove()" style="width:100%; margin-top:8px; padding:10px; border:1px solid var(--border); border-radius:10px; background:#fff; cursor:pointer; font-family:'Geist',sans-serif; font-size:13px; color:var(--text-light);">Cancelar</button>
+    <button onclick="document.getElementById('pw-modal-overlay').remove()" style="width:100%; margin-top:8px; padding:10px; border:1px solid var(--border); border-radius:10px; background:#fff; cursor:pointer; font-family:'Inter',sans-serif; font-size:13px; color:var(--text-light);">Cancelar</button>
   `;
 
   overlay.appendChild(modal);
@@ -2572,7 +2434,9 @@ async function doModalChangePassword() {
 function enterApp() {
   // Hide login, show app
   document.getElementById('login-screen').classList.add('hidden');
-  ['.app-header','.app-tabs','.main'].forEach(sel => { const el = document.querySelector(sel); if (el) el.style.display = ''; });
+  document.querySelector('.sidebar').style.display = '';
+  document.querySelector('.main').style.display = '';
+  document.querySelector('.mobile-toggle').style.display = '';
   // Initialize app with user data
   initAppForUser();
 }
@@ -2589,7 +2453,9 @@ async function checkSession() {
     }
   } catch (e) {}
   // No hay sesión: ocultar app, mostrar login
-  ['.app-header','.app-tabs','.main'].forEach(sel => { const el = document.querySelector(sel); if (el) el.style.display = 'none'; });
+  document.querySelector('.sidebar').style.display = 'none';
+  document.querySelector('.main').style.display = 'none';
+  document.querySelector('.mobile-toggle').style.display = 'none';
   return false;
 }
 
@@ -2696,8 +2562,7 @@ function showSection(name) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('sec-' + name).classList.add('active');
   document.querySelector(`.nav-item[data-section="${name}"]`).classList.add('active');
-  // mantener la pestaña activa visible en la fila (se desplaza en horizontal en móvil)
-  document.querySelector(`.nav-item[data-section="${name}"]`).scrollIntoView({ block: 'nearest', inline: 'center' });
+  document.querySelector('.sidebar').classList.remove('open');
   window.scrollTo(0, 0);
 }
 
@@ -3191,7 +3056,7 @@ function renderDraftIndex() {
     <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; padding-left: ${paddings[item.level] + 12}px; background: #f8f9fc; border-radius: 8px; border: 1px solid var(--border); cursor: grab;" draggable="true" ondragstart="dragDraftItem(event, ${i})" ondragover="event.preventDefault()" ondrop="dropDraftItem(event, ${i})">
       <i class="fas fa-grip-vertical" style="color: #cbd5e0; font-size: 10px;"></i>
       <span onclick="editDraftItem(${i})" style="flex: 1; font-size: ${sizes[item.level]}; font-weight: ${weights[item.level]}; color: var(--primary); cursor: text;" title="Clic para editar">${item.text}</span>
-      <select onchange="changeDraftLevel(${i}, this.value)" style="padding: 2px 4px; border: 1px solid var(--border); border-radius: 4px; font-size: 10px; font-family: 'Geist', sans-serif; outline: none; cursor: pointer; color: var(--text-light);">
+      <select onchange="changeDraftLevel(${i}, this.value)" style="padding: 2px 4px; border: 1px solid var(--border); border-radius: 4px; font-size: 10px; font-family: 'Inter', sans-serif; outline: none; cursor: pointer; color: var(--text-light);">
         <option value="0" ${item.level === 0 ? 'selected' : ''}>Título</option>
         <option value="1" ${item.level === 1 ? 'selected' : ''}>Subtítulo</option>
         <option value="2" ${item.level === 2 ? 'selected' : ''}>Apartado</option>
@@ -3359,7 +3224,7 @@ function generateMindMap() {
   ctx.roundRect(cx - centralW / 2, cy - centralH / 2, centralW, centralH, 12);
   ctx.fill();
 
-  ctx.fillStyle = '#c9a84c';
+  ctx.fillStyle = '#f9b233';
   ctx.font = 'bold 15px Inter, sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
@@ -3437,7 +3302,7 @@ function renderNotebookBlocks() {
         <span style="font-size: 11px; color: ${block.keep ? '#276749' : 'var(--text-light)'}; font-weight: 600;">${block.keep ? 'Conservar' : 'Sin conservar'}</span>
         <button onclick="deleteNotebookBlock(${block.id})" style="margin-left: auto; background: none; border: none; color: #cbd5e0; cursor: pointer; font-size: 12px;" onmouseenter="this.style.color='#e53e3e'" onmouseleave="this.style.color='#cbd5e0'" title="Eliminar bloque"><i class="fas fa-trash"></i></button>
       </div>
-      <textarea id="nb-text-${block.id}" rows="3" placeholder="Escribe aquí..." style="width: 100%; border: none; border-radius: 6px; padding: 8px 10px; font-size: 13px; font-family: 'Geist', sans-serif; outline: none; resize: vertical; line-height: 1.7; background: ${block.keep ? 'rgba(255,255,255,0.7)' : '#f8f9fc'};" oninput="saveNotebookBlocks()">${block.text || ''}</textarea>
+      <textarea id="nb-text-${block.id}" rows="3" placeholder="Escribe aquí..." style="width: 100%; border: none; border-radius: 6px; padding: 8px 10px; font-size: 13px; font-family: 'Inter', sans-serif; outline: none; resize: vertical; line-height: 1.7; background: ${block.keep ? 'rgba(255,255,255,0.7)' : '#f8f9fc'};" oninput="saveNotebookBlocks()">${block.text || ''}</textarea>
     </div>
   `).join('');
 }
@@ -3758,7 +3623,7 @@ function pinIdeaToTFM(noteId) {
 
   // Footer
   let footerHTML = `<div style="padding:12px 20px; border-top:1px solid var(--border); text-align:right;">
-    <button onclick="document.getElementById('pin-modal-overlay').remove()" style="padding:8px 18px; border:1px solid var(--border); border-radius:8px; background:#fff; cursor:pointer; font-size:12px; font-family:'Geist',sans-serif; color:var(--text-light);">Cancelar</button>
+    <button onclick="document.getElementById('pin-modal-overlay').remove()" style="padding:8px 18px; border:1px solid var(--border); border-radius:8px; background:#fff; cursor:pointer; font-size:12px; font-family:'Inter',sans-serif; color:var(--text-light);">Cancelar</button>
   </div>`;
 
   modal.innerHTML = headerHTML + previewHTML + listHTML + footerHTML;
@@ -4110,7 +3975,7 @@ function sendTutorMsg() {
       <div style="font-size: 11px; opacity: 0.7; margin-bottom: 4px;">Tú · ${dateStr} ${timeStr}</div>
       <div class="msg-content" style="font-size: 13px; line-height: 1.6; white-space: pre-wrap;">${text}${attachmentHtml}</div>
     </div>
-    <div style="width: 32px; height: 32px; min-width: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #d98f1a); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 13px; font-weight: 700;">A</div>
+    <div style="width: 32px; height: 32px; min-width: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #d98f16); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 13px; font-weight: 700;">A</div>
   `;
 
   container.appendChild(msgDiv);
@@ -4134,7 +3999,7 @@ const phaseNames = [
   'Maquetación y entrega',
   'Defensa final virtual'
 ];
-const phaseColors = ['#4299e1','#48bb78','#4299e1','#ed8936','#e53e3e','#4299e1','#9f7aea','#38b2ac','#c9a84c','#e53e3e'];
+const phaseColors = ['#4299e1','#48bb78','#4299e1','#ed8936','#e53e3e','#4299e1','#9f7aea','#38b2ac','#f9b233','#e53e3e'];
 
 function formatDate(d) {
   const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
@@ -4273,7 +4138,7 @@ function recalcTimeline() {
         ${formatDate(phaseStart)} → ${formatDate(phaseEnd)}
       </div>
       <div style="text-align: center;">
-        <input type="date" class="phase-deadline-input" onchange="updateAllDeadlineStatuses()" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Geist', sans-serif; outline: none; width: 100%; text-align: center;">
+        <input type="date" class="phase-deadline-input" onchange="updateAllDeadlineStatuses()" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Inter', sans-serif; outline: none; width: 100%; text-align: center;">
       </div>
       <div style="text-align: center;">
         ${isCompleted ? '<span style="font-size: 11px; color: #276749; font-weight: 600; background: #c6f6d5; padding: 3px 10px; border-radius: 10px;"><i class="fas fa-check" style="margin-right: 3px;"></i>Hecha</span>'
@@ -4295,9 +4160,9 @@ function recalcTimeline() {
     subtaskPanel.innerHTML = `
       <div class="subtask-list" id="list-${taskId}"></div>
       <div style="display: flex; gap: 8px; margin-top: 6px; align-items: center;">
-        <input type="text" class="subtask-input" placeholder="Añadir subtarea..." style="flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Geist', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addSubtask('${taskId}', this.parentElement)">
-        <input type="date" class="subtask-date" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Geist', sans-serif; outline: none; width: 130px;">
-        <button onclick="addSubtask('${taskId}', this.parentElement)" style="background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; font-family: 'Geist', sans-serif; font-weight: 600; white-space: nowrap;"><i class="fas fa-plus" style="margin-right: 3px;"></i>Añadir</button>
+        <input type="text" class="subtask-input" placeholder="Añadir subtarea..." style="flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addSubtask('${taskId}', this.parentElement)">
+        <input type="date" class="subtask-date" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Inter', sans-serif; outline: none; width: 130px;">
+        <button onclick="addSubtask('${taskId}', this.parentElement)" style="background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; white-space: nowrap;"><i class="fas fa-plus" style="margin-right: 3px;"></i>Añadir</button>
       </div>
     `;
 
@@ -4356,7 +4221,7 @@ function renderPlanningWithoutDates() {
         <i class="fas fa-clock" style="margin-right: 4px; opacity: 0.5;"></i>Añade fechas arriba
       </div>
       <div style="text-align: center;">
-        <input type="date" class="phase-deadline-input" onchange="updateAllDeadlineStatuses()" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Geist', sans-serif; outline: none; width: 100%; text-align: center;">
+        <input type="date" class="phase-deadline-input" onchange="updateAllDeadlineStatuses()" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Inter', sans-serif; outline: none; width: 100%; text-align: center;">
       </div>
       <div style="text-align: center;">
         ${isCompleted ? '<span style="font-size: 11px; color: #276749; font-weight: 600; background: #c6f6d5; padding: 3px 10px; border-radius: 10px;"><i class="fas fa-check" style="margin-right: 3px;"></i>Hecha</span>'
@@ -4376,9 +4241,9 @@ function renderPlanningWithoutDates() {
     subtaskPanel.innerHTML = `
       <div class="subtask-list" id="list-${taskId}"></div>
       <div style="display: flex; gap: 8px; margin-top: 6px; align-items: center;">
-        <input type="text" class="subtask-input" placeholder="Añadir subtarea..." style="flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Geist', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addSubtask('${taskId}', this.parentElement)">
-        <input type="date" class="subtask-date" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Geist', sans-serif; outline: none; width: 130px;">
-        <button onclick="addSubtask('${taskId}', this.parentElement)" style="background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; font-family: 'Geist', sans-serif; font-weight: 600; white-space: nowrap;"><i class="fas fa-plus" style="margin-right: 3px;"></i>Añadir</button>
+        <input type="text" class="subtask-input" placeholder="Añadir subtarea..." style="flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addSubtask('${taskId}', this.parentElement)">
+        <input type="date" class="subtask-date" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Inter', sans-serif; outline: none; width: 130px;">
+        <button onclick="addSubtask('${taskId}', this.parentElement)" style="background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; white-space: nowrap;"><i class="fas fa-plus" style="margin-right: 3px;"></i>Añadir</button>
       </div>
     `;
 
@@ -4460,7 +4325,7 @@ function addCustomPhase() {
     </div>
     <div style="text-align: center; font-size: 12px; color: var(--text-light);">—</div>
     <div style="text-align: center;">
-      <input type="date" value="${deadline}" onchange="updateAllDeadlineStatuses()" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Geist', sans-serif; outline: none; width: 100%; text-align: center;">
+      <input type="date" value="${deadline}" onchange="updateAllDeadlineStatuses()" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Inter', sans-serif; outline: none; width: 100%; text-align: center;">
     </div>
     <div style="text-align: center;">
       <span class="custom-status" style="font-size: 11px; color: var(--text-light); background: #edf2f7; padding: 3px 10px; border-radius: 10px;">Pendiente</span>
@@ -4477,9 +4342,9 @@ function addCustomPhase() {
   subtaskPanel.innerHTML = `
     <div class="subtask-list" id="list-${customId}"></div>
     <div style="display: flex; gap: 8px; margin-top: 6px; align-items: center;">
-      <input type="text" class="subtask-input" placeholder="Añadir subtarea..." style="flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Geist', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addSubtask('${customId}', this.parentElement)">
-      <input type="date" class="subtask-date" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Geist', sans-serif; outline: none; width: 130px;">
-      <button onclick="addSubtask('${customId}', this.parentElement)" style="background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; font-family: 'Geist', sans-serif; font-weight: 600; white-space: nowrap;"><i class="fas fa-plus" style="margin-right: 3px;"></i>Añadir</button>
+      <input type="text" class="subtask-input" placeholder="Añadir subtarea..." style="flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addSubtask('${customId}', this.parentElement)">
+      <input type="date" class="subtask-date" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Inter', sans-serif; outline: none; width: 130px;">
+      <button onclick="addSubtask('${customId}', this.parentElement)" style="background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; white-space: nowrap;"><i class="fas fa-plus" style="margin-right: 3px;"></i>Añadir</button>
     </div>
   `;
 
@@ -4552,7 +4417,7 @@ function addSubtask(taskId, container) {
     </div>
     <span class="subtask-label" style="flex: 1; color: var(--text);">${text}</span>
     <div style="display: flex; align-items: center; gap: 6px; min-width: 210px; justify-content: flex-end;">
-      <input type="date" class="subtask-deadline-date" value="${deadline}" onchange="updateSubtaskDeadlineBadge(this)" style="padding: 3px 5px; border: 1px solid var(--border); border-radius: 5px; font-size: 10px; font-family: 'Geist', sans-serif; outline: none; width: 120px;">
+      <input type="date" class="subtask-deadline-date" value="${deadline}" onchange="updateSubtaskDeadlineBadge(this)" style="padding: 3px 5px; border: 1px solid var(--border); border-radius: 5px; font-size: 10px; font-family: 'Inter', sans-serif; outline: none; width: 120px;">
       ${deadlineHTML}
     </div>
     <button onclick="deleteSubtask(this, '${taskId}')" style="background: none; border: none; color: #cbd5e0; cursor: pointer; font-size: 11px; padding: 2px;" onmouseenter="this.style.color='#e53e3e'" onmouseleave="this.style.color='#cbd5e0'" title="Eliminar"><i class="fas fa-times"></i></button>
@@ -4749,7 +4614,7 @@ function renderEghTutorPicks() {
       </div>
       <div style="flex: 1;">
         <div style="font-size: 11px; color: var(--text-light); margin-bottom: 4px; font-weight: 600;">${labels[i]}</div>
-        <select onchange="onTutorPickChange(${i}, this.value)" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Geist', sans-serif; background: #fff; cursor: pointer; outline: none; color: var(--primary);">
+        <select onchange="onTutorPickChange(${i}, this.value)" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif; background: #fff; cursor: pointer; outline: none; color: var(--primary);">
           <option value="">— Seleccionar profesor/a —</option>
           ${options.map(p => `<option value="${p}" ${pick === p ? 'selected' : ''}>${p}</option>`).join('')}
         </select>
@@ -4879,7 +4744,7 @@ document.querySelectorAll('.suggestion-chip').forEach(chip => {
 </script>
 <!-- Indicador de guardado (rebanada 2): Store.set avisa de guardando/guardado/error -->
 <div id="tfm-save-badge" style="position:fixed; bottom:16px; right:16px; z-index:9999; display:none;
-     padding:7px 12px; border-radius:20px; font-size:12px; font-weight:600; font-family:'Geist',sans-serif;
+     padding:7px 12px; border-radius:20px; font-size:12px; font-weight:600; font-family:'Inter',sans-serif;
      box-shadow:0 2px 10px rgba(0,0,0,0.12); transition:opacity .3s;"></div>
 <script>
 (function () {
