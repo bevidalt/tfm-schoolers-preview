@@ -779,6 +779,15 @@ body {
   color: var(--text-light); font-size: 14px;
 }
 .login-field .field-icon input { padding-left: 40px; }
+.login-field .field-icon .login-eye {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer; color: var(--text-light);
+  font-size: 14px; padding: 6px; line-height: 1;
+}
+.login-field .field-icon .login-eye i { position: static; left: auto; top: auto; transform: none; color: inherit; font-size: inherit; }
+.login-field .field-icon input#login-password { padding-right: 38px; }
+.login-forgot { display: inline-block; margin-top: 8px; font-size: 12px; color: var(--text-light); text-decoration: none; }
+.login-forgot:hover { color: var(--accent); text-decoration: underline; }
 
 .login-btn {
   width: 100%; padding: 14px;
@@ -850,6 +859,10 @@ body {
           <div class="field-icon">
             <i class="fas fa-lock"></i>
             <input type="password" id="login-password" placeholder="Tu contraseña" onkeypress="if(event.key==='Enter')doLogin()">
+            <button type="button" class="login-eye" id="login-eye" onclick="togglePw()" aria-label="Mostrar u ocultar la contraseña"><i class="fas fa-eye"></i></button>
+          </div>
+          <div style="text-align:right;">
+            <a href="#" class="login-forgot" onclick="forgotPassword(); return false;">¿Has olvidado tu contraseña?</a>
           </div>
         </div>
         <button class="login-btn" onclick="doLogin()">
@@ -2156,6 +2169,30 @@ function showLoginSuccess(msg) {
   const el = document.getElementById('login-success');
   document.getElementById('login-success-text').textContent = msg;
   el.style.display = 'flex';
+}
+
+// Ver / ocultar la contraseña del login.
+function togglePw() {
+  const inp = document.getElementById('login-password');
+  const icon = document.querySelector('#login-eye i');
+  if (!inp) return;
+  const show = inp.type === 'password';
+  inp.type = show ? 'text' : 'password';
+  if (icon) icon.className = show ? 'fas fa-eye-slash' : 'fas fa-eye';
+}
+
+// "He olvidado la contraseña": envía el correo de restablecimiento. Mensaje anti-enumeración
+// (igual exista o no el correo), siguiendo el patrón canónico.
+async function forgotPassword() {
+  const email = document.getElementById('login-email').value.trim().toLowerCase();
+  if (!email || !email.includes('@')) {
+    return showLoginError('Escribe tu email arriba y vuelve a pulsar "¿Has olvidado tu contraseña?".');
+  }
+  if (!window.sb) return showLoginError('No se pudo conectar con el servidor. Recarga la página.');
+  try {
+    await window.sb.auth.resetPasswordForEmail(email, { redirectTo: window.location.href });
+  } catch (e) {}
+  showLoginSuccess('Si ese correo tiene cuenta, te hemos enviado instrucciones para restablecer la contraseña.');
 }
 
 // ── ADMIN: Create student accounts (use from browser console) ──
