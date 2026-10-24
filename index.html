@@ -2147,7 +2147,7 @@ body {
   #tutor-screen .tt-btn { background:var(--accent); color:var(--primary); border:none; border-radius:9px; padding:10px 16px; font:inherit; font-weight:700; cursor:pointer; }
   #tutor-screen .tt-btn.ghost { background:#fff; border:1px solid var(--border); color:var(--primary); font-weight:600; }
 </style>
-<div id="tutor-screen" class="hidden" style="position:fixed; inset:0; z-index:9000; background:#f4f6fb; overflow:auto;">
+<div id="tutor-screen" class="hidden" style="display:none; position:fixed; inset:0; z-index:9000; background:#f4f6fb; overflow:auto;">
   <div style="background:#0f2440; color:#fff; padding:14px 20px;">
     <div class="tt-wrap" style="padding:0; display:flex; align-items:center; gap:12px;">
       <div style="font-weight:700; font-size:15px;"><i class="fas fa-chalkboard-user" style="color:var(--accent); margin-right:8px;"></i>Mesa del tutor</div>
@@ -2452,7 +2452,7 @@ async function doLogout() {
   currentUser = null;
   // Show login, hide app (y la mesa del tutor si estaba abierta)
   document.getElementById('login-screen').classList.remove('hidden');
-  var _ts = document.getElementById('tutor-screen'); if (_ts) _ts.classList.add('hidden');
+  var _ts = document.getElementById('tutor-screen'); if (_ts) _ts.style.display = 'none';
   document.querySelector('.sidebar').style.display = 'none';
   document.querySelector('.main').style.display = 'none';
   document.querySelector('.mobile-toggle').style.display = 'none';
@@ -2531,11 +2531,11 @@ function enterApp() {
     document.querySelector('.sidebar').style.display = 'none';
     document.querySelector('.main').style.display = 'none';
     var _mt = document.querySelector('.mobile-toggle'); if (_mt) _mt.style.display = 'none';
-    document.getElementById('tutor-screen').classList.remove('hidden');
+    document.getElementById('tutor-screen').style.display = 'block';
     initTutorDesk();
     return;
   }
-  document.getElementById('tutor-screen').classList.add('hidden');
+  document.getElementById('tutor-screen').style.display = 'none';
   document.querySelector('.sidebar').style.display = '';
   document.querySelector('.main').style.display = '';
   document.querySelector('.mobile-toggle').style.display = '';
