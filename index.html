@@ -2132,6 +2132,61 @@ body {
 </main>
 
 <!-- Backend Supabase (trasplante): cliente + capa Store. Deben cargar ANTES del script de la app. -->
+<!-- ══════════════ MESA DEL TUTOR ══════════════ -->
+<style>
+  #tutor-screen { font-family:'Inter',sans-serif; color:var(--primary); }
+  #tutor-screen .tt-wrap { max-width:1000px; margin:0 auto; padding:24px 20px 60px; }
+  #tutor-screen .tutor-tab { background:none; border:none; cursor:pointer; font:inherit; font-size:14px; font-weight:600; color:var(--text-light); padding:10px 2px; margin-right:22px; border-bottom:2px solid transparent; }
+  #tutor-screen .tutor-tab.active { color:var(--primary); border-bottom-color:var(--accent); }
+  #tutor-screen .tutor-student-row { display:flex; align-items:center; gap:12px; padding:14px 16px; background:#fff; border:1px solid var(--border); border-radius:12px; margin-bottom:10px; cursor:pointer; transition:border-color .15s, box-shadow .15s; }
+  #tutor-screen .tutor-student-row:hover { border-color:var(--accent); box-shadow:0 2px 10px rgba(0,0,0,.05); }
+  #tutor-screen .tt-card { background:#fff; border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:16px; }
+  #tutor-screen .tt-draft { border:1px solid var(--border); border-radius:10px; padding:18px 20px; background:#fcfcfd; max-height:420px; overflow:auto; }
+  #tutor-screen .tt-draft h1 { font-size:20px; } #tutor-screen .tt-draft h2 { font-size:16px; margin-top:14px; }
+  #tutor-screen input, #tutor-screen textarea, #tutor-screen select { font:inherit; border:1px solid var(--border); border-radius:8px; padding:9px 11px; width:100%; box-sizing:border-box; }
+  #tutor-screen .tt-btn { background:var(--accent); color:var(--primary); border:none; border-radius:9px; padding:10px 16px; font:inherit; font-weight:700; cursor:pointer; }
+  #tutor-screen .tt-btn.ghost { background:#fff; border:1px solid var(--border); color:var(--primary); font-weight:600; }
+</style>
+<div id="tutor-screen" class="hidden" style="position:fixed; inset:0; z-index:9000; background:#f4f6fb; overflow:auto;">
+  <div style="background:#0f2440; color:#fff; padding:14px 20px;">
+    <div class="tt-wrap" style="padding:0; display:flex; align-items:center; gap:12px;">
+      <div style="font-weight:700; font-size:15px;"><i class="fas fa-chalkboard-user" style="color:var(--accent); margin-right:8px;"></i>Mesa del tutor</div>
+      <div style="flex:1; font-size:12px; color:rgba(255,255,255,.6);">· <span id="tutor-name"></span></div>
+      <button class="tt-btn ghost" onclick="doLogout()" style="background:rgba(255,255,255,.12); color:#fff;"><i class="fas fa-sign-out-alt" style="margin-right:6px;"></i>Salir</button>
+    </div>
+  </div>
+  <div class="tt-wrap">
+    <div style="border-bottom:1px solid var(--border); margin-bottom:20px;">
+      <button class="tutor-tab active" id="tutor-tab-alumnos" onclick="tutorShowView('alumnos')">Alumnos</button>
+      <button class="tutor-tab" id="tutor-tab-tutorias" onclick="tutorShowView('tutorias')">Tutorías</button>
+    </div>
+    <div id="tutor-view-alumnos">
+      <div id="tutor-students-list">
+        <h2 style="font-size:18px; margin:0 0 14px;">Tus alumnos</h2>
+        <div id="tutor-students"></div>
+      </div>
+      <div id="tutor-detail" style="display:none;"></div>
+    </div>
+    <div id="tutor-view-tutorias" style="display:none;">
+      <div class="tt-card">
+        <h3 style="margin:0 0 14px; font-size:15px;">Convocar una tutoría</h3>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+          <select id="tut-type" onchange="tutorToggleStudentSelect()" style="max-width:200px;"><option value="grupal">Grupal (todos)</option><option value="individual">Individual</option></select>
+          <select id="tut-student" style="max-width:260px; display:none;"></select>
+        </div>
+        <input id="tut-title" placeholder="Título (p. ej. Tutoría de metodología)" style="margin-bottom:10px;">
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;">
+          <input id="tut-datetime" type="datetime-local" style="max-width:240px;">
+          <input id="tut-zoom" placeholder="Enlace de videollamada (opcional)" style="flex:1; min-width:200px;">
+        </div>
+        <button class="tt-btn" onclick="createTutoria()"><i class="fas fa-paper-plane" style="margin-right:6px;"></i>Convocar y avisar</button>
+        <div id="tut-create-msg" style="font-size:12px; margin-top:8px;"></div>
+      </div>
+      <h3 style="font-size:15px; margin:18px 0 10px;">Tutorías convocadas</h3>
+      <div id="tutor-tutorias-list"></div>
+    </div>
+  </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="config.js"></script>
 <script src="supabase.js"></script>
@@ -2383,21 +2438,21 @@ async function doLogin() {
 // Rellena currentUser a partir del usuario de Supabase (la sesión la gestiona el propio cliente).
 async function setCurrentUserFrom(user) {
   let name = (user.user_metadata && user.user_metadata.full_name) || '';
-  if (!name) {
-    try {
-      const { data } = await window.sb.from('profiles').select('full_name').eq('id', user.id).maybeSingle();
-      if (data && data.full_name) name = data.full_name;
-    } catch (e) {}
-  }
+  let role = 'student';
+  try {
+    const { data } = await window.sb.from('profiles').select('full_name, role').eq('id', user.id).maybeSingle();
+    if (data) { if (data.full_name && !name) name = data.full_name; if (data.role) role = data.role; }
+  } catch (e) {}
   if (!name) name = user.email.split('@')[0];
-  currentUser = { id: user.id, email: user.email, name: name };
+  currentUser = { id: user.id, email: user.email, name: name, role: role };
 }
 
 async function doLogout() {
   try { if (window.sb) await window.sb.auth.signOut(); } catch (e) {}
   currentUser = null;
-  // Show login, hide app
+  // Show login, hide app (y la mesa del tutor si estaba abierta)
   document.getElementById('login-screen').classList.remove('hidden');
+  var _ts = document.getElementById('tutor-screen'); if (_ts) _ts.classList.add('hidden');
   document.querySelector('.sidebar').style.display = 'none';
   document.querySelector('.main').style.display = 'none';
   document.querySelector('.mobile-toggle').style.display = 'none';
@@ -2469,8 +2524,18 @@ async function doModalChangePassword() {
 }
 
 function enterApp() {
-  // Hide login, show app
+  // Hide login
   document.getElementById('login-screen').classList.add('hidden');
+  // El staff (tutor/admin) va a la Mesa del tutor; el alumno, a su app de siempre.
+  if (currentUser && (currentUser.role === 'tutor' || currentUser.role === 'admin')) {
+    document.querySelector('.sidebar').style.display = 'none';
+    document.querySelector('.main').style.display = 'none';
+    var _mt = document.querySelector('.mobile-toggle'); if (_mt) _mt.style.display = 'none';
+    document.getElementById('tutor-screen').classList.remove('hidden');
+    initTutorDesk();
+    return;
+  }
+  document.getElementById('tutor-screen').classList.add('hidden');
   document.querySelector('.sidebar').style.display = '';
   document.querySelector('.main').style.display = '';
   document.querySelector('.mobile-toggle').style.display = '';
@@ -2586,6 +2651,7 @@ async function initAppForUser() {
   renderNotes();
   renderPinnedIdeas();
   if (typeof renderTutorias === 'function') renderTutorias();
+  if (typeof renderStudentTutorStuff === 'function') renderStudentTutorStuff();
   // Load EGH section
   initEghSection();
   renderGroupTutorings();
@@ -4804,6 +4870,146 @@ document.querySelectorAll('.suggestion-chip').forEach(chip => {
     }
   };
 })();
+</script>
+<script>
+/* ════════════ MESA DEL TUTOR + vista de alumno (comentarios/tutorías) ════════════ */
+function _esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function _sanitize(h){return String(h||'')
+  .replace(/<\s*script[\s\S]*?<\s*\/\s*script\s*>/gi,'')
+  .replace(/\son[a-z]+\s*=\s*"[^"]*"/gi,'').replace(/\son[a-z]+\s*=\s*'[^']*'/gi,'')
+  .replace(/javascript:/gi,'');}
+function _fmtDate(s){ if(!s) return ''; try{ var d=new Date(String(s).length<=10? s+'T00:00:00': s); if(isNaN(d)) return s; var dn=['dom','lun','mar','mié','jue','vie','sáb'],mn=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic']; var base=dn[d.getDay()]+' '+d.getDate()+' '+mn[d.getMonth()]+' '+d.getFullYear(); if(String(s).length>10) base+=', '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+'h'; return base; }catch(e){return s;} }
+
+var _tutorStudents=[];
+async function initTutorDesk(){
+  document.getElementById('tutor-name').textContent = currentUser.name || currentUser.email;
+  tutorShowView('alumnos');
+  await loadTutorStudents();
+  await loadTutorTutorias();
+}
+function tutorShowView(v){
+  document.getElementById('tutor-view-alumnos').style.display = v==='alumnos'?'':'none';
+  document.getElementById('tutor-view-tutorias').style.display = v==='tutorias'?'':'none';
+  document.getElementById('tutor-tab-alumnos').classList.toggle('active', v==='alumnos');
+  document.getElementById('tutor-tab-tutorias').classList.toggle('active', v==='tutorias');
+}
+async function loadTutorStudents(){
+  var cont=document.getElementById('tutor-students');
+  cont.innerHTML='<div style="padding:12px;color:var(--text-light)">Cargando…</div>';
+  var pr=await window.sb.from('profiles').select('id, full_name, role').eq('role','student');
+  if(pr.error){ cont.innerHTML='<div style="padding:12px;color:#c53030">No se pudieron cargar los alumnos.</div>'; return; }
+  var ss=await window.sb.from('student_state').select('user_id, key, value, updated_at');
+  var byUser={}; (ss.data||[]).forEach(function(r){ (byUser[r.user_id]=byUser[r.user_id]||[]).push(r); });
+  _tutorStudents=(pr.data||[]).map(function(p){
+    var rows=byUser[p.id]||[];
+    var get=function(k){ var r=rows.find(function(x){return x.key===k;}); return r?r.value:null; };
+    var ec=get('tfm-editor-content');
+    var name=(get('tfm-user-name')||p.full_name||'').toString()||'(sin nombre)';
+    var last=rows.reduce(function(m,r){return r.updated_at>m?r.updated_at:m;},'');
+    return { id:p.id, name:name, end:get('tfm-date-end'), hasDraft:!!(ec&&String(ec).replace(/<[^>]*>/g,'').trim()), last:last };
+  });
+  renderTutorStudents();
+  var sel=document.getElementById('tut-student');
+  if(sel) sel.innerHTML=_tutorStudents.map(function(s){return '<option value="'+s.id+'">'+_esc(s.name)+'</option>';}).join('');
+}
+function renderTutorStudents(){
+  var cont=document.getElementById('tutor-students');
+  if(!_tutorStudents.length){ cont.innerHTML='<div style="padding:12px;color:var(--text-light)">Aún no hay alumnos.</div>'; return; }
+  cont.innerHTML=_tutorStudents.map(function(s){
+    return '<div class="tutor-student-row" onclick="openTutorStudent(\''+s.id+'\')">'
+      +'<div style="flex:1"><div style="font-weight:600">'+_esc(s.name)+'</div>'
+      +'<div style="font-size:12px;color:var(--text-light);margin-top:2px">'+(s.hasDraft?'<span style="color:#2f855a">Borrador iniciado</span>':'Sin borrador')+' · Entrega: '+(s.end?_esc(_fmtDate(s.end)):'sin fecha')+'</div></div>'
+      +'<i class="fas fa-chevron-right" style="color:var(--text-light)"></i></div>';
+  }).join('');
+}
+async function openTutorStudent(id){
+  var s=_tutorStudents.find(function(x){return x.id===id;})||{id:id,name:'Alumno'};
+  var panel=document.getElementById('tutor-detail');
+  document.getElementById('tutor-students-list').style.display='none';
+  panel.style.display=''; panel.innerHTML='<div style="padding:12px;color:var(--text-light)">Cargando borrador…</div>';
+  var r=await window.sb.from('student_state').select('key,value').eq('user_id',id).in('key',['tfm-editor-content','tfm-draft-index']);
+  var get=function(k){ var x=(r.data||[]).find(function(y){return y.key===k;}); return x?x.value:null; };
+  var draft=get('tfm-editor-content');
+  var draftHtml=(draft&&String(draft).trim())? _sanitize(draft) : '<p style="color:var(--text-light)">(El alumno aún no ha escrito nada en su TFM.)</p>';
+  panel.innerHTML=''
+    +'<button class="tt-btn ghost" onclick="tutorBackToList()" style="margin-bottom:16px"><i class="fas fa-arrow-left" style="margin-right:6px"></i>Volver a alumnos</button>'
+    +'<div class="tt-card"><h2 style="margin:0 0 4px;font-size:18px">'+_esc(s.name)+'</h2>'
+      +'<div style="font-size:12px;color:var(--text-light);margin-bottom:16px">Borrador del TFM (solo lectura)</div>'
+      +'<div class="tt-draft">'+draftHtml+'</div></div>'
+    +'<div class="tt-card"><h3 style="margin:0 0 12px;font-size:15px">Comentarios para el alumno</h3>'
+      +'<div id="tutor-comments-list" style="margin-bottom:14px"></div>'
+      +'<textarea id="tutor-comment-body" rows="3" placeholder="Escribe un comentario que verá el alumno…" style="margin-bottom:10px"></textarea>'
+      +'<button class="tt-btn" onclick="addTutorComment(\''+id+'\')"><i class="fas fa-comment" style="margin-right:6px"></i>Enviar comentario</button></div>';
+  loadTutorComments(id);
+}
+function tutorBackToList(){ document.getElementById('tutor-detail').style.display='none'; document.getElementById('tutor-students-list').style.display=''; }
+async function loadTutorComments(id){
+  var box=document.getElementById('tutor-comments-list'); if(!box) return;
+  var r=await window.sb.from('tutor_comments').select('body, created_at').eq('student_id',id).order('created_at',{ascending:false});
+  if(!r.data||!r.data.length){ box.innerHTML='<div style="font-size:13px;color:var(--text-light)">Aún no hay comentarios.</div>'; return; }
+  box.innerHTML=r.data.map(function(c){
+    return '<div style="border-left:3px solid var(--accent);padding:8px 12px;background:#fafafa;border-radius:0 8px 8px 0;margin-bottom:8px">'
+      +'<div style="font-size:13px">'+_esc(c.body)+'</div>'
+      +'<div style="font-size:11px;color:var(--text-light);margin-top:4px">'+_esc(_fmtDate(c.created_at))+'</div></div>';
+  }).join('');
+}
+async function addTutorComment(id){
+  var ta=document.getElementById('tutor-comment-body'); var body=(ta.value||'').trim(); if(!body) return;
+  var r=await window.sb.from('tutor_comments').insert({student_id:id, tutor_id:currentUser.id, anchor:'tfm', body:body});
+  if(r.error){ alert('No se pudo guardar el comentario.'); return; }
+  ta.value=''; loadTutorComments(id);
+}
+function tutorToggleStudentSelect(){ document.getElementById('tut-student').style.display = document.getElementById('tut-type').value==='individual'?'':'none'; }
+async function loadTutorTutorias(){
+  var cont=document.getElementById('tutor-tutorias-list'); if(!cont) return;
+  var r=await window.sb.from('tutorias').select('id,type,student_id,title,starts_at,zoom_url').order('starts_at',{ascending:true});
+  if(!r.data||!r.data.length){ cont.innerHTML='<div style="font-size:13px;color:var(--text-light)">Aún no has convocado ninguna tutoría.</div>'; return; }
+  var nameOf=function(sid){ var s=_tutorStudents.find(function(x){return x.id===sid;}); return s?s.name:'alumno'; };
+  cont.innerHTML=r.data.map(function(t){
+    var who=t.type==='grupal'?'Grupal (todos)':('Individual · '+_esc(nameOf(t.student_id)));
+    return '<div class="tt-card" style="display:flex;align-items:center;gap:12px;padding:14px 16px;margin-bottom:10px">'
+      +'<div style="flex:1"><div style="font-weight:600">'+_esc(t.title)+'</div>'
+      +'<div style="font-size:12px;color:var(--text-light);margin-top:2px">'+who+' · '+_esc(_fmtDate(t.starts_at))+'</div></div>'
+      +(t.zoom_url?'<a href="'+_esc(t.zoom_url)+'" target="_blank" class="tt-btn" style="text-decoration:none;font-size:12px;padding:7px 12px">Enlace</a>':'')+'</div>';
+  }).join('');
+}
+async function createTutoria(){
+  var msg=document.getElementById('tut-create-msg'); msg.style.color='#c53030';
+  var type=document.getElementById('tut-type').value;
+  var title=(document.getElementById('tut-title').value||'').trim();
+  var dt=document.getElementById('tut-datetime').value;
+  var zoom=(document.getElementById('tut-zoom').value||'').trim();
+  var sid=type==='individual'?document.getElementById('tut-student').value:null;
+  if(!title||!dt){ msg.textContent='Indica al menos un título y una fecha.'; return; }
+  if(type==='individual'&&!sid){ msg.textContent='Elige el alumno para la tutoría individual.'; return; }
+  var row={type:type, student_id:sid, title:title, starts_at:new Date(dt).toISOString(), zoom_url:zoom||null, created_by:currentUser.id};
+  var r=await window.sb.from('tutorias').insert(row).select('id').single();
+  if(r.error){ msg.textContent='No se pudo convocar la tutoría.'; return; }
+  try { if (window.sb.functions) await window.sb.functions.invoke('notify-tutoria', { body:{ id: r.data.id } }); } catch(e){}
+  msg.style.color='#2f855a'; msg.textContent='Tutoría convocada'+(type==='grupal'?' para todos los alumnos.':'.')+' (El aviso por correo se activará al conectar el email.)';
+  document.getElementById('tut-title').value=''; document.getElementById('tut-datetime').value=''; document.getElementById('tut-zoom').value='';
+  loadTutorTutorias();
+}
+/* ── Vista del alumno: comentarios del tutor y sus tutorías (se inyecta en "Tu tutor/a") ── */
+async function renderStudentTutorStuff(){
+  if(!window.sb || !currentUser) return;
+  var host=document.getElementById('sec-tutor'); if(!host) return;
+  var old=document.getElementById('student-tutor-dynamic'); if(old) old.remove();
+  var c=await window.sb.from('tutor_comments').select('body,created_at').eq('student_id',currentUser.id).order('created_at',{ascending:false});
+  var comentarios=(c.data&&c.data.length)
+    ? c.data.map(function(x){return '<div style="border-left:3px solid var(--accent);padding:8px 12px;background:#fafafa;border-radius:0 8px 8px 0;margin-bottom:8px"><div style="font-size:13px">'+_esc(x.body)+'</div><div style="font-size:11px;color:var(--text-light);margin-top:4px">'+_esc(_fmtDate(x.created_at))+'</div></div>';}).join('')
+    : '<div style="font-size:13px;color:var(--text-light)">Tu tutor/a aún no te ha dejado comentarios.</div>';
+  var t=await window.sb.from('tutorias').select('type,title,starts_at,zoom_url').order('starts_at',{ascending:true});
+  var tuts=(t.data&&t.data.length)
+    ? t.data.map(function(x){return '<div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px"><div style="flex:1"><div style="font-weight:600;font-size:13px">'+_esc(x.title)+'</div><div style="font-size:12px;color:var(--text-light)">'+(x.type==='grupal'?'Grupal':'Individual')+' · '+_esc(_fmtDate(x.starts_at))+'</div></div>'+(x.zoom_url?'<a href="'+_esc(x.zoom_url)+'" target="_blank" style="font-size:12px;color:var(--accent);font-weight:600;text-decoration:none">Enlace</a>':'')+'</div>';}).join('')
+    : '<div style="font-size:13px;color:var(--text-light)">No tienes tutorías convocadas todavía.</div>';
+  var wrap=document.createElement('div'); wrap.id='student-tutor-dynamic';
+  wrap.innerHTML=''
+    +'<div class="card" style="margin-bottom:16px"><h3 style="margin-bottom:10px;font-size:15px;color:var(--primary)"><i class="fas fa-comments" style="color:var(--accent);margin-right:8px"></i>Comentarios de tu tutor/a</h3>'+comentarios+'</div>'
+    +'<div class="card" style="margin-bottom:16px"><h3 style="margin-bottom:10px;font-size:15px;color:var(--primary)"><i class="fas fa-calendar-check" style="color:var(--accent);margin-right:8px"></i>Tus tutorías</h3>'+tuts+'</div>';
+  var header=host.querySelector('.section-header');
+  if(header&&header.nextSibling) host.insertBefore(wrap, header.nextSibling); else host.appendChild(wrap);
+}
 </script>
 </body>
 </html>
