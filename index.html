@@ -2189,14 +2189,14 @@ body {
 </div>
 <!-- ══════════════ ADMINISTRACIÓN ══════════════ -->
 <style>
-  #admin-screen { font-family:'Inter',sans-serif; color:var(--primary); }
-  #admin-screen .ad-wrap { max-width:1000px; margin:0 auto; padding:24px 20px 60px; }
-  #admin-screen .ad-card { background:#fff; border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:16px; }
-  #admin-screen .ad-row { display:flex; align-items:center; gap:12px; padding:12px 14px; border:1px solid var(--border); border-radius:10px; margin-bottom:8px; flex-wrap:wrap; }
-  #admin-screen select { font:inherit; border:1px solid var(--border); border-radius:8px; padding:7px 10px; background:#fff; }
-  #admin-screen .ad-btn { background:rgba(255,255,255,.12); border:none; color:#fff; border-radius:9px; padding:10px 16px; font:inherit; font-weight:700; cursor:pointer; }
+  #admin-desk { font-family:'Inter',sans-serif; color:var(--primary); }
+  #admin-desk .ad-wrap { max-width:1000px; margin:0 auto; padding:24px 20px 60px; }
+  #admin-desk .ad-card { background:#fff; border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:16px; }
+  #admin-desk .ad-row { display:flex; align-items:center; gap:12px; padding:12px 14px; border:1px solid var(--border); border-radius:10px; margin-bottom:8px; flex-wrap:wrap; }
+  #admin-desk select { font:inherit; border:1px solid var(--border); border-radius:8px; padding:7px 10px; background:#fff; }
+  #admin-desk .ad-btn { background:rgba(255,255,255,.12); border:none; color:#fff; border-radius:9px; padding:10px 16px; font:inherit; font-weight:700; cursor:pointer; }
 </style>
-<div id="admin-screen" class="hidden" style="display:none; position:fixed; inset:0; z-index:9000; background:#f4f6fb; overflow:auto;">
+<div id="admin-desk" class="hidden" style="display:none; position:fixed; inset:0; z-index:9000; background:#f4f6fb; overflow:auto;">
   <div style="background:#0f2440; color:#fff; padding:14px 20px;">
     <div class="ad-wrap" style="padding:0; display:flex; align-items:center; gap:12px;">
       <div style="font-weight:700; font-size:15px;"><i class="fas fa-user-shield" style="color:var(--accent); margin-right:8px;"></i>Administración</div>
@@ -2486,7 +2486,7 @@ async function doLogout() {
   // Show login, hide app (y la mesa del tutor si estaba abierta)
   document.getElementById('login-screen').classList.remove('hidden');
   var _ts = document.getElementById('tutor-screen'); if (_ts) _ts.style.display = 'none';
-  var _as = document.getElementById('admin-screen'); if (_as) _as.style.display = 'none';
+  var _as = document.getElementById('admin-desk'); if (_as) _as.style.display = 'none';
   document.querySelector('.sidebar').style.display = 'none';
   document.querySelector('.main').style.display = 'none';
   document.querySelector('.mobile-toggle').style.display = 'none';
@@ -2561,7 +2561,7 @@ function enterApp() {
   // Hide login
   document.getElementById('login-screen').classList.add('hidden');
   var role = currentUser ? currentUser.role : 'student';
-  var ts = document.getElementById('tutor-screen'), as = document.getElementById('admin-screen');
+  var ts = document.getElementById('tutor-screen'), as = document.getElementById('admin-desk');
   // admin → panel de administración; tutor → mesa del tutor; alumno → su app de siempre.
   if (role === 'admin' || role === 'tutor') {
     document.querySelector('.sidebar').style.display = 'none';
