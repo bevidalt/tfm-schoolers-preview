@@ -5027,6 +5027,7 @@ function tutorProponeToggle(id){ var d=document.getElementById('prop-'+id); if(d
 async function tutorAdmite(id, iso){
   var r=await window.sb.from('tutorias').update({status:'confirmada', starts_at:iso}).eq('id',id);
   if(r.error){ alert('No se pudo confirmar la tutoría.'); return; }
+  try { if (window.sb.functions) await window.sb.functions.invoke('notify-tutoria', { body:{ id:id, event:'admitida' } }); } catch(e){}
   loadTutorTutorias();
 }
 async function tutorPropone(id){
@@ -5034,6 +5035,7 @@ async function tutorPropone(id){
   if(!vals.length){ alert('Indica al menos una fecha.'); return; }
   var r=await window.sb.from('tutorias').update({status:'propuesta', options:vals, starts_at:vals[0]}).eq('id',id);
   if(r.error){ alert('No se pudo enviar la propuesta.'); return; }
+  try { if (window.sb.functions) await window.sb.functions.invoke('notify-tutoria', { body:{ id:id, event:'propuesta' } }); } catch(e){}
   loadTutorTutorias();
 }
 async function createTutoria(){
@@ -5048,8 +5050,8 @@ async function createTutoria(){
   var row={type:type, student_id:sid, title:title, starts_at:new Date(dt).toISOString(), zoom_url:zoom||null, created_by:currentUser.id};
   var r=await window.sb.from('tutorias').insert(row).select('id').single();
   if(r.error){ msg.textContent='No se pudo convocar la tutoría.'; return; }
-  try { if (window.sb.functions) await window.sb.functions.invoke('notify-tutoria', { body:{ id: r.data.id } }); } catch(e){}
-  msg.style.color='#2f855a'; msg.textContent='Tutoría convocada'+(type==='grupal'?' para todos los alumnos.':'.')+' (El aviso por correo se activará al conectar el email.)';
+  try { if (window.sb.functions) await window.sb.functions.invoke('notify-tutoria', { body:{ id: r.data.id, event:'convocada' } }); } catch(e){}
+  msg.style.color='#2f855a'; msg.textContent='Tutoría convocada'+(type==='grupal'?' para todos los alumnos.':'.');
   document.getElementById('tut-title').value=''; document.getElementById('tut-datetime').value=''; document.getElementById('tut-zoom').value='';
   setTimeout(loadTutorTutorias, 400);
 }
@@ -5095,13 +5097,15 @@ async function solicitarTutoria(){
   var vals=['st-o1','st-o2','st-o3'].map(function(p){var e=document.getElementById(p);return (e&&e.value)?new Date(e.value).toISOString():null;}).filter(Boolean);
   if(!title){ msg.textContent='Pon un tema.'; return; }
   if(!vals.length){ msg.textContent='Propón al menos una fecha.'; return; }
-  var r=await window.sb.from('tutorias').insert({type:'individual', student_id:currentUser.id, title:title, status:'solicitada', options:vals, starts_at:vals[0], requested_by:currentUser.id, created_by:currentUser.id});
+  var r=await window.sb.from('tutorias').insert({type:'individual', student_id:currentUser.id, title:title, status:'solicitada', options:vals, starts_at:vals[0], requested_by:currentUser.id, created_by:currentUser.id}).select('id').single();
   if(r.error){ msg.textContent='No se pudo enviar la solicitud.'; return; }
+  try { if (window.sb.functions) await window.sb.functions.invoke('notify-tutoria', { body:{ id:r.data.id, event:'solicitada' } }); } catch(e){}
   renderStudentTutorStuff();
 }
 async function alumnoElige(id, iso){
   var r=await window.sb.from('tutorias').update({status:'confirmada', starts_at:iso}).eq('id',id);
   if(r.error){ alert('No se pudo confirmar.'); return; }
+  try { if (window.sb.functions) await window.sb.functions.invoke('notify-tutoria', { body:{ id:id, event:'elegida' } }); } catch(e){}
   renderStudentTutorStuff();
 }
 </script>
