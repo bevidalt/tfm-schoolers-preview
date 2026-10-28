@@ -2187,6 +2187,39 @@ body {
     </div>
   </div>
 </div>
+<!-- ══════════════ ADMINISTRACIÓN ══════════════ -->
+<style>
+  #admin-screen { font-family:'Inter',sans-serif; color:var(--primary); }
+  #admin-screen .ad-wrap { max-width:1000px; margin:0 auto; padding:24px 20px 60px; }
+  #admin-screen .ad-card { background:#fff; border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:16px; }
+  #admin-screen .ad-row { display:flex; align-items:center; gap:12px; padding:12px 14px; border:1px solid var(--border); border-radius:10px; margin-bottom:8px; flex-wrap:wrap; }
+  #admin-screen select { font:inherit; border:1px solid var(--border); border-radius:8px; padding:7px 10px; background:#fff; }
+  #admin-screen .ad-btn { background:rgba(255,255,255,.12); border:none; color:#fff; border-radius:9px; padding:10px 16px; font:inherit; font-weight:700; cursor:pointer; }
+</style>
+<div id="admin-screen" class="hidden" style="display:none; position:fixed; inset:0; z-index:9000; background:#f4f6fb; overflow:auto;">
+  <div style="background:#0f2440; color:#fff; padding:14px 20px;">
+    <div class="ad-wrap" style="padding:0; display:flex; align-items:center; gap:12px;">
+      <div style="font-weight:700; font-size:15px;"><i class="fas fa-user-shield" style="color:var(--accent); margin-right:8px;"></i>Administración</div>
+      <div style="flex:1; font-size:12px; color:rgba(255,255,255,.6);">· <span id="admin-name"></span></div>
+      <button class="ad-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt" style="margin-right:6px;"></i>Salir</button>
+    </div>
+  </div>
+  <div class="ad-wrap">
+    <div class="ad-card">
+      <h2 style="font-size:18px; margin:0 0 4px;">Alumnos y su tutor/a</h2>
+      <p style="font-size:12px; color:var(--text-light); margin:0 0 14px;">Asigna a cada alumno su tutor/a. Cada tutor/a solo verá a los alumnos que le asignes.</p>
+      <div id="admin-students"></div>
+    </div>
+    <div class="ad-card">
+      <h3 style="font-size:15px; margin:0 0 10px;">Tutores</h3>
+      <div id="admin-tutors"></div>
+    </div>
+    <div class="ad-card" style="background:#fafafa;">
+      <h3 style="font-size:15px; margin:0 0 6px;">Altas y bajas de cuentas</h3>
+      <p style="font-size:13px; color:var(--text-light); margin:0;">Crear o dar de baja alumnos y tutores desde aquí está en camino (necesita una función de servidor). De momento se gestionan desde el panel de Supabase.</p>
+    </div>
+  </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="config.js"></script>
 <script src="supabase.js"></script>
@@ -2453,6 +2486,7 @@ async function doLogout() {
   // Show login, hide app (y la mesa del tutor si estaba abierta)
   document.getElementById('login-screen').classList.remove('hidden');
   var _ts = document.getElementById('tutor-screen'); if (_ts) _ts.style.display = 'none';
+  var _as = document.getElementById('admin-screen'); if (_as) _as.style.display = 'none';
   document.querySelector('.sidebar').style.display = 'none';
   document.querySelector('.main').style.display = 'none';
   document.querySelector('.mobile-toggle').style.display = 'none';
@@ -2526,16 +2560,19 @@ async function doModalChangePassword() {
 function enterApp() {
   // Hide login
   document.getElementById('login-screen').classList.add('hidden');
-  // El staff (tutor/admin) va a la Mesa del tutor; el alumno, a su app de siempre.
-  if (currentUser && (currentUser.role === 'tutor' || currentUser.role === 'admin')) {
+  var role = currentUser ? currentUser.role : 'student';
+  var ts = document.getElementById('tutor-screen'), as = document.getElementById('admin-screen');
+  // admin → panel de administración; tutor → mesa del tutor; alumno → su app de siempre.
+  if (role === 'admin' || role === 'tutor') {
     document.querySelector('.sidebar').style.display = 'none';
     document.querySelector('.main').style.display = 'none';
     var _mt = document.querySelector('.mobile-toggle'); if (_mt) _mt.style.display = 'none';
-    document.getElementById('tutor-screen').style.display = 'block';
-    initTutorDesk();
+    if (role === 'admin') { if (ts) ts.style.display = 'none'; as.style.display = 'block'; initAdminDesk(); }
+    else { if (as) as.style.display = 'none'; ts.style.display = 'block'; initTutorDesk(); }
     return;
   }
-  document.getElementById('tutor-screen').style.display = 'none';
+  if (ts) ts.style.display = 'none';
+  if (as) as.style.display = 'none';
   document.querySelector('.sidebar').style.display = '';
   document.querySelector('.main').style.display = '';
   document.querySelector('.mobile-toggle').style.display = '';
@@ -5009,6 +5046,60 @@ async function renderStudentTutorStuff(){
     +'<div class="card" style="margin-bottom:16px"><h3 style="margin-bottom:10px;font-size:15px;color:var(--primary)"><i class="fas fa-calendar-check" style="color:var(--accent);margin-right:8px"></i>Tus tutorías</h3>'+tuts+'</div>';
   var header=host.querySelector('.section-header');
   if(header&&header.nextSibling) host.insertBefore(wrap, header.nextSibling); else host.appendChild(wrap);
+}
+</script>
+<script>
+/* ════════════ PANEL DE ADMINISTRACIÓN ════════════ */
+var _adTutors=[], _adStudents=[], _adAssign={};
+async function initAdminDesk(){
+  document.getElementById('admin-name').textContent = currentUser.name || currentUser.email;
+  await loadAdminData();
+}
+async function loadAdminData(){
+  var pr=await window.sb.from('profiles').select('id, full_name, role');
+  var profs=pr.data||[];
+  _adTutors=profs.filter(function(p){return p.role==='tutor';});
+  var studs=profs.filter(function(p){return p.role==='student';});
+  var ss=await window.sb.from('student_state').select('user_id, key, value, updated_at');
+  var byUser={}; (ss.data||[]).forEach(function(r){ (byUser[r.user_id]=byUser[r.user_id]||[]).push(r); });
+  _adStudents=studs.map(function(p){
+    var rows=byUser[p.id]||[]; var get=function(k){var r=rows.find(function(x){return x.key===k;});return r?r.value:null;};
+    var ec=get('tfm-editor-content');
+    return { id:p.id, name:(get('tfm-user-name')||p.full_name||'(sin nombre)').toString(),
+             hasDraft:!!(ec&&String(ec).replace(/<[^>]*>/g,'').trim()),
+             last:rows.reduce(function(m,r){return r.updated_at>m?r.updated_at:m;},'') };
+  });
+  var asg=await window.sb.from('assignments').select('student_id, tutor_id');
+  _adAssign={}; (asg.data||[]).forEach(function(a){ _adAssign[a.student_id]=a.tutor_id; });
+  renderAdmin();
+}
+function renderAdmin(){
+  var sc=document.getElementById('admin-students');
+  sc.innerHTML = _adStudents.length ? _adStudents.map(function(s){
+    var opts='<option value="">(sin asignar)</option>'+_adTutors.map(function(t){
+      return '<option value="'+t.id+'"'+(_adAssign[s.id]===t.id?' selected':'')+'>'+_esc(t.full_name||'(tutor)')+'</option>';}).join('');
+    return '<div class="ad-row"><div style="flex:1; min-width:180px"><div style="font-weight:600">'+_esc(s.name)+'</div>'
+      +'<div style="font-size:12px;color:var(--text-light)">'+(s.hasDraft?'<span style="color:#2f855a">Borrador iniciado</span>':'Sin borrador')+(s.last?' · últ. actividad '+_esc(_fmtDate(s.last)):'')+'</div></div>'
+      +'<label style="font-size:12px;color:var(--text-light)">Tutor/a</label>'
+      +'<select onchange="assignTutor(\''+s.id+'\', this.value)">'+opts+'</select></div>';
+  }).join('') : '<div style="font-size:13px;color:var(--text-light)">No hay alumnos todavía.</div>';
+  var tc=document.getElementById('admin-tutors');
+  tc.innerHTML = _adTutors.length ? _adTutors.map(function(t){
+    var n=_adStudents.filter(function(s){return _adAssign[s.id]===t.id;}).length;
+    return '<div class="ad-row"><div style="flex:1"><div style="font-weight:600">'+_esc(t.full_name||'(tutor)')+'</div>'
+      +'<div style="font-size:12px;color:var(--text-light)">'+n+' alumno(s) asignado(s)</div></div></div>';
+  }).join('') : '<div style="font-size:13px;color:var(--text-light)">No hay tutores todavía.</div>';
+}
+async function assignTutor(studentId, tutorId){
+  if(!tutorId){
+    await window.sb.from('assignments').delete().eq('student_id', studentId);
+    _adAssign[studentId]=null;
+  } else {
+    var r=await window.sb.from('assignments').upsert({student_id:studentId, tutor_id:tutorId, assigned_by:currentUser.id}, {onConflict:'student_id'});
+    if(r.error){ alert('No se pudo asignar: '+r.error.message); return; }
+    _adAssign[studentId]=tutorId;
+  }
+  renderAdmin();
 }
 </script>
 </body>
