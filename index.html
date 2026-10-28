@@ -4999,16 +4999,42 @@ async function addTutorComment(id){
 function tutorToggleStudentSelect(){ document.getElementById('tut-student').style.display = document.getElementById('tut-type').value==='individual'?'':'none'; }
 async function loadTutorTutorias(){
   var cont=document.getElementById('tutor-tutorias-list'); if(!cont) return;
-  var r=await window.sb.from('tutorias').select('id,type,student_id,title,starts_at,zoom_url').order('starts_at',{ascending:true});
-  if(!r.data||!r.data.length){ cont.innerHTML='<div style="font-size:13px;color:var(--text-light)">Aún no has convocado ninguna tutoría.</div>'; return; }
+  var r=await window.sb.from('tutorias').select('id,type,student_id,title,starts_at,zoom_url,status,options').order('created_at',{ascending:false});
+  if(!r.data||!r.data.length){ cont.innerHTML='<div style="font-size:13px;color:var(--text-light)">Aún no hay tutorías.</div>'; return; }
   var nameOf=function(sid){ var s=_tutorStudents.find(function(x){return x.id===sid;}); return s?s.name:'alumno'; };
   cont.innerHTML=r.data.map(function(t){
     var who=t.type==='grupal'?'Grupal (todos)':('Individual · '+_esc(nameOf(t.student_id)));
-    return '<div class="tt-card" style="display:flex;align-items:center;gap:12px;padding:14px 16px;margin-bottom:10px">'
-      +'<div style="flex:1"><div style="font-weight:600">'+_esc(t.title)+'</div>'
-      +'<div style="font-size:12px;color:var(--text-light);margin-top:2px">'+who+' · '+_esc(_fmtDate(t.starts_at))+'</div></div>'
-      +(t.zoom_url?'<a href="'+_esc(t.zoom_url)+'" target="_blank" class="tt-btn" style="text-decoration:none;font-size:12px;padding:7px 12px">Enlace</a>':'')+'</div>';
+    var head='<div style="font-weight:600">'+_esc(t.title)+'</div><div style="font-size:12px;color:var(--text-light);margin-top:2px">'+who+'</div>';
+    var body='';
+    if(t.status==='solicitada'){
+      var opts=(t.options||[]).map(function(o){return '<button class="tt-btn" style="font-size:12px;padding:6px 10px;margin:6px 6px 0 0" onclick="tutorAdmite(\''+t.id+'\',\''+o+'\')">Admitir '+_esc(_fmtDate(o))+'</button>';}).join('');
+      body='<div style="margin-top:8px"><span style="font-size:12px;color:#b7791f;font-weight:600">Solicitada por el alumno</span>'
+        +'<div style="font-size:12px;color:var(--text-light);margin-top:4px">Fechas que propone el alumno:</div>'+(opts||'<span style="font-size:12px;color:var(--text-light)">(sin fechas)</span>')
+        +'<div style="margin-top:8px"><button class="tt-btn ghost" style="font-size:12px;padding:6px 10px" onclick="tutorProponeToggle(\''+t.id+'\')">Proponer otras fechas</button></div>'
+        +'<div id="prop-'+t.id+'" style="display:none;margin-top:8px">'
+          +'<input type="datetime-local" id="pa-'+t.id+'" style="margin:0 6px 6px 0"><input type="datetime-local" id="pb-'+t.id+'" style="margin:0 6px 6px 0"><input type="datetime-local" id="pc-'+t.id+'" style="margin:0 6px 6px 0">'
+          +'<div><button class="tt-btn" style="font-size:12px;padding:6px 10px" onclick="tutorPropone(\''+t.id+'\')">Enviar propuesta</button></div></div></div>';
+    } else if(t.status==='propuesta'){
+      body='<div style="margin-top:6px;font-size:12px;color:var(--text-light)">Has propuesto fechas; esperando que el alumno elija.</div>';
+    } else {
+      body='<div style="margin-top:6px;font-size:12px;color:#2f855a;font-weight:600">Confirmada · '+_esc(_fmtDate(t.starts_at))+'</div>'
+        +(t.zoom_url?' <a href="'+_esc(t.zoom_url)+'" target="_blank" style="font-size:12px;color:var(--accent);font-weight:600;text-decoration:none">Enlace</a>':'');
+    }
+    return '<div class="tt-card" style="padding:14px 16px;margin-bottom:10px">'+head+body+'</div>';
   }).join('');
+}
+function tutorProponeToggle(id){ var d=document.getElementById('prop-'+id); if(d) d.style.display=(d.style.display==='none'?'':'none'); }
+async function tutorAdmite(id, iso){
+  var r=await window.sb.from('tutorias').update({status:'confirmada', starts_at:iso}).eq('id',id);
+  if(r.error){ alert('No se pudo confirmar la tutoría.'); return; }
+  loadTutorTutorias();
+}
+async function tutorPropone(id){
+  var vals=['pa','pb','pc'].map(function(p){var e=document.getElementById(p+'-'+id);return (e&&e.value)?new Date(e.value).toISOString():null;}).filter(Boolean);
+  if(!vals.length){ alert('Indica al menos una fecha.'); return; }
+  var r=await window.sb.from('tutorias').update({status:'propuesta', options:vals, starts_at:vals[0]}).eq('id',id);
+  if(r.error){ alert('No se pudo enviar la propuesta.'); return; }
+  loadTutorTutorias();
 }
 async function createTutoria(){
   var msg=document.getElementById('tut-create-msg'); msg.style.color='#c53030';
@@ -5036,16 +5062,47 @@ async function renderStudentTutorStuff(){
   var comentarios=(c.data&&c.data.length)
     ? c.data.map(function(x){return '<div style="border-left:3px solid var(--accent);padding:8px 12px;background:#fafafa;border-radius:0 8px 8px 0;margin-bottom:8px"><div style="font-size:13px">'+_esc(x.body)+'</div><div style="font-size:11px;color:var(--text-light);margin-top:4px">'+_esc(_fmtDate(x.created_at))+'</div></div>';}).join('')
     : '<div style="font-size:13px;color:var(--text-light)">Tu tutor/a aún no te ha dejado comentarios.</div>';
-  var t=await window.sb.from('tutorias').select('type,title,starts_at,zoom_url').order('starts_at',{ascending:true});
+  var t=await window.sb.from('tutorias').select('id,type,title,starts_at,zoom_url,status,options').order('created_at',{ascending:false});
   var tuts=(t.data&&t.data.length)
-    ? t.data.map(function(x){return '<div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px"><div style="flex:1"><div style="font-weight:600;font-size:13px">'+_esc(x.title)+'</div><div style="font-size:12px;color:var(--text-light)">'+(x.type==='grupal'?'Grupal':'Individual')+' · '+_esc(_fmtDate(x.starts_at))+'</div></div>'+(x.zoom_url?'<a href="'+_esc(x.zoom_url)+'" target="_blank" style="font-size:12px;color:var(--accent);font-weight:600;text-decoration:none">Enlace</a>':'')+'</div>';}).join('')
-    : '<div style="font-size:13px;color:var(--text-light)">No tienes tutorías convocadas todavía.</div>';
+    ? t.data.map(function(x){
+        var head='<div style="font-weight:600;font-size:13px">'+_esc(x.title)+'</div>';
+        if(x.status==='confirmada'){
+          return '<div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px"><div style="flex:1">'+head+'<div style="font-size:12px;color:#2f855a;font-weight:600">Confirmada · '+_esc(_fmtDate(x.starts_at))+'</div></div>'+(x.zoom_url?'<a href="'+_esc(x.zoom_url)+'" target="_blank" style="font-size:12px;color:var(--accent);font-weight:600;text-decoration:none">Enlace</a>':'')+'</div>';
+        } else if(x.status==='propuesta'){
+          var opts=(x.options||[]).map(function(o){return '<button style="background:var(--accent);color:var(--primary);border:none;border-radius:8px;font-weight:700;font-size:12px;padding:6px 10px;margin:6px 6px 0 0;cursor:pointer;font-family:inherit" onclick="alumnoElige(\''+x.id+'\',\''+o+'\')">Elegir '+_esc(_fmtDate(o))+'</button>';}).join('');
+          return '<div style="padding:10px 12px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px">'+head+'<div style="font-size:12px;color:#b7791f;font-weight:600;margin-top:2px">Tu tutor/a propone estas fechas — elige una:</div>'+opts+'</div>';
+        }
+        var ol=(x.options||[]).map(function(o){return '<li>'+_esc(_fmtDate(o))+'</li>';}).join('');
+        return '<div style="padding:10px 12px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px">'+head+'<div style="font-size:12px;color:var(--text-light);margin-top:2px">Solicitada · esperando respuesta del tutor/a</div><ul style="font-size:12px;color:var(--text-light);margin:4px 0 0 18px">'+ol+'</ul></div>';
+      }).join('')
+    : '<div style="font-size:13px;color:var(--text-light)">No tienes tutorías todavía.</div>';
+  var form='<div style="margin-top:14px;border-top:1px solid var(--border);padding-top:14px">'
+    +'<div style="font-size:13px;font-weight:600;margin-bottom:8px">Solicitar una tutoría</div>'
+    +'<input id="st-title" placeholder="Tema (p. ej. dudas de metodología)" style="width:100%;box-sizing:border-box;border:1px solid var(--border);border-radius:8px;padding:9px 11px;margin-bottom:8px;font-family:inherit">'
+    +'<div style="font-size:12px;color:var(--text-light);margin-bottom:4px">Propón hasta 3 fechas/horas:</div>'
+    +'<input type="datetime-local" id="st-o1" style="margin:0 6px 6px 0"><input type="datetime-local" id="st-o2" style="margin:0 6px 6px 0"><input type="datetime-local" id="st-o3" style="margin:0 6px 6px 0">'
+    +'<div><button onclick="solicitarTutoria()" style="background:var(--accent);color:var(--primary);border:none;border-radius:9px;font-weight:700;padding:9px 14px;cursor:pointer;font-family:inherit"><i class="fas fa-paper-plane" style="margin-right:6px"></i>Solicitar</button> <span id="st-msg" style="font-size:12px;margin-left:8px"></span></div></div>';
   var wrap=document.createElement('div'); wrap.id='student-tutor-dynamic';
   wrap.innerHTML=''
     +'<div class="card" style="margin-bottom:16px"><h3 style="margin-bottom:10px;font-size:15px;color:var(--primary)"><i class="fas fa-comments" style="color:var(--accent);margin-right:8px"></i>Comentarios de tu tutor/a</h3>'+comentarios+'</div>'
-    +'<div class="card" style="margin-bottom:16px"><h3 style="margin-bottom:10px;font-size:15px;color:var(--primary)"><i class="fas fa-calendar-check" style="color:var(--accent);margin-right:8px"></i>Tus tutorías</h3>'+tuts+'</div>';
+    +'<div class="card" style="margin-bottom:16px"><h3 style="margin-bottom:10px;font-size:15px;color:var(--primary)"><i class="fas fa-calendar-check" style="color:var(--accent);margin-right:8px"></i>Tus tutorías</h3>'+tuts+form+'</div>';
   var header=host.querySelector('.section-header');
   if(header&&header.nextSibling) host.insertBefore(wrap, header.nextSibling); else host.appendChild(wrap);
+}
+async function solicitarTutoria(){
+  var msg=document.getElementById('st-msg'); msg.style.color='#c53030';
+  var title=(document.getElementById('st-title').value||'').trim();
+  var vals=['st-o1','st-o2','st-o3'].map(function(p){var e=document.getElementById(p);return (e&&e.value)?new Date(e.value).toISOString():null;}).filter(Boolean);
+  if(!title){ msg.textContent='Pon un tema.'; return; }
+  if(!vals.length){ msg.textContent='Propón al menos una fecha.'; return; }
+  var r=await window.sb.from('tutorias').insert({type:'individual', student_id:currentUser.id, title:title, status:'solicitada', options:vals, starts_at:vals[0], requested_by:currentUser.id, created_by:currentUser.id});
+  if(r.error){ msg.textContent='No se pudo enviar la solicitud.'; return; }
+  renderStudentTutorStuff();
+}
+async function alumnoElige(id, iso){
+  var r=await window.sb.from('tutorias').update({status:'confirmada', starts_at:iso}).eq('id',id);
+  if(r.error){ alert('No se pudo confirmar.'); return; }
+  renderStudentTutorStuff();
 }
 </script>
 <script>
