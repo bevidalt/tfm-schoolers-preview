@@ -1480,7 +1480,7 @@ body {
               <button onclick="removeAttachment()" style="background: none; border: none; cursor: pointer; color: #c53030; font-size: 12px; margin-left: auto; padding: 2px 4px;"><i class="fas fa-times"></i></button>
             </div>
             <div style="display: flex; gap: 8px; align-items: flex-end;">
-              <button onclick="document.getElementById('msg-file-input').click()" title="Adjuntar archivo" style="background: none; border: 1px solid var(--border); padding: 10px; border-radius: 8px; cursor: pointer; color: var(--text-light); font-size: 14px; transition: all 0.15s;">
+              <button onclick="document.getElementById('msg-file-input').click()" title="Adjuntar archivo" style="display: none; background: none; border: 1px solid var(--border); padding: 10px; border-radius: 8px; cursor: pointer; color: var(--text-light); font-size: 14px; transition: all 0.15s;">
                 <i class="fas fa-paperclip"></i>
               </button>
               <input type="file" id="msg-file-input" style="display: none;" onchange="handleMsgAttachment(this)">
@@ -4076,52 +4076,38 @@ function removeAttachment() {
   document.getElementById('attachment-preview').style.display = 'none';
 }
 
-function sendTutorMsg() {
+// Mensajería REAL alumno<->tutor (tabla messages). El alumno escribe y se avisa al tutor por correo.
+async function sendTutorMsg() {
   const input = document.getElementById('tutor-msg-input');
-  const text = input.value.trim();
-  if (!text && !msgAttachment) return;
-
-  const container = document.getElementById('tutor-messages');
-  const now = new Date();
-  const timeStr = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
-  const dateStr = now.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
-
-  let attachmentHtml = '';
-  if (msgAttachment) {
-    const isImage = msgAttachment.type.startsWith('image/');
-    if (isImage) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const imgEl = document.createElement('div');
-        imgEl.style.cssText = 'margin-top: 8px; border-radius: 8px; overflow: hidden;';
-        imgEl.innerHTML = `<img src="${e.target.result}" style="max-width: 100%; max-height: 200px; border-radius: 8px;">`;
-        const lastMsg = container.querySelector('.student-msg:last-child .msg-content');
-        if (lastMsg) lastMsg.appendChild(imgEl);
-      };
-      reader.readAsDataURL(msgAttachment);
-    }
-    attachmentHtml = `
-      <div style="margin-top: 8px; padding: 8px 12px; background: rgba(255,255,255,0.5); border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; font-size: 12px;">
-        <i class="fas fa-paperclip" style="color: rgba(255,255,255,0.7);"></i>
-        <span>${msgAttachment.name}</span>
-      </div>`;
-  }
-
-  const msgDiv = document.createElement('div');
-  msgDiv.className = 'student-msg';
-  msgDiv.style.cssText = 'display: flex; gap: 10px; align-items: flex-start; justify-content: flex-end;';
-  msgDiv.innerHTML = `
-    <div style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #fff; padding: 10px 14px; border-radius: 12px 12px 2px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); max-width: 85%;">
-      <div style="font-size: 11px; opacity: 0.7; margin-bottom: 4px;">Tú · ${dateStr} ${timeStr}</div>
-      <div class="msg-content" style="font-size: 13px; line-height: 1.6; white-space: pre-wrap;">${text}${attachmentHtml}</div>
-    </div>
-    <div style="width: 32px; height: 32px; min-width: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #d98f16); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 13px; font-weight: 700;">A</div>
-  `;
-
-  container.appendChild(msgDiv);
-  container.scrollTop = container.scrollHeight;
+  const text = (input.value || '').trim();
+  if (!text) return;
+  const r = await window.sb.from('messages').insert({ student_id: currentUser.id, sender_id: currentUser.id, body: text });
+  if (r.error) { alert('No se pudo enviar el mensaje.'); return; }
   input.value = '';
-  removeAttachment();
+  await loadStudentMessages();
+  try { if (window.sb.functions) await window.sb.functions.invoke('notify-tutoria', { body: { event: 'mensaje', student_id: currentUser.id, to: 'tutor' } }); } catch (e) {}
+}
+async function loadStudentMessages() {
+  const box = document.getElementById('tutor-messages');
+  if (!box || !window.sb || !currentUser) return;
+  const r = await window.sb.from('messages').select('sender_id,body,created_at').eq('student_id', currentUser.id).order('created_at', { ascending: true });
+  renderMsgThread(box, r.data || [], currentUser.id, 'Tutor/a', true);
+}
+// Render compartido del hilo (alumno y tutor). mine = burbuja naranja a la derecha.
+function renderMsgThread(box, rows, myId, otherLabel, withWelcome) {
+  let html = '';
+  if (withWelcome) {
+    html += '<div style="display:flex;gap:10px;align-items:flex-start"><div style="width:32px;height:32px;min-width:32px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:14px"><i class="fas fa-user-tie"></i></div><div style="background:#fff;padding:10px 14px;border-radius:12px 12px 12px 2px;box-shadow:0 1px 3px rgba(0,0,0,0.06);max-width:85%"><div style="font-size:11px;font-weight:600;color:var(--primary);margin-bottom:4px">Tutor/a</div><div style="font-size:13px;line-height:1.6;color:var(--text)">Bienvenido/a al espacio de tutoría del TFM. Escríbeme cualquier duda por aquí.</div></div></div>';
+  }
+  html += (rows || []).map(function (m) {
+    const mine = m.sender_id === myId;
+    if (mine) {
+      return '<div style="display:flex;gap:10px;align-items:flex-start;justify-content:flex-end"><div style="background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:10px 14px;border-radius:12px 12px 2px 12px;max-width:85%"><div style="font-size:11px;opacity:0.7;margin-bottom:4px">Tú · ' + _esc(_fmtDate(m.created_at)) + '</div><div style="font-size:13px;line-height:1.6;white-space:pre-wrap">' + _esc(m.body) + '</div></div></div>';
+    }
+    return '<div style="display:flex;gap:10px;align-items:flex-start"><div style="background:#fff;padding:10px 14px;border-radius:12px 12px 12px 2px;box-shadow:0 1px 3px rgba(0,0,0,0.06);max-width:85%"><div style="font-size:11px;font-weight:600;color:var(--primary);margin-bottom:4px">' + _esc(otherLabel) + ' · <span style="font-weight:400;color:var(--text-light)">' + _esc(_fmtDate(m.created_at)) + '</span></div><div style="font-size:13px;line-height:1.6;color:var(--text);white-space:pre-wrap">' + _esc(m.body) + '</div></div></div>';
+  }).join('');
+  box.innerHTML = html;
+  box.scrollTop = box.scrollHeight;
 }
 
 // ── TIMELINE DYNAMIC DATES ──
@@ -4976,8 +4962,26 @@ async function openTutorStudent(id){
     +'<div class="tt-card"><h3 style="margin:0 0 12px;font-size:15px">Comentarios para el alumno</h3>'
       +'<div id="tutor-comments-list" style="margin-bottom:14px"></div>'
       +'<textarea id="tutor-comment-body" rows="3" placeholder="Escribe un comentario que verá el alumno…" style="margin-bottom:10px"></textarea>'
-      +'<button class="tt-btn" onclick="addTutorComment(\''+id+'\')"><i class="fas fa-comment" style="margin-right:6px"></i>Enviar comentario</button></div>';
+      +'<button class="tt-btn" onclick="addTutorComment(\''+id+'\')"><i class="fas fa-comment" style="margin-right:6px"></i>Enviar comentario</button></div>'
+    +'<div class="tt-card"><h3 style="margin:0 0 12px;font-size:15px">Mensajes con el alumno</h3>'
+      +'<div id="tutor-thread" style="max-height:320px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;margin-bottom:12px;padding:12px;background:#f8f9fa;border-radius:10px"></div>'
+      +'<textarea id="tutor-thread-input" rows="2" placeholder="Escribe un mensaje al alumno…" style="margin-bottom:10px"></textarea>'
+      +'<button class="tt-btn" onclick="sendTutorReply(\''+id+'\')"><i class="fas fa-paper-plane" style="margin-right:6px"></i>Enviar mensaje</button></div>';
   loadTutorComments(id);
+  loadTutorThread(id);
+}
+async function loadTutorThread(id){
+  var box=document.getElementById('tutor-thread'); if(!box) return;
+  var r=await window.sb.from('messages').select('sender_id,body,created_at').eq('student_id',id).order('created_at',{ascending:true});
+  if(!(r.data&&r.data.length)){ box.innerHTML='<div style="font-size:13px;color:var(--text-light)">Aún no hay mensajes con este alumno.</div>'; return; }
+  renderMsgThread(box, r.data, currentUser.id, 'Alumno/a', false);
+}
+async function sendTutorReply(id){
+  var ta=document.getElementById('tutor-thread-input'); var body=(ta.value||'').trim(); if(!body) return;
+  var r=await window.sb.from('messages').insert({student_id:id, sender_id:currentUser.id, body:body});
+  if(r.error){ alert('No se pudo enviar el mensaje.'); return; }
+  ta.value=''; await loadTutorThread(id);
+  try { if(window.sb.functions) await window.sb.functions.invoke('notify-tutoria', { body:{ event:'mensaje', student_id:id, to:'alumno' } }); } catch(e){}
 }
 function tutorBackToList(){ document.getElementById('tutor-detail').style.display='none'; document.getElementById('tutor-students-list').style.display=''; }
 async function loadTutorComments(id){
@@ -4995,6 +4999,7 @@ async function addTutorComment(id){
   var r=await window.sb.from('tutor_comments').insert({student_id:id, tutor_id:currentUser.id, anchor:'tfm', body:body});
   if(r.error){ alert('No se pudo guardar el comentario.'); return; }
   ta.value=''; loadTutorComments(id);
+  try { if(window.sb.functions) await window.sb.functions.invoke('notify-tutoria', { body:{ event:'mensaje', student_id:id, to:'alumno' } }); } catch(e){}
 }
 function tutorToggleStudentSelect(){ document.getElementById('tut-student').style.display = document.getElementById('tut-type').value==='individual'?'':'none'; }
 async function loadTutorTutorias(){
@@ -5090,6 +5095,7 @@ async function renderStudentTutorStuff(){
     +'<div class="card" style="margin-bottom:16px"><h3 style="margin-bottom:10px;font-size:15px;color:var(--primary)"><i class="fas fa-calendar-check" style="color:var(--accent);margin-right:8px"></i>Tus tutorías</h3>'+tuts+form+'</div>';
   var header=host.querySelector('.section-header');
   if(header&&header.nextSibling) host.insertBefore(wrap, header.nextSibling); else host.appendChild(wrap);
+  loadStudentMessages();
 }
 async function solicitarTutoria(){
   var msg=document.getElementById('st-msg'); msg.style.color='#c53030';
