@@ -5,23 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TFM · Máster de Formación Permanente en Executive Global Hospitality</title>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<!-- Tipografía corporativa Schoolers: Buenos Aires (local) -->
 <style>
+@font-face { font-family: 'Buenos Aires'; src: url('fonts/BuenosAires-Light.otf') format('opentype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Buenos Aires'; src: url('fonts/BuenosAires-Regular.otf') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Buenos Aires'; src: url('fonts/BuenosAires-SemiBold.otf') format('opentype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Buenos Aires'; src: url('fonts/BuenosAires-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+
 :root {
-  --primary: #1a365d;
-  --primary-light: #2b4c7e;
-  --accent: #f9b233;
-  --accent-light: #fce3b3;
-  --bg: #f7f8fc;
-  --sidebar-bg: #0f2440;
-  --sidebar-hover: #1a365d;
+  --primary: #23282D;
+  --primary-light: #3a4147;
+  --accent: #E7B141;
+  --accent-light: #F0C96E;
+  --bg: #F7F7F7;
+  --sidebar-bg: #23282D;
+  --sidebar-hover: #2f353b;
   --card-bg: #ffffff;
-  --text: #2d3748;
-  --text-light: #718096;
-  --success: #48bb78;
-  --warning: #ed8936;
-  --info: #4299e1;
-  --border: #e2e8f0;
+  --text: #585757;
+  --text-light: #999999;
+  --success: #5CB85C;
+  --warning: #F0AD4E;
+  --info: #5BC0DE;
+  --border: #EAEAEA;
   --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
   --radius: 12px;
@@ -30,7 +35,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Buenos Aires', 'Open Sans', sans-serif;
   background: var(--bg);
   color: var(--text);
   display: flex;
@@ -72,7 +77,7 @@ body {
 }
 
 .sidebar-header h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Buenos Aires', 'Open Sans', sans-serif;
   font-size: 17px;
   font-weight: 700;
   color: #fff;
@@ -123,7 +128,7 @@ body {
 }
 
 .nav-item.active {
-  background: linear-gradient(135deg, var(--accent), #d98f16);
+  background: linear-gradient(135deg, var(--accent), #C99A2E);
   color: var(--primary);
   font-weight: 600;
 }
@@ -156,7 +161,7 @@ body {
 .avatar {
   width: 42px; height: 42px; min-width: 42px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), #d98f16);
+  background: linear-gradient(135deg, var(--accent), #C99A2E);
   display: flex; align-items: center; justify-content: center;
   font-weight: 700; font-size: 14px; color: var(--primary);
   cursor: pointer; position: relative; overflow: hidden;
@@ -209,7 +214,7 @@ body {
 }
 
 .section-header h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Buenos Aires', 'Open Sans', sans-serif;
   font-size: 28px;
   color: var(--primary);
   margin-bottom: 6px;
@@ -262,7 +267,7 @@ body {
 
 /* ── WELCOME HERO ── */
 .hero {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, #3a6ba5 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, #3a4147 100%);
   border-radius: 16px;
   padding: 48px 44px;
   color: #fff;
@@ -282,7 +287,7 @@ body {
 }
 
 .hero h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Buenos Aires', 'Open Sans', sans-serif;
   font-size: 32px;
   margin-bottom: 12px;
   color: #fff;
@@ -371,7 +376,7 @@ body {
 }
 
 .editor-area h1, .editor-area h2, .editor-area h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Buenos Aires', 'Open Sans', sans-serif;
   color: var(--primary);
 }
 
@@ -453,7 +458,7 @@ body {
   padding: 10px 18px;
   font-size: 14px;
   outline: none;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Buenos Aires', 'Open Sans', sans-serif;
 }
 
 .chatbot-input input:focus { border-color: var(--accent); }
@@ -498,7 +503,7 @@ body {
 
 .library-icon.video { background: #fed7d7; color: #c53030; }
 .library-icon.article { background: #c6f6d5; color: #276749; }
-.library-icon.link { background: #bee3f8; color: #2b6cb0; }
+.library-icon.link { background: #F0C96E; color: #C99A2E; }
 .library-icon.pdf { background: #fefcbf; color: #975a16; }
 
 .library-item .lib-info { flex: 1; }
@@ -541,7 +546,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 13px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Buenos Aires', 'Open Sans', sans-serif;
   outline: none;
 }
 
@@ -558,7 +563,7 @@ body {
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Buenos Aires', 'Open Sans', sans-serif;
   transition: all 0.2s;
 }
 
@@ -567,7 +572,7 @@ body {
   color: var(--primary);
 }
 
-.btn-primary:hover { background: #d98f16; }
+.btn-primary:hover { background: #C99A2E; }
 
 .btn-outline {
   background: none;
@@ -593,7 +598,7 @@ body {
   font-size: 32px;
   font-weight: 700;
   color: var(--primary);
-  font-family: 'Playfair Display', serif;
+  font-family: 'Buenos Aires', 'Open Sans', sans-serif;
 }
 
 .stat-card .stat-label {
@@ -614,7 +619,7 @@ body {
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent), #fce3b3);
+  background: linear-gradient(90deg, var(--accent), #F0C96E);
   border-radius: 4px;
   transition: width 0.6s ease;
 }
@@ -702,7 +707,7 @@ body {
   font-size: 14px;
 }
 
-.banner.info { background: #ebf8ff; color: #2b6cb0; border: 1px solid #bee3f8; }
+.banner.info { background: #FBF4E3; color: #C99A2E; border: 1px solid #F0C96E; }
 .banner.warning { background: #fffbeb; color: #975a16; border: 1px solid #fefcbf; }
 .banner.success { background: #f0fff4; color: #276749; border: 1px solid #c6f6d5; }
 
@@ -711,9 +716,9 @@ body {
 /* ── LOGIN SCREEN ── */
 #login-screen {
   position: fixed; inset: 0; z-index: 10000;
-  background: linear-gradient(135deg, #0f2440 0%, #1a365d 40%, #2b4c7e 100%);
+  background: linear-gradient(135deg, #23282D 0%, #23282D 40%, #3a4147 100%);
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Buenos Aires', 'Open Sans', sans-serif;
 }
 #login-screen.hidden, #admin-screen.hidden { display: none !important; }
 
@@ -730,13 +735,13 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 .login-header {
-  background: #0f2440;
+  background: #23282D;
   padding: 32px 36px 28px;
   text-align: center;
 }
 .login-header img { max-width: 220px; height: auto; margin-bottom: 12px; }
 .login-header h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Buenos Aires', 'Open Sans', sans-serif;
   font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 4px;
 }
 .login-header p { font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 0.5px; }
@@ -749,7 +754,7 @@ body {
 }
 .login-tab {
   flex: 1; padding: 10px; border: none; background: none;
-  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+  font-family: 'Buenos Aires', 'Open Sans', sans-serif; font-size: 13px; font-weight: 600;
   color: var(--text-light); cursor: pointer; border-radius: 8px;
   transition: all 0.2s;
 }
@@ -766,7 +771,7 @@ body {
 .login-field input {
   width: 100%; padding: 12px 14px;
   border: 1.5px solid var(--border); border-radius: 10px;
-  font-size: 14px; font-family: 'Inter', sans-serif;
+  font-size: 14px; font-family: 'Buenos Aires', 'Open Sans', sans-serif;
   outline: none; transition: border-color 0.2s;
   color: var(--text);
 }
@@ -791,9 +796,9 @@ body {
 
 .login-btn {
   width: 100%; padding: 14px;
-  background: linear-gradient(135deg, var(--accent), #d98f16);
+  background: linear-gradient(135deg, var(--accent), #C99A2E);
   border: none; border-radius: 10px;
-  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+  font-family: 'Buenos Aires', 'Open Sans', sans-serif; font-size: 14px; font-weight: 700;
   color: var(--primary); cursor: pointer;
   transition: all 0.2s; margin-top: 8px;
   letter-spacing: 0.3px;
@@ -818,7 +823,7 @@ body {
   background: none; border: none; cursor: pointer;
   color: rgba(255,255,255,0.4); font-size: 11px;
   padding: 4px 8px; border-radius: 6px;
-  transition: all 0.15s; font-family: 'Inter', sans-serif;
+  transition: all 0.15s; font-family: 'Buenos Aires', 'Open Sans', sans-serif;
   display: flex; align-items: center; gap: 5px;
 }
 .logout-btn:hover { color: #fff; background: rgba(255,255,255,0.08); }
@@ -882,15 +887,15 @@ body {
 </div>
 
 <!-- ══════════════ ADMIN PANEL ══════════════ -->
-<div id="admin-screen" class="hidden" style="position:fixed; inset:0; z-index:10001; background:linear-gradient(135deg, #0f2440 0%, #1a365d 40%, #2b4c7e 100%); display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif;">
+<div id="admin-screen" class="hidden" style="position:fixed; inset:0; z-index:10001; background:linear-gradient(135deg, #23282D 0%, #23282D 40%, #3a4147 100%); display:flex; align-items:center; justify-content:center; font-family:'Buenos Aires',sans-serif;">
   <div style="width:600px; max-width:95vw; max-height:90vh; background:#fff; border-radius:20px; box-shadow:0 25px 60px rgba(0,0,0,0.3); overflow:hidden; display:flex; flex-direction:column; animation:loginSlideUp 0.4s ease-out;">
     <!-- Admin Header -->
-    <div style="background:#0f2440; padding:24px 28px; display:flex; align-items:center; justify-content:space-between;">
+    <div style="background:#23282D; padding:24px 28px; display:flex; align-items:center; justify-content:space-between;">
       <div>
         <div style="font-size:16px; font-weight:700; color:#fff;"><i class="fas fa-shield-alt" style="color:var(--accent); margin-right:8px;"></i>Panel de Administración</div>
         <div style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:2px;">Gestión de cuentas de alumnos</div>
       </div>
-      <button onclick="closeAdmin()" style="background:rgba(255,255,255,0.1); border:none; cursor:pointer; padding:8px 12px; border-radius:8px; color:#fff; font-size:13px; font-family:'Inter',sans-serif; transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.2)'" onmouseleave="this.style.background='rgba(255,255,255,0.1)'">
+      <button onclick="closeAdmin()" style="background:rgba(255,255,255,0.1); border:none; cursor:pointer; padding:8px 12px; border-radius:8px; color:#fff; font-size:13px; font-family:'Buenos Aires',sans-serif; transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.2)'" onmouseleave="this.style.background='rgba(255,255,255,0.1)'">
         <i class="fas fa-times" style="margin-right:4px;"></i>Cerrar
       </button>
     </div>
@@ -918,10 +923,10 @@ body {
           <i class="fas fa-user-plus" style="color:var(--accent); margin-right:6px;"></i>Crear cuenta de alumno
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <input type="text" id="admin-new-name" placeholder="Nombre completo" style="flex:1; min-width:150px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; font-family:'Inter',sans-serif; outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-          <input type="email" id="admin-new-email" placeholder="Email" style="flex:1; min-width:150px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; font-family:'Inter',sans-serif; outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-          <input type="text" id="admin-new-pw" placeholder="Contraseña" style="width:130px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; font-family:'Inter',sans-serif; outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-          <button onclick="adminCreateStudent()" style="padding:10px 18px; background:linear-gradient(135deg, var(--accent), #d98f16); border:none; border-radius:8px; cursor:pointer; font-family:'Inter',sans-serif; font-size:13px; font-weight:600; color:var(--primary); white-space:nowrap; transition:transform 0.15s;" onmouseenter="this.style.transform='translateY(-1px)'" onmouseleave="this.style.transform='none'">
+          <input type="text" id="admin-new-name" placeholder="Nombre completo" style="flex:1; min-width:150px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; font-family:'Buenos Aires',sans-serif; outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          <input type="email" id="admin-new-email" placeholder="Email" style="flex:1; min-width:150px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; font-family:'Buenos Aires',sans-serif; outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          <input type="text" id="admin-new-pw" placeholder="Contraseña" style="width:130px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; font-family:'Buenos Aires',sans-serif; outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          <button onclick="adminCreateStudent()" style="padding:10px 18px; background:linear-gradient(135deg, var(--accent), #C99A2E); border:none; border-radius:8px; cursor:pointer; font-family:'Buenos Aires',sans-serif; font-size:13px; font-weight:600; color:var(--primary); white-space:nowrap; transition:transform 0.15s;" onmouseenter="this.style.transform='translateY(-1px)'" onmouseleave="this.style.transform='none'">
             <i class="fas fa-plus" style="margin-right:4px;"></i>Crear
           </button>
         </div>
@@ -1087,30 +1092,30 @@ body {
         <!-- Webinars -->
         <div>
           <label style="font-size: 13px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 6px;">
-            <i class="fas fa-video" style="color: #4299e1; margin-right: 6px;"></i>Temáticas para webinars
+            <i class="fas fa-video" style="color: #E7B141; margin-right: 6px;"></i>Temáticas para webinars
           </label>
-          <textarea id="egh-sug-webinars" rows="2" placeholder="¿Sobre qué temas te gustaría que organizásemos webinars?" style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Inter', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
+          <textarea id="egh-sug-webinars" rows="2" placeholder="¿Sobre qué temas te gustaría que organizásemos webinars?" style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
         </div>
         <!-- Contenido que falta -->
         <div>
           <label style="font-size: 13px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 6px;">
             <i class="fas fa-plus-circle" style="color: #48bb78; margin-right: 6px;"></i>Contenido que echas de menos
           </label>
-          <textarea id="egh-sug-contenido" rows="2" placeholder="¿Hay algún tema o contenido que te gustaría que incluyésemos en el curso?" style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Inter', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
+          <textarea id="egh-sug-contenido" rows="2" placeholder="¿Hay algún tema o contenido que te gustaría que incluyésemos en el curso?" style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
         </div>
         <!-- Foros de debate -->
         <div>
           <label style="font-size: 13px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 6px;">
             <i class="fas fa-users" style="color: #9f7aea; margin-right: 6px;"></i>Foros de debate
           </label>
-          <textarea id="egh-sug-foros" rows="2" placeholder="¿Sobre qué temas te gustaría debatir con tus compañeros/as?" style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Inter', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
+          <textarea id="egh-sug-foros" rows="2" placeholder="¿Sobre qué temas te gustaría debatir con tus compañeros/as?" style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
         </div>
         <!-- Otras sugerencias -->
         <div>
           <label style="font-size: 13px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 6px;">
             <i class="fas fa-lightbulb" style="color: var(--accent); margin-right: 6px;"></i>Otras sugerencias
           </label>
-          <textarea id="egh-sug-otras" rows="2" placeholder="Cualquier otra idea o sugerencia que quieras compartir..." style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Inter', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
+          <textarea id="egh-sug-otras" rows="2" placeholder="Cualquier otra idea o sugerencia que quieras compartir..." style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; resize: vertical; background: #f8f9fc;" oninput="saveEghSuggestions()"></textarea>
         </div>
       </div>
     </div>
@@ -1161,14 +1166,14 @@ body {
         <p style="margin-bottom: 16px;">El Máster de Formación Permanente en Executive Global Hospitality se estructura en tres fases que se complementan entre sí:</p>
 
         <!-- Fase 1 -->
-        <div style="background: #f8f9fc; border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; border-left: 3px solid #4299e1;">
+        <div style="background: #f8f9fc; border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; border-left: 3px solid #E7B141;">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-            <span style="background: #4299e1; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;">FASE 1</span>
+            <span style="background: #E7B141; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;">FASE 1</span>
             <span style="font-size: 14px; font-weight: 700; color: var(--primary);">Executive Global Hospitality — Campus online</span>
           </div>
           <div style="font-size: 12px; color: var(--text); line-height: 1.8; padding-left: 4px;">
             <div style="margin-bottom: 8px;">
-              <strong style="color: #4299e1;"><i class="fas fa-calendar" style="margin-right: 4px;"></i>Hasta el 15/12/2026</strong>
+              <strong style="color: #E7B141;"><i class="fas fa-calendar" style="margin-right: 4px;"></i>Hasta el 15/12/2026</strong>
               <div style="padding-left: 20px; margin-top: 4px;">
                 <span style="background: #f0fff4; color: #276749; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600;">Ideal</span> Completarlo al 100%<br>
                 <span style="background: #fff5f5; color: #c53030; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-top: 4px; display: inline-block;">Exigido</span> Alcanzar el <strong>75% del progreso del curso</strong> y el <strong>75% de los test</strong>
@@ -1178,7 +1183,7 @@ body {
               </div>
             </div>
             <div>
-              <strong style="color: #4299e1;"><i class="fas fa-calendar" style="margin-right: 4px;"></i>Del 16/12/2026 al 15/02/2027</strong>
+              <strong style="color: #E7B141;"><i class="fas fa-calendar" style="margin-right: 4px;"></i>Del 16/12/2026 al 15/02/2027</strong>
               <div style="padding-left: 20px; margin-top: 4px;">
                 <span style="background: #f0fff4; color: #276749; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600;">Ideal</span> Completar al 100% a la mayor brevedad para poner el foco en el TFM<br>
                 <span style="background: #fff5f5; color: #c53030; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-top: 4px; display: inline-block;">Exigido</span> Completar al <strong>100%</strong> para obtener el diploma de la UCAM antes del 15/02/2027
@@ -1402,11 +1407,11 @@ body {
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <div>
                 <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Fecha</label>
-                <input type="date" id="tutoria-date" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;">
+                <input type="date" id="tutoria-date" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;">
               </div>
               <div>
                 <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Hora</label>
-                <input type="time" id="tutoria-time" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;">
+                <input type="time" id="tutoria-time" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;">
               </div>
             </div>
             <div style="margin-top: 10px;">
@@ -1414,7 +1419,7 @@ body {
               <div style="display: flex; gap: 6px; flex-wrap: wrap;">
                 <label style="display: flex; align-items: center; gap: 6px; padding: 7px 12px; background: #fff; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 12px; transition: all 0.15s;" class="via-option">
                   <input type="radio" name="tutoria-via" value="videollamada" checked style="display: none;">
-                  <i class="fas fa-video" style="color: #4299e1;"></i> Videollamada
+                  <i class="fas fa-video" style="color: #E7B141;"></i> Videollamada
                 </label>
                 <label style="display: flex; align-items: center; gap: 6px; padding: 7px 12px; background: #fff; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 12px; transition: all 0.15s;" class="via-option">
                   <input type="radio" name="tutoria-via" value="llamada" style="display: none;">
@@ -1432,7 +1437,7 @@ body {
             </div>
             <div style="margin-top: 10px;">
               <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Asunto / tema a tratar</label>
-              <input type="text" id="tutoria-subject" placeholder="Ej: Revisión del marco teórico..." style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;">
+              <input type="text" id="tutoria-subject" placeholder="Ej: Revisión del marco teórico..." style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;">
             </div>
             <button class="btn btn-primary" onclick="addTutoria()" style="margin-top: 12px; width: 100%; padding: 9px;">
               <i class="fas fa-calendar-check" style="margin-right: 4px;"></i> Agendar tutoría
@@ -1474,7 +1479,7 @@ body {
           <!-- Input de mensaje -->
           <div style="margin-top: 12px;">
             <!-- Adjuntar archivo -->
-            <div id="attachment-preview" style="display: none; padding: 8px 12px; background: #ebf8ff; border-radius: 8px 8px 0 0; border: 1px solid #bee3f8; border-bottom: none; font-size: 12px; color: #2b6cb0; display: none; align-items: center; gap: 8px;">
+            <div id="attachment-preview" style="display: none; padding: 8px 12px; background: #FBF4E3; border-radius: 8px 8px 0 0; border: 1px solid #F0C96E; border-bottom: none; font-size: 12px; color: #C99A2E; display: none; align-items: center; gap: 8px;">
               <i class="fas fa-paperclip"></i>
               <span id="attachment-name"></span>
               <button onclick="removeAttachment()" style="background: none; border: none; cursor: pointer; color: #c53030; font-size: 12px; margin-left: auto; padding: 2px 4px;"><i class="fas fa-times"></i></button>
@@ -1485,7 +1490,7 @@ body {
               </button>
               <input type="file" id="msg-file-input" style="display: none;" onchange="handleMsgAttachment(this)">
               <div style="flex: 1; position: relative;">
-                <textarea id="tutor-msg-input" placeholder="Escribe tu mensaje al tutor/a..." rows="2" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif; outline: none; resize: none; line-height: 1.5;" onkeypress="if(event.key==='Enter' && !event.shiftKey){event.preventDefault();sendTutorMsg();}"></textarea>
+                <textarea id="tutor-msg-input" placeholder="Escribe tu mensaje al tutor/a..." rows="2" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none; resize: none; line-height: 1.5;" onkeypress="if(event.key==='Enter' && !event.shiftKey){event.preventDefault();sendTutorMsg();}"></textarea>
               </div>
               <button onclick="sendTutorMsg()" style="background: var(--accent); border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; color: var(--primary); font-size: 14px; font-weight: 600; transition: all 0.15s; height: 42px;">
                 <i class="fas fa-paper-plane"></i>
@@ -1526,13 +1531,13 @@ body {
           <label style="display: block; font-size: 12px; font-weight: 600; color: var(--primary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">
             <i class="fas fa-play" style="color: var(--success); margin-right: 4px;"></i> Inicio oficial (80% superado)
           </label>
-          <input type="date" id="date-start" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none;" onchange="recalcTimeline()">
+          <input type="date" id="date-start" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;" onchange="recalcTimeline()">
         </div>
         <div style="flex: 1; min-width: 200px;">
           <label style="display: block; font-size: 12px; font-weight: 600; color: var(--primary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">
             <i class="fas fa-flag-checkered" style="color: var(--warning); margin-right: 4px;"></i> Fecha de entrega final
           </label>
-          <input type="date" id="date-end" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none;" onchange="recalcTimeline()">
+          <input type="date" id="date-end" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;" onchange="recalcTimeline()">
         </div>
       </div>
       <div id="date-summary" style="margin-top: 16px; padding: 14px 18px; background: #f0f4f8; border-radius: 8px; font-size: 13px; color: var(--text-light); display: none;">
@@ -1600,17 +1605,17 @@ body {
     </div>
 
     <!-- ── TABLÓN: TUTORÍAS GRUPALES ── -->
-    <div class="card" style="margin-top: 16px; border-left: 4px solid #4299e1; background: linear-gradient(135deg, #ffffff 0%, #ebf8ff 100%);">
+    <div class="card" style="margin-top: 16px; border-left: 4px solid #E7B141; background: linear-gradient(135deg, #ffffff 0%, #FBF4E3 100%);">
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-        <h3 style="margin: 0;"><i class="fas fa-bullhorn" style="color: #4299e1;"></i> Tutorías grupales</h3>
-        <span style="font-size: 11px; color: var(--text-light); background: #ebf8ff; padding: 3px 10px; border-radius: 12px;"><i class="fas fa-bell" style="margin-right: 4px;"></i>Tablón de anuncios</span>
+        <h3 style="margin: 0;"><i class="fas fa-bullhorn" style="color: #E7B141;"></i> Tutorías grupales</h3>
+        <span style="font-size: 11px; color: var(--text-light); background: #FBF4E3; padding: 3px 10px; border-radius: 12px;"><i class="fas fa-bell" style="margin-right: 4px;"></i>Tablón de anuncios</span>
       </div>
       <p style="font-size: 13px; color: var(--text-light); margin-bottom: 14px;">Sesiones orientadas al intercambio de ideas, exposición de avances y resolución colectiva de dudas. Se convocan desde coordinación académica.</p>
       <div id="group-tutoring-list" style="display: flex; flex-direction: column; gap: 10px;">
         <!-- Announcements will be rendered here -->
       </div>
       <div id="group-tutoring-empty" style="text-align: center; padding: 20px; color: var(--text-light); font-size: 13px;">
-        <i class="fas fa-calendar-check" style="font-size: 28px; color: #bee3f8; display: block; margin-bottom: 8px;"></i>
+        <i class="fas fa-calendar-check" style="font-size: 28px; color: #F0C96E; display: block; margin-bottom: 8px;"></i>
         No hay tutorías grupales programadas por el momento.<br>
         <span style="font-size: 12px;">Cuando se convoquen, aparecerán aquí.</span>
       </div>
@@ -1620,17 +1625,17 @@ body {
         <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end;">
           <div style="flex: 1; min-width: 180px;">
             <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Título</label>
-            <input type="text" id="gt-title" placeholder="Ej: Tutoría grupal — Avances TFM" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Inter', sans-serif;">
+            <input type="text" id="gt-title" placeholder="Ej: Tutoría grupal — Avances TFM" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif;">
           </div>
           <div style="min-width: 140px;">
             <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Fecha y hora</label>
-            <input type="datetime-local" id="gt-datetime" style="padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Inter', sans-serif;">
+            <input type="datetime-local" id="gt-datetime" style="padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif;">
           </div>
           <div style="min-width: 120px;">
             <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Enlace (opcional)</label>
-            <input type="url" id="gt-link" placeholder="https://zoom.us/..." style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Inter', sans-serif;">
+            <input type="url" id="gt-link" placeholder="https://zoom.us/..." style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif;">
           </div>
-          <button onclick="addGroupTutoring()" style="padding: 8px 16px; background: #4299e1; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Publicar</button>
+          <button onclick="addGroupTutoring()" style="padding: 8px 16px; background: #E7B141; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Publicar</button>
         </div>
       </div>
     </div>
@@ -1658,11 +1663,11 @@ body {
         <div style="display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap;">
           <div style="flex: 1; min-width: 200px;">
             <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 4px;">Nueva tarea</label>
-            <input type="text" id="new-phase-name" placeholder="Ej: Revisión anti-plagio, Ensayo de presentación..." style="width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addCustomPhase()">
+            <input type="text" id="new-phase-name" placeholder="Ej: Revisión anti-plagio, Ensayo de presentación..." style="width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addCustomPhase()">
           </div>
           <div style="min-width: 140px;">
             <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 4px;">Fecha límite</label>
-            <input type="date" id="new-phase-deadline" style="width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif; outline: none;">
+            <input type="date" id="new-phase-deadline" style="width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;">
           </div>
           <button class="btn btn-primary" onclick="addCustomPhase()" style="height: 40px;"><i class="fas fa-plus"></i> Añadir</button>
         </div>
@@ -1680,19 +1685,19 @@ body {
     </div>
 
     <!-- ═══ 1. BORRADOR DE ÍNDICE ═══ -->
-    <div class="card" style="border-left: 4px solid #4299e1; margin-bottom: 20px;">
-      <h3 style="margin-bottom: 6px;"><i class="fas fa-list-ol" style="color: #4299e1;"></i> Borrador de índice</h3>
+    <div class="card" style="border-left: 4px solid #E7B141; margin-bottom: 20px;">
+      <h3 style="margin-bottom: 6px;"><i class="fas fa-list-ol" style="color: #E7B141;"></i> Borrador de índice</h3>
       <p style="font-size: 12px; color: var(--text-light); margin-bottom: 12px;">Esboza la estructura de tu TFM. Puedes reorganizarlo tantas veces como quieras antes de llevarlo al documento.</p>
       <div id="draft-index-empty" style="text-align: center; padding: 20px; display: none;">
-        <button onclick="loadProposedIndex()" class="btn" style="background: #ebf8ff; border: 1px solid #bee3f8; color: #2b6cb0; font-size: 13px; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: 'Inter', sans-serif;">
+        <button onclick="loadProposedIndex()" class="btn" style="background: #FBF4E3; border: 1px solid #F0C96E; color: #C99A2E; font-size: 13px; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: 'Buenos Aires', 'Open Sans', sans-serif;">
           <i class="fas fa-magic" style="margin-right: 6px;"></i>Cargar estructura propuesta del TFM
         </button>
         <p style="font-size: 11px; color: var(--text-light); margin-top: 8px;">Basada en la Guía Académica. Podrás modificarla a tu gusto.</p>
       </div>
       <div id="draft-index-list" style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px;"></div>
       <div style="display: flex; gap: 8px; align-items: center;">
-        <input type="text" id="draft-index-input" placeholder="Ej: 1. Introducción, 2.1 Marco teórico..." style="flex: 1; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addDraftIndexItem()">
-        <select id="draft-index-level" style="padding: 9px 8px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none; cursor: pointer;">
+        <input type="text" id="draft-index-input" placeholder="Ej: 1. Introducción, 2.1 Marco teórico..." style="flex: 1; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addDraftIndexItem()">
+        <select id="draft-index-level" style="padding: 9px 8px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none; cursor: pointer;">
           <option value="0">Título</option>
           <option value="1">Subtítulo</option>
           <option value="2">Apartado</option>
@@ -1700,7 +1705,7 @@ body {
         <button class="btn btn-primary" onclick="addDraftIndexItem()" style="white-space: nowrap;"><i class="fas fa-plus"></i> Añadir</button>
       </div>
       <div id="draft-index-send" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);">
-        <button onclick="sendDraftIndexToEditor()" class="btn" style="background: #ebf8ff; border: 1px solid #bee3f8; color: #2b6cb0; font-size: 12px; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: 'Inter', sans-serif;">
+        <button onclick="sendDraftIndexToEditor()" class="btn" style="background: #FBF4E3; border: 1px solid #F0C96E; color: #C99A2E; font-size: 12px; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: 'Buenos Aires', 'Open Sans', sans-serif;">
           <i class="fas fa-arrow-right" style="margin-right: 6px;"></i>Enviar estructura a Mi TFM
         </button>
       </div>
@@ -1710,14 +1715,14 @@ body {
     <div class="card" style="border-left: 4px solid var(--accent); margin-bottom: 20px;">
       <h3><i class="fas fa-sticky-note" style="color: var(--accent);"></i> Notas</h3>
       <div style="display: flex; gap: 10px; margin-top: 10px;">
-        <textarea id="quick-note" placeholder="Escribe una idea, duda, algo importante..." rows="2" style="flex: 1; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none; resize: none; line-height: 1.6;"></textarea>
+        <textarea id="quick-note" placeholder="Escribe una idea, duda, algo importante..." rows="2" style="flex: 1; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none; resize: none; line-height: 1.6;"></textarea>
         <div style="display: flex; flex-direction: column; gap: 6px;">
-          <select id="note-color" style="padding: 8px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none; cursor: pointer;">
+          <select id="note-color" style="padding: 8px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none; cursor: pointer;">
             <option value="#fffbeb">💡 Idea</option>
             <option value="#faf5ff">❓ Duda</option>
             <option value="#fff5f5">🔥 Importante</option>
             <option value="#e6fffa">💬 Comentar tutor/a</option>
-            <option value="#ebf8ff">🔍 Buscar info</option>
+            <option value="#FBF4E3">🔍 Buscar info</option>
           </select>
           <button class="btn btn-primary" onclick="addNote()" style="flex: 1;"><i class="fas fa-plus"></i> Añadir</button>
         </div>
@@ -1727,12 +1732,12 @@ body {
     <!-- Filtros -->
     <div style="display: flex; gap: 6px; margin: 0 0 16px 0; flex-wrap: wrap; align-items: center;">
       <span style="font-size: 12px; color: var(--text-light); font-weight: 600; margin-right: 4px;">Filtrar:</span>
-      <button class="note-filter active" onclick="filterNotes('all', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: var(--primary); color: #fff; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;">Todas</button>
-      <button class="note-filter" onclick="filterNotes('#fffbeb', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;">💡 Ideas</button>
-      <button class="note-filter" onclick="filterNotes('#faf5ff', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;">❓ Dudas</button>
-      <button class="note-filter" onclick="filterNotes('#fff5f5', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;">🔥 Importantes</button>
-      <button class="note-filter" onclick="filterNotes('#e6fffa', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;">💬 Tutor/a</button>
-      <button class="note-filter" onclick="filterNotes('#ebf8ff', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;">🔍 Buscar</button>
+      <button class="note-filter active" onclick="filterNotes('all', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: var(--primary); color: #fff; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Buenos Aires', 'Open Sans', sans-serif;">Todas</button>
+      <button class="note-filter" onclick="filterNotes('#fffbeb', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Buenos Aires', 'Open Sans', sans-serif;">💡 Ideas</button>
+      <button class="note-filter" onclick="filterNotes('#faf5ff', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Buenos Aires', 'Open Sans', sans-serif;">❓ Dudas</button>
+      <button class="note-filter" onclick="filterNotes('#fff5f5', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Buenos Aires', 'Open Sans', sans-serif;">🔥 Importantes</button>
+      <button class="note-filter" onclick="filterNotes('#e6fffa', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Buenos Aires', 'Open Sans', sans-serif;">💬 Tutor/a</button>
+      <button class="note-filter" onclick="filterNotes('#FBF4E3', this)" style="padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'Buenos Aires', 'Open Sans', sans-serif;">🔍 Buscar</button>
       <span style="margin-left: auto; font-size: 12px; color: var(--text-light);" id="note-count">0 notas</span>
     </div>
 
@@ -1767,7 +1772,7 @@ body {
             <i class="fas fa-search" style="margin-right: 6px; color: var(--accent);"></i>Buscar en el texto
           </div>
           <div style="display: flex; gap: 6px;">
-            <input type="text" id="word-search" placeholder="Buscar palabra..." onkeypress="if(event.key==='Enter')searchInDoc()" style="flex:1; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;">
+            <input type="text" id="word-search" placeholder="Buscar palabra..." onkeypress="if(event.key==='Enter')searchInDoc()" style="flex:1; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;">
             <button onclick="searchInDoc()" style="background: var(--accent); border: none; padding: 8px 10px; border-radius: 6px; cursor: pointer; color: var(--primary); font-size: 12px;">
               <i class="fas fa-search"></i>
             </button>
@@ -1864,7 +1869,7 @@ body {
           <button class="btn" onclick="saveDoc()" style="padding: 6px 14px; font-size: 12px; background: var(--success); color: #fff; border-radius: 6px;">
             <i class="fas fa-save" style="margin-right: 4px;"></i>Guardar
           </button>
-          <button class="btn" onclick="exportWord()" style="padding: 6px 14px; font-size: 12px; background: #2b6cb0; color: #fff; border-radius: 6px;">
+          <button class="btn" onclick="exportWord()" style="padding: 6px 14px; font-size: 12px; background: #C99A2E; color: #fff; border-radius: 6px;">
             <i class="fas fa-file-word" style="margin-right: 4px;"></i>Exportar Word
           </button>
           <button class="btn" onclick="exportPDF()" style="padding: 6px 14px; font-size: 12px; background: #c53030; color: #fff; border-radius: 6px;">
@@ -1952,7 +1957,7 @@ body {
 
     <!-- ── RECURSOS RECOMENDADOS ── -->
     <div style="margin-top: 36px;">
-      <h3 style="font-family: 'Playfair Display', serif; font-size: 22px; color: var(--primary); margin-bottom: 6px;">
+      <h3 style="font-family: 'Buenos Aires', 'Open Sans', sans-serif; font-size: 22px; color: var(--primary); margin-bottom: 6px;">
         <i class="fas fa-star" style="color: var(--accent); margin-right: 8px;"></i>Recursos recomendados
       </h3>
       <p style="color: var(--text-light); font-size: 14px; margin-bottom: 20px;">Una selección de herramientas y fuentes que te serán útiles durante la elaboración de tu TFM.</p>
@@ -2134,7 +2139,7 @@ body {
 <!-- Backend Supabase (trasplante): cliente + capa Store. Deben cargar ANTES del script de la app. -->
 <!-- ══════════════ MESA DEL TUTOR ══════════════ -->
 <style>
-  #tutor-screen { font-family:'Inter',sans-serif; color:var(--primary); }
+  #tutor-screen { font-family:'Buenos Aires',sans-serif; color:var(--primary); }
   #tutor-screen .tt-wrap { max-width:1000px; margin:0 auto; padding:24px 20px 60px; }
   #tutor-screen .tutor-tab { background:none; border:none; cursor:pointer; font:inherit; font-size:14px; font-weight:600; color:var(--text-light); padding:10px 2px; margin-right:22px; border-bottom:2px solid transparent; }
   #tutor-screen .tutor-tab.active { color:var(--primary); border-bottom-color:var(--accent); }
@@ -2148,7 +2153,7 @@ body {
   #tutor-screen .tt-btn.ghost { background:#fff; border:1px solid var(--border); color:var(--primary); font-weight:600; }
 </style>
 <div id="tutor-screen" class="hidden" style="display:none; position:fixed; inset:0; z-index:9000; background:#f4f6fb; overflow:auto;">
-  <div style="background:#0f2440; color:#fff; padding:14px 20px;">
+  <div style="background:#23282D; color:#fff; padding:14px 20px;">
     <div class="tt-wrap" style="padding:0; display:flex; align-items:center; gap:12px;">
       <div style="font-weight:700; font-size:15px;"><i class="fas fa-chalkboard-user" style="color:var(--accent); margin-right:8px;"></i>Mesa del tutor</div>
       <div style="flex:1; font-size:12px; color:rgba(255,255,255,.6);">· <span id="tutor-name"></span></div>
@@ -2189,7 +2194,7 @@ body {
 </div>
 <!-- ══════════════ ADMINISTRACIÓN ══════════════ -->
 <style>
-  #admin-desk { font-family:'Inter',sans-serif; color:var(--primary); }
+  #admin-desk { font-family:'Buenos Aires',sans-serif; color:var(--primary); }
   #admin-desk .ad-wrap { max-width:1000px; margin:0 auto; padding:24px 20px 60px; }
   #admin-desk .ad-card { background:#fff; border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:16px; }
   #admin-desk .ad-row { display:flex; align-items:center; gap:12px; padding:12px 14px; border:1px solid var(--border); border-radius:10px; margin-bottom:8px; flex-wrap:wrap; }
@@ -2197,7 +2202,7 @@ body {
   #admin-desk .ad-btn { background:rgba(255,255,255,.12); border:none; color:#fff; border-radius:9px; padding:10px 16px; font:inherit; font-weight:700; cursor:pointer; }
 </style>
 <div id="admin-desk" class="hidden" style="display:none; position:fixed; inset:0; z-index:9000; background:#f4f6fb; overflow:auto;">
-  <div style="background:#0f2440; color:#fff; padding:14px 20px;">
+  <div style="background:#23282D; color:#fff; padding:14px 20px;">
     <div class="ad-wrap" style="padding:0; display:flex; align-items:center; gap:12px;">
       <div style="font-weight:700; font-size:15px;"><i class="fas fa-user-shield" style="color:var(--accent); margin-right:8px;"></i>Administración</div>
       <div style="flex:1; font-size:12px; color:rgba(255,255,255,.6);">· <span id="admin-name"></span></div>
@@ -2412,7 +2417,7 @@ function renderAdminStudentList() {
   container.innerHTML = entries.map(([email, u]) => {
     const date = u.createdAt ? new Date(u.createdAt).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) : '--';
     return `<div style="display:flex; align-items:center; gap:12px; padding:12px 14px; border:1px solid var(--border); border-radius:10px; margin-bottom:8px; background:#fff; transition:box-shadow 0.15s;" onmouseenter="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.06)'" onmouseleave="this.style.boxShadow='none'">
-      <div style="width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg, var(--accent), #d98f16); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:var(--primary); flex-shrink:0;">
+      <div style="width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg, var(--accent), #C99A2E); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:var(--primary); flex-shrink:0;">
         ${u.name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase()}
       </div>
       <div style="flex:1; min-width:0;">
@@ -2421,7 +2426,7 @@ function renderAdminStudentList() {
       </div>
       <div style="font-size:10px; color:var(--text-light); white-space:nowrap;">${date}</div>
       <div style="display:flex; gap:4px;">
-        <button onclick="adminResetPassword('${email}')" title="Resetear contraseña" style="background:none; border:none; cursor:pointer; padding:6px 8px; border-radius:6px; font-size:12px; color:var(--info); transition:background 0.15s;" onmouseenter="this.style.background='#ebf8ff'" onmouseleave="this.style.background='none'">
+        <button onclick="adminResetPassword('${email}')" title="Resetear contraseña" style="background:none; border:none; cursor:pointer; padding:6px 8px; border-radius:6px; font-size:12px; color:var(--info); transition:background 0.15s;" onmouseenter="this.style.background='#FBF4E3'" onmouseleave="this.style.background='none'">
           <i class="fas fa-key"></i>
         </button>
         <button onclick="adminDeleteStudent('${email}', this)" title="Eliminar cuenta" style="background:none; border:none; cursor:pointer; padding:6px 8px; border-radius:6px; font-size:12px; color:#e53e3e; transition:background 0.15s;" onmouseenter="this.style.background='#fff5f5'" onmouseleave="this.style.background='none'">
@@ -2519,7 +2524,7 @@ function showChangePasswordModal() {
     <div class="login-field"><label>Nueva contraseña</label><div class="field-icon"><i class="fas fa-lock"></i><input type="password" id="modal-pw-new" placeholder="Mínimo 6 caracteres"></div></div>
     <div class="login-field"><label>Repetir nueva contraseña</label><div class="field-icon"><i class="fas fa-lock"></i><input type="password" id="modal-pw-new2" placeholder="Repite la nueva contraseña"></div></div>
     <button class="login-btn" onclick="doModalChangePassword()"><i class="fas fa-save" style="margin-right:6px;"></i>Guardar</button>
-    <button onclick="document.getElementById('pw-modal-overlay').remove()" style="width:100%; margin-top:8px; padding:10px; border:1px solid var(--border); border-radius:10px; background:#fff; cursor:pointer; font-family:'Inter',sans-serif; font-size:13px; color:var(--text-light);">Cancelar</button>
+    <button onclick="document.getElementById('pw-modal-overlay').remove()" style="width:100%; margin-top:8px; padding:10px; border:1px solid var(--border); border-radius:10px; background:#fff; cursor:pointer; font-family:'Buenos Aires',sans-serif; font-size:13px; color:var(--text-light);">Cancelar</button>
   `;
 
   overlay.appendChild(modal);
@@ -2646,13 +2651,13 @@ function renderGroupTutorings() {
     const dayNames = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
     const monthNames = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
     const dateStr = dayNames[d.getDay()] + ' ' + d.getDate() + ' ' + monthNames[d.getMonth()] + ' ' + d.getFullYear() + ', ' + d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0') + 'h';
-    return '<div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: ' + (isPast ? '#f7fafc' : '#fff') + '; border-radius: 10px; border: 1px solid ' + (isPast ? '#e2e8f0' : '#bee3f8') + '; ' + (isPast ? 'opacity: 0.6;' : '') + '">' +
-      '<div style="width: 40px; height: 40px; min-width: 40px; background: ' + (isPast ? '#e2e8f0' : '#ebf8ff') + '; border-radius: 10px; display: flex; align-items: center; justify-content: center;"><i class="fas ' + (isPast ? 'fa-check-circle' : 'fa-video') + '" style="color: ' + (isPast ? '#a0aec0' : '#4299e1') + '; font-size: 16px;"></i></div>' +
+    return '<div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: ' + (isPast ? '#f7fafc' : '#fff') + '; border-radius: 10px; border: 1px solid ' + (isPast ? '#e2e8f0' : '#F0C96E') + '; ' + (isPast ? 'opacity: 0.6;' : '') + '">' +
+      '<div style="width: 40px; height: 40px; min-width: 40px; background: ' + (isPast ? '#e2e8f0' : '#FBF4E3') + '; border-radius: 10px; display: flex; align-items: center; justify-content: center;"><i class="fas ' + (isPast ? 'fa-check-circle' : 'fa-video') + '" style="color: ' + (isPast ? '#a0aec0' : '#E7B141') + '; font-size: 16px;"></i></div>' +
       '<div style="flex: 1;">' +
         '<div style="font-weight: 600; font-size: 13px; color: var(--primary);">' + t.title + '</div>' +
         '<div style="font-size: 12px; color: var(--text-light); margin-top: 2px;"><i class="fas fa-clock" style="margin-right: 4px;"></i>' + dateStr + '</div>' +
       '</div>' +
-      (t.link && !isPast ? '<a href="' + t.link + '" target="_blank" style="padding: 6px 14px; background: #4299e1; color: #fff; border-radius: 8px; font-size: 11px; font-weight: 600; text-decoration: none;"><i class="fas fa-video" style="margin-right: 4px;"></i>Unirse</a>' : '') +
+      (t.link && !isPast ? '<a href="' + t.link + '" target="_blank" style="padding: 6px 14px; background: #E7B141; color: #fff; border-radius: 8px; font-size: 11px; font-weight: 600; text-decoration: none;"><i class="fas fa-video" style="margin-right: 4px;"></i>Unirse</a>' : '') +
       (isAdmin ? '<button onclick="deleteGroupTutoring(' + t.id + ')" style="background: none; border: none; color: #e53e3e; cursor: pointer; font-size: 14px;" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' : '') +
     '</div>';
   }).join('');
@@ -2950,8 +2955,8 @@ function exportWord() {
     <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
     <head><meta charset="utf-8"><style>
       body { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.5; margin: 2.5cm; color: #333; }
-      h2 { font-size: 16pt; color: #1a365d; margin-top: 24pt; margin-bottom: 12pt; }
-      h3 { font-size: 14pt; color: #2b4c7e; margin-top: 18pt; margin-bottom: 10pt; }
+      h2 { font-size: 16pt; color: #23282D; margin-top: 24pt; margin-bottom: 12pt; }
+      h3 { font-size: 14pt; color: #3a4147; margin-top: 18pt; margin-bottom: 10pt; }
       p { margin-bottom: 8pt; text-align: justify; }
       img { max-width: 100%; }
       mark { background: none; font-weight: normal; }
@@ -2971,8 +2976,8 @@ function exportPDF() {
     <style>
       @media print { @page { margin: 2.5cm; size: A4; } }
       body { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.5; color: #333; max-width: 800px; margin: 0 auto; padding: 40px; }
-      h2 { font-size: 16pt; color: #1a365d; margin-top: 24pt; page-break-after: avoid; }
-      h3 { font-size: 14pt; color: #2b4c7e; margin-top: 18pt; page-break-after: avoid; }
+      h2 { font-size: 16pt; color: #23282D; margin-top: 24pt; page-break-after: avoid; }
+      h3 { font-size: 14pt; color: #3a4147; margin-top: 18pt; page-break-after: avoid; }
       p { text-align: justify; margin-bottom: 8pt; }
       img { max-width: 100%; page-break-inside: avoid; }
       mark { background: none; font-weight: normal; }
@@ -3028,7 +3033,7 @@ function getFullHTML(content) {
   return `<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">
     <title>TFM Borrador</title>
     <style>body{font-family:'Times New Roman',serif;font-size:12pt;line-height:1.5;max-width:800px;margin:40px auto;padding:20px;color:#333;}
-    h2{font-size:16pt;color:#1a365d;margin-top:24pt;}h3{font-size:14pt;color:#2b4c7e;margin-top:18pt;}
+    h2{font-size:16pt;color:#23282D;margin-top:24pt;}h3{font-size:14pt;color:#3a4147;margin-top:18pt;}
     p{text-align:justify;margin-bottom:8pt;}img{max-width:100%;border-radius:8px;}</style>
     </head><body class="editor-area">${content}</body></html>`;
 }
@@ -3080,7 +3085,7 @@ function getDeadlineInfo(dateVal, isCompleted) {
   } else if (diffDays <= 7) {
     return { text: diffDays + ' días', bg: '#feebc8', color: '#c05621' };
   } else {
-    return { text: diffDays + ' días', bg: '#ebf8ff', color: '#2b6cb0' };
+    return { text: diffDays + ' días', bg: '#FBF4E3', color: '#C99A2E' };
   }
 }
 
@@ -3196,7 +3201,7 @@ function renderDraftIndex() {
     <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; padding-left: ${paddings[item.level] + 12}px; background: #f8f9fc; border-radius: 8px; border: 1px solid var(--border); cursor: grab;" draggable="true" ondragstart="dragDraftItem(event, ${i})" ondragover="event.preventDefault()" ondrop="dropDraftItem(event, ${i})">
       <i class="fas fa-grip-vertical" style="color: #cbd5e0; font-size: 10px;"></i>
       <span onclick="editDraftItem(${i})" style="flex: 1; font-size: ${sizes[item.level]}; font-weight: ${weights[item.level]}; color: var(--primary); cursor: text;" title="Clic para editar">${item.text}</span>
-      <select onchange="changeDraftLevel(${i}, this.value)" style="padding: 2px 4px; border: 1px solid var(--border); border-radius: 4px; font-size: 10px; font-family: 'Inter', sans-serif; outline: none; cursor: pointer; color: var(--text-light);">
+      <select onchange="changeDraftLevel(${i}, this.value)" style="padding: 2px 4px; border: 1px solid var(--border); border-radius: 4px; font-size: 10px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none; cursor: pointer; color: var(--text-light);">
         <option value="0" ${item.level === 0 ? 'selected' : ''}>Título</option>
         <option value="1" ${item.level === 1 ? 'selected' : ''}>Subtítulo</option>
         <option value="2" ${item.level === 2 ? 'selected' : ''}>Apartado</option>
@@ -3299,7 +3304,7 @@ function generateMindMap() {
   document.getElementById('btn-close-mindmap').style.display = 'inline-flex';
 
   // Colors
-  const colors = ['#4299e1', '#48bb78', '#ed8936', '#e53e3e', '#9f7aea', '#38b2ac', '#d69e2e', '#e53e3e'];
+  const colors = ['#E7B141', '#48bb78', '#ed8936', '#e53e3e', '#9f7aea', '#38b2ac', '#d69e2e', '#e53e3e'];
 
   // Clear
   ctx.clearRect(0, 0, W, H);
@@ -3357,14 +3362,14 @@ function generateMindMap() {
   });
 
   // Central bubble
-  ctx.fillStyle = '#0f2440';
+  ctx.fillStyle = '#23282D';
   const centralW = Math.min(ctx.measureText(central).width + 40, 220);
   const centralH = 44;
   ctx.beginPath();
   ctx.roundRect(cx - centralW / 2, cy - centralH / 2, centralW, centralH, 12);
   ctx.fill();
 
-  ctx.fillStyle = '#f9b233';
+  ctx.fillStyle = '#E7B141';
   ctx.font = 'bold 15px Inter, sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
@@ -3442,7 +3447,7 @@ function renderNotebookBlocks() {
         <span style="font-size: 11px; color: ${block.keep ? '#276749' : 'var(--text-light)'}; font-weight: 600;">${block.keep ? 'Conservar' : 'Sin conservar'}</span>
         <button onclick="deleteNotebookBlock(${block.id})" style="margin-left: auto; background: none; border: none; color: #cbd5e0; cursor: pointer; font-size: 12px;" onmouseenter="this.style.color='#e53e3e'" onmouseleave="this.style.color='#cbd5e0'" title="Eliminar bloque"><i class="fas fa-trash"></i></button>
       </div>
-      <textarea id="nb-text-${block.id}" rows="3" placeholder="Escribe aquí..." style="width: 100%; border: none; border-radius: 6px; padding: 8px 10px; font-size: 13px; font-family: 'Inter', sans-serif; outline: none; resize: vertical; line-height: 1.7; background: ${block.keep ? 'rgba(255,255,255,0.7)' : '#f8f9fc'};" oninput="saveNotebookBlocks()">${block.text || ''}</textarea>
+      <textarea id="nb-text-${block.id}" rows="3" placeholder="Escribe aquí..." style="width: 100%; border: none; border-radius: 6px; padding: 8px 10px; font-size: 13px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none; resize: vertical; line-height: 1.7; background: ${block.keep ? 'rgba(255,255,255,0.7)' : '#f8f9fc'};" oninput="saveNotebookBlocks()">${block.text || ''}</textarea>
     </div>
   `).join('');
 }
@@ -3497,7 +3502,7 @@ const noteTypeLabels = {
   '#faf5ff': '❓ Duda',
   '#fff5f5': '🔥 Importante',
   '#e6fffa': '💬 Comentar tutor/a',
-  '#ebf8ff': '🔍 Buscar info',
+  '#FBF4E3': '🔍 Buscar info',
   '#f0fff4': '💭 Reflexión',
 };
 
@@ -3603,7 +3608,7 @@ function showInsertPicker(text, type) {
   headings.forEach((h, i) => {
     const indent = h.tagName === 'H3' ? 'padding-left:32px;' : '';
     const icon = h.tagName === 'H2' ? 'fa-heading' : 'fa-indent';
-    options += '<div onclick="insertAtPosition(\'heading-' + i + '\', this)" style="padding:12px 16px;cursor:pointer;border-bottom:1px solid var(--border);transition:background 0.15s;font-size:13px;' + indent + '" onmouseenter="this.style.background=\'#f0f4f8\'" onmouseleave="this.style.background=\'\'"><i class="fas ' + icon + '" style="margin-right:8px;color:#4299e1;font-size:11px;"></i>Después de: <strong>' + h.textContent.trim() + '</strong></div>';
+    options += '<div onclick="insertAtPosition(\'heading-' + i + '\', this)" style="padding:12px 16px;cursor:pointer;border-bottom:1px solid var(--border);transition:background 0.15s;font-size:13px;' + indent + '" onmouseenter="this.style.background=\'#f0f4f8\'" onmouseleave="this.style.background=\'\'"><i class="fas ' + icon + '" style="margin-right:8px;color:#E7B141;font-size:11px;"></i>Después de: <strong>' + h.textContent.trim() + '</strong></div>';
   });
 
   options += '<div onclick="insertAtPosition(\'end\', this)" style="padding:12px 16px;cursor:pointer;border-radius:0 0 8px 8px;transition:background 0.15s;font-size:13px;color:var(--primary);font-weight:600;" onmouseenter="this.style.background=\'#f0f4f8\'" onmouseleave="this.style.background=\'\'"><i class="fas fa-arrow-down" style="margin-right:8px;color:var(--accent);"></i>Al final del documento</div>';
@@ -3763,7 +3768,7 @@ function pinIdeaToTFM(noteId) {
 
   // Footer
   let footerHTML = `<div style="padding:12px 20px; border-top:1px solid var(--border); text-align:right;">
-    <button onclick="document.getElementById('pin-modal-overlay').remove()" style="padding:8px 18px; border:1px solid var(--border); border-radius:8px; background:#fff; cursor:pointer; font-size:12px; font-family:'Inter',sans-serif; color:var(--text-light);">Cancelar</button>
+    <button onclick="document.getElementById('pin-modal-overlay').remove()" style="padding:8px 18px; border:1px solid var(--border); border-radius:8px; background:#fff; cursor:pointer; font-size:12px; font-family:'Buenos Aires',sans-serif; color:var(--text-light);">Cancelar</button>
   </div>`;
 
   modal.innerHTML = headerHTML + previewHTML + listHTML + footerHTML;
@@ -3911,7 +3916,7 @@ function insertPinnedToEditor(id) {
 
 // ── TUTOR: AGENDA ──
 const viaIcons = {
-  videollamada: { icon: 'fa-video', color: '#4299e1', label: 'Videollamada' },
+  videollamada: { icon: 'fa-video', color: '#E7B141', label: 'Videollamada' },
   llamada: { icon: 'fa-phone', color: '#48bb78', label: 'Llamada' },
   presencial: { icon: 'fa-user-group', color: '#ed8936', label: 'Presencial' },
   email: { icon: 'fa-envelope', color: '#9f7aea', label: 'Email' }
@@ -4125,7 +4130,7 @@ const phaseNames = [
   'Maquetación y entrega',
   'Defensa final virtual'
 ];
-const phaseColors = ['#4299e1','#48bb78','#4299e1','#ed8936','#e53e3e','#4299e1','#9f7aea','#38b2ac','#f9b233','#e53e3e'];
+const phaseColors = ['#E7B141','#48bb78','#E7B141','#ed8936','#e53e3e','#E7B141','#9f7aea','#38b2ac','#E7B141','#e53e3e'];
 
 function formatDate(d) {
   const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
@@ -4264,7 +4269,7 @@ function recalcTimeline() {
         ${formatDate(phaseStart)} → ${formatDate(phaseEnd)}
       </div>
       <div style="text-align: center;">
-        <input type="date" class="phase-deadline-input" onchange="updateAllDeadlineStatuses()" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Inter', sans-serif; outline: none; width: 100%; text-align: center;">
+        <input type="date" class="phase-deadline-input" onchange="updateAllDeadlineStatuses()" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none; width: 100%; text-align: center;">
       </div>
       <div style="text-align: center;">
         ${isCompleted ? '<span style="font-size: 11px; color: #276749; font-weight: 600; background: #c6f6d5; padding: 3px 10px; border-radius: 10px;"><i class="fas fa-check" style="margin-right: 3px;"></i>Hecha</span>'
@@ -4286,9 +4291,9 @@ function recalcTimeline() {
     subtaskPanel.innerHTML = `
       <div class="subtask-list" id="list-${taskId}"></div>
       <div style="display: flex; gap: 8px; margin-top: 6px; align-items: center;">
-        <input type="text" class="subtask-input" placeholder="Añadir subtarea..." style="flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addSubtask('${taskId}', this.parentElement)">
-        <input type="date" class="subtask-date" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Inter', sans-serif; outline: none; width: 130px;">
-        <button onclick="addSubtask('${taskId}', this.parentElement)" style="background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; white-space: nowrap;"><i class="fas fa-plus" style="margin-right: 3px;"></i>Añadir</button>
+        <input type="text" class="subtask-input" placeholder="Añadir subtarea..." style="flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addSubtask('${taskId}', this.parentElement)">
+        <input type="date" class="subtask-date" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none; width: 130px;">
+        <button onclick="addSubtask('${taskId}', this.parentElement)" style="background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; font-family: 'Buenos Aires', 'Open Sans', sans-serif; font-weight: 600; white-space: nowrap;"><i class="fas fa-plus" style="margin-right: 3px;"></i>Añadir</button>
       </div>
     `;
 
@@ -4347,7 +4352,7 @@ function renderPlanningWithoutDates() {
         <i class="fas fa-clock" style="margin-right: 4px; opacity: 0.5;"></i>Añade fechas arriba
       </div>
       <div style="text-align: center;">
-        <input type="date" class="phase-deadline-input" onchange="updateAllDeadlineStatuses()" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Inter', sans-serif; outline: none; width: 100%; text-align: center;">
+        <input type="date" class="phase-deadline-input" onchange="updateAllDeadlineStatuses()" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none; width: 100%; text-align: center;">
       </div>
       <div style="text-align: center;">
         ${isCompleted ? '<span style="font-size: 11px; color: #276749; font-weight: 600; background: #c6f6d5; padding: 3px 10px; border-radius: 10px;"><i class="fas fa-check" style="margin-right: 3px;"></i>Hecha</span>'
@@ -4367,9 +4372,9 @@ function renderPlanningWithoutDates() {
     subtaskPanel.innerHTML = `
       <div class="subtask-list" id="list-${taskId}"></div>
       <div style="display: flex; gap: 8px; margin-top: 6px; align-items: center;">
-        <input type="text" class="subtask-input" placeholder="Añadir subtarea..." style="flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addSubtask('${taskId}', this.parentElement)">
-        <input type="date" class="subtask-date" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Inter', sans-serif; outline: none; width: 130px;">
-        <button onclick="addSubtask('${taskId}', this.parentElement)" style="background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; white-space: nowrap;"><i class="fas fa-plus" style="margin-right: 3px;"></i>Añadir</button>
+        <input type="text" class="subtask-input" placeholder="Añadir subtarea..." style="flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addSubtask('${taskId}', this.parentElement)">
+        <input type="date" class="subtask-date" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none; width: 130px;">
+        <button onclick="addSubtask('${taskId}', this.parentElement)" style="background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; font-family: 'Buenos Aires', 'Open Sans', sans-serif; font-weight: 600; white-space: nowrap;"><i class="fas fa-plus" style="margin-right: 3px;"></i>Añadir</button>
       </div>
     `;
 
@@ -4451,7 +4456,7 @@ function addCustomPhase() {
     </div>
     <div style="text-align: center; font-size: 12px; color: var(--text-light);">—</div>
     <div style="text-align: center;">
-      <input type="date" value="${deadline}" onchange="updateAllDeadlineStatuses()" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Inter', sans-serif; outline: none; width: 100%; text-align: center;">
+      <input type="date" value="${deadline}" onchange="updateAllDeadlineStatuses()" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none; width: 100%; text-align: center;">
     </div>
     <div style="text-align: center;">
       <span class="custom-status" style="font-size: 11px; color: var(--text-light); background: #edf2f7; padding: 3px 10px; border-radius: 10px;">Pendiente</span>
@@ -4468,9 +4473,9 @@ function addCustomPhase() {
   subtaskPanel.innerHTML = `
     <div class="subtask-list" id="list-${customId}"></div>
     <div style="display: flex; gap: 8px; margin-top: 6px; align-items: center;">
-      <input type="text" class="subtask-input" placeholder="Añadir subtarea..." style="flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addSubtask('${customId}', this.parentElement)">
-      <input type="date" class="subtask-date" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Inter', sans-serif; outline: none; width: 130px;">
-      <button onclick="addSubtask('${customId}', this.parentElement)" style="background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; white-space: nowrap;"><i class="fas fa-plus" style="margin-right: 3px;"></i>Añadir</button>
+      <input type="text" class="subtask-input" placeholder="Añadir subtarea..." style="flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;" onkeypress="if(event.key==='Enter')addSubtask('${customId}', this.parentElement)">
+      <input type="date" class="subtask-date" style="padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; font-size: 11px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none; width: 130px;">
+      <button onclick="addSubtask('${customId}', this.parentElement)" style="background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 10px; font-size: 11px; cursor: pointer; font-family: 'Buenos Aires', 'Open Sans', sans-serif; font-weight: 600; white-space: nowrap;"><i class="fas fa-plus" style="margin-right: 3px;"></i>Añadir</button>
     </div>
   `;
 
@@ -4543,7 +4548,7 @@ function addSubtask(taskId, container) {
     </div>
     <span class="subtask-label" style="flex: 1; color: var(--text);">${text}</span>
     <div style="display: flex; align-items: center; gap: 6px; min-width: 210px; justify-content: flex-end;">
-      <input type="date" class="subtask-deadline-date" value="${deadline}" onchange="updateSubtaskDeadlineBadge(this)" style="padding: 3px 5px; border: 1px solid var(--border); border-radius: 5px; font-size: 10px; font-family: 'Inter', sans-serif; outline: none; width: 120px;">
+      <input type="date" class="subtask-deadline-date" value="${deadline}" onchange="updateSubtaskDeadlineBadge(this)" style="padding: 3px 5px; border: 1px solid var(--border); border-radius: 5px; font-size: 10px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none; width: 120px;">
       ${deadlineHTML}
     </div>
     <button onclick="deleteSubtask(this, '${taskId}')" style="background: none; border: none; color: #cbd5e0; cursor: pointer; font-size: 11px; padding: 2px;" onmouseenter="this.style.color='#e53e3e'" onmouseleave="this.style.color='#cbd5e0'" title="Eliminar"><i class="fas fa-times"></i></button>
@@ -4740,7 +4745,7 @@ function renderEghTutorPicks() {
       </div>
       <div style="flex: 1;">
         <div style="font-size: 11px; color: var(--text-light); margin-bottom: 4px; font-weight: 600;">${labels[i]}</div>
-        <select onchange="onTutorPickChange(${i}, this.value)" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif; background: #fff; cursor: pointer; outline: none; color: var(--primary);">
+        <select onchange="onTutorPickChange(${i}, this.value)" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; background: #fff; cursor: pointer; outline: none; color: var(--primary);">
           <option value="">— Seleccionar profesor/a —</option>
           ${options.map(p => `<option value="${p}" ${pick === p ? 'selected' : ''}>${p}</option>`).join('')}
         </select>
@@ -4870,7 +4875,7 @@ document.querySelectorAll('.suggestion-chip').forEach(chip => {
 </script>
 <!-- Indicador de guardado (rebanada 2): Store.set avisa de guardando/guardado/error -->
 <div id="tfm-save-badge" style="position:fixed; bottom:16px; right:16px; z-index:9999; display:none;
-     padding:7px 12px; border-radius:20px; font-size:12px; font-weight:600; font-family:'Inter',sans-serif;
+     padding:7px 12px; border-radius:20px; font-size:12px; font-weight:600; font-family:'Buenos Aires',sans-serif;
      box-shadow:0 2px 10px rgba(0,0,0,0.12); transition:opacity .3s;"></div>
 <script>
 (function () {
