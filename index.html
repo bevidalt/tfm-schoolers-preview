@@ -1854,6 +1854,8 @@ body {
             <button onclick="insertImage()" title="Insertar imagen" style="color: var(--info);"><i class="fas fa-image"></i></button>
             <button onclick="insertImageURL()" title="Imagen desde URL" style="color: var(--info);"><i class="fas fa-link"></i></button>
             <div class="separator"></div>
+            <button onclick="insertTable()" title="Insertar tabla"><i class="fas fa-table"></i></button>
+            <div class="separator"></div>
             <button onclick="execCmd('undo')" title="Deshacer"><i class="fas fa-undo"></i></button>
             <button onclick="execCmd('redo')" title="Rehacer"><i class="fas fa-redo"></i></button>
           </div>
@@ -1913,6 +1915,13 @@ body {
 
         <!-- Input oculto para imágenes -->
         <input type="file" id="image-input" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
+      </div>
+
+      <!-- Comentarios del tutor/a movidos aquí (Vero 29/10): debajo del borrador, con check "visto" -->
+      <div class="card" id="mitfm-comments-card" style="margin-top:16px">
+        <h3 style="font-size:15px;color:var(--primary);margin-bottom:4px"><i class="fas fa-comment-dots" style="color:var(--accent);margin-right:8px"></i>Comentarios de tu tutor/a</h3>
+        <p style="font-size:12px;color:var(--text-light);margin-bottom:12px">Correcciones y orientaciones de tu tutor/a sobre el contenido de tu TFM. Marca «Visto» cuando los hayas leído.</p>
+        <div id="mitfm-comments"><div style="font-size:13px;color:var(--text-light)">Cargando…</div></div>
       </div>
     </div>
   </div>
@@ -2695,6 +2704,7 @@ async function initAppForUser() {
   renderPinnedIdeas();
   if (typeof renderTutorias === 'function') renderTutorias();
   if (typeof renderStudentTutorStuff === 'function') renderStudentTutorStuff();
+  if (typeof loadMiTfmComments === 'function') loadMiTfmComments();
   // Load EGH section
   initEghSection();
   renderGroupTutorings();
@@ -2710,6 +2720,7 @@ function showSection(name) {
   document.querySelector(`.nav-item[data-section="${name}"]`).classList.add('active');
   document.querySelector('.sidebar').classList.remove('open');
   window.scrollTo(0, 0);
+  if(name==='documento' && typeof loadMiTfmComments==='function') loadMiTfmComments();
 }
 
 // ── ACCORDION ──
@@ -2726,6 +2737,18 @@ function execCmd(cmd, val) {
   }
   document.getElementById('editor').focus();
   generateTOC();
+}
+
+// Insertar una tabla básica en el editor de Mi TFM (Vero 29/10).
+function insertTable() {
+  var ed = document.getElementById('editor'); if (!ed) return;
+  ed.focus();
+  var th = '<th style="border:1px solid #d0d0d0;padding:6px 10px;background:#f4f4f4;text-align:left;font-weight:600">Encabezado</th>';
+  var td = '<td style="border:1px solid #d0d0d0;padding:6px 10px">&nbsp;</td>';
+  var row = '<tr>' + td + td + td + '</tr>';
+  var html = '<table style="border-collapse:collapse;width:100%;margin:10px 0;font-size:14px"><thead><tr>' + th + th + th + '</tr></thead><tbody>' + row + row + '</tbody></table><p><br></p>';
+  document.execCommand('insertHTML', false, html);
+  onEditorInput();
 }
 
 let editorSaveTimer = null;
@@ -5068,6 +5091,27 @@ async function createTutoria(){
   setTimeout(loadTutorTutorias, 400);
 }
 /* ── Vista del alumno: comentarios del tutor y sus tutorías (se inyecta en "Tu tutor/a") ── */
+// Comentarios del tutor/a en la sección "Mi TFM", con check "visto" del alumno (reusa resolved).
+async function loadMiTfmComments(){
+  var box=document.getElementById('mitfm-comments'); if(!box||!window.sb||!currentUser) return;
+  var r=await window.sb.from('tutor_comments').select('id,body,created_at,resolved').eq('student_id',currentUser.id).order('created_at',{ascending:false});
+  if(r.error){ box.innerHTML='<div style="font-size:13px;color:var(--text-light)">No se pudieron cargar los comentarios.</div>'; return; }
+  if(!r.data||!r.data.length){ box.innerHTML='<div style="font-size:13px;color:var(--text-light)">Tu tutor/a aún no te ha dejado comentarios.</div>'; return; }
+  box.innerHTML=r.data.map(function(c){
+    var seen=!!c.resolved;
+    return '<div style="border-left:3px solid var(--accent);padding:10px 12px;background:'+(seen?'#f4f4f4':'#fffdf5')+';border-radius:0 8px 8px 0;margin-bottom:8px">'
+      +'<div style="font-size:13px;white-space:pre-wrap">'+_esc(c.body)+'</div>'
+      +'<div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">'
+      +'<span style="font-size:11px;color:var(--text-light)">'+_esc(_fmtDate(c.created_at))+'</span>'
+      +'<label style="font-size:12px;color:'+(seen?'#2f855a':'var(--text-light)')+';display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" '+(seen?'checked':'')+' onchange="markCommentSeen(\''+c.id+'\', this.checked)"> Visto</label>'
+      +'</div></div>';
+  }).join('');
+}
+async function markCommentSeen(id, checked){
+  var r=await window.sb.from('tutor_comments').update({resolved: !!checked}).eq('id', id);
+  if(r.error){ alert('No se pudo marcar como visto.'); return; }
+  loadMiTfmComments();
+}
 async function renderStudentTutorStuff(){
   if(!window.sb || !currentUser) return;
   var host=document.getElementById('sec-tutor'); if(!host) return;
