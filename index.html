@@ -1392,68 +1392,6 @@ body {
     </div>
 
     <div style="margin-top: 20px;">
-
-      <!-- Agenda heredada ELIMINADA (Vero 29/10): duplicaba el flujo real "Solicitar una tutoría" -->
-      <div style="display:none">
-        <div class="card" style="height: 100%;">
-          <h3><i class="fas fa-calendar-plus"></i> Agenda de tutorías</h3>
-          <p style="font-size: 13px; color: var(--text-light); margin-bottom: 16px;">Programa tus sesiones con el tutor/a. Solicítalas con al menos una semana de antelación.</p>
-
-          <!-- Formulario nueva tutoría -->
-          <div style="background: #f8f9fa; border-radius: 10px; padding: 16px; margin-bottom: 16px;">
-            <div style="font-size: 12px; font-weight: 600; color: var(--primary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;">
-              <i class="fas fa-plus-circle" style="color: var(--accent); margin-right: 4px;"></i> Nueva tutoría
-            </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-              <div>
-                <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Fecha</label>
-                <input type="date" id="tutoria-date" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;">
-              </div>
-              <div>
-                <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Hora</label>
-                <input type="time" id="tutoria-time" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;">
-              </div>
-            </div>
-            <div style="margin-top: 10px;">
-              <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Modalidad</label>
-              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                <label style="display: flex; align-items: center; gap: 6px; padding: 7px 12px; background: #fff; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 12px; transition: all 0.15s;" class="via-option">
-                  <input type="radio" name="tutoria-via" value="videollamada" checked style="display: none;">
-                  <i class="fas fa-video" style="color: #E7B141;"></i> Videollamada
-                </label>
-                <label style="display: flex; align-items: center; gap: 6px; padding: 7px 12px; background: #fff; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 12px; transition: all 0.15s;" class="via-option">
-                  <input type="radio" name="tutoria-via" value="llamada" style="display: none;">
-                  <i class="fas fa-phone" style="color: #48bb78;"></i> Llamada
-                </label>
-                <label style="display: flex; align-items: center; gap: 6px; padding: 7px 12px; background: #fff; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 12px; transition: all 0.15s;" class="via-option">
-                  <input type="radio" name="tutoria-via" value="presencial" style="display: none;">
-                  <i class="fas fa-user-group" style="color: #ed8936;"></i> Presencial
-                </label>
-                <label style="display: flex; align-items: center; gap: 6px; padding: 7px 12px; background: #fff; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 12px; transition: all 0.15s;" class="via-option">
-                  <input type="radio" name="tutoria-via" value="email" style="display: none;">
-                  <i class="fas fa-envelope" style="color: #9f7aea;"></i> Email
-                </label>
-              </div>
-            </div>
-            <div style="margin-top: 10px;">
-              <label style="font-size: 11px; color: var(--text-light); display: block; margin-bottom: 3px;">Asunto / tema a tratar</label>
-              <input type="text" id="tutoria-subject" placeholder="Ej: Revisión del marco teórico..." style="width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: 'Buenos Aires', 'Open Sans', sans-serif; outline: none;">
-            </div>
-            <button class="btn btn-primary" onclick="addTutoria()" style="margin-top: 12px; width: 100%; padding: 9px;">
-              <i class="fas fa-calendar-check" style="margin-right: 4px;"></i> Agendar tutoría
-            </button>
-          </div>
-
-          <!-- Lista de tutorías -->
-          <div id="tutorias-list">
-            <div style="text-align: center; padding: 20px; color: var(--text-light); font-size: 13px;">
-              <i class="fas fa-calendar" style="font-size: 24px; color: var(--border); display: block; margin-bottom: 8px;"></i>
-              No hay tutorías programadas todavía.
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- ── MENSAJERÍA ── -->
       <div>
         <div class="card" style="height: 100%; display: flex; flex-direction: column;">
@@ -2691,7 +2629,6 @@ async function initAppForUser() {
   const savedEditor = Store.get('tfm-editor-content');
   if (savedEditor) document.getElementById('editor').innerHTML = savedEditor;
   // Restore tutorias
-  tutorias = JSON.parse(Store.get('tfm-tutorias') || '[]');
   // Update UI
   if (savedStart && savedEnd) { recalcTimeline(); }
   else { document.getElementById('days-left').textContent = '--'; renderPlanningWithoutDates(); }
@@ -2702,7 +2639,6 @@ async function initAppForUser() {
   updateAllDeadlineStatuses();
   renderNotes();
   renderPinnedIdeas();
-  if (typeof renderTutorias === 'function') renderTutorias();
   if (typeof renderStudentTutorStuff === 'function') renderStudentTutorStuff();
   if (typeof loadMiTfmComments === 'function') loadMiTfmComments();
   // Load EGH section
@@ -3936,157 +3872,6 @@ function insertPinnedToEditor(id) {
   editor.appendChild(p);
   updateWordCount();
   generateTOC();
-}
-
-// ── TUTOR: AGENDA ──
-const viaIcons = {
-  videollamada: { icon: 'fa-video', color: '#E7B141', label: 'Videollamada' },
-  llamada: { icon: 'fa-phone', color: '#48bb78', label: 'Llamada' },
-  presencial: { icon: 'fa-user-group', color: '#ed8936', label: 'Presencial' },
-  email: { icon: 'fa-envelope', color: '#9f7aea', label: 'Email' }
-};
-
-// Style via radio buttons
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.via-option').forEach(label => {
-    const radio = label.querySelector('input[type="radio"]');
-    function updateStyle() {
-      document.querySelectorAll('.via-option').forEach(l => {
-        l.style.borderColor = 'var(--border)';
-        l.style.background = '#fff';
-        l.style.fontWeight = '400';
-      });
-      const checked = document.querySelector('.via-option input:checked');
-      if (checked) {
-        const parent = checked.closest('.via-option');
-        parent.style.borderColor = 'var(--accent)';
-        parent.style.background = '#fffbf0';
-        parent.style.fontWeight = '600';
-      }
-    }
-    radio.addEventListener('change', updateStyle);
-    label.addEventListener('click', () => { radio.checked = true; updateStyle(); });
-    updateStyle();
-  });
-});
-
-let tutorias = [];
-
-function addTutoria() {
-  const date = document.getElementById('tutoria-date').value;
-  const time = document.getElementById('tutoria-time').value;
-  const subject = document.getElementById('tutoria-subject').value.trim();
-  const via = document.querySelector('input[name="tutoria-via"]:checked').value;
-
-  if (!date || !time) {
-    alert('Por favor, indica al menos fecha y hora.');
-    return;
-  }
-
-  const tutoria = {
-    id: Date.now(),
-    date, time, subject: subject || 'Tutoría TFM',
-    via, status: 'programada' // programada, realizada, cancelada
-  };
-
-  tutorias.push(tutoria);
-  tutorias.sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
-  saveTutorias();
-  renderTutorias();
-
-  // Clear form
-  document.getElementById('tutoria-date').value = '';
-  document.getElementById('tutoria-time').value = '';
-  document.getElementById('tutoria-subject').value = '';
-}
-
-function renderTutorias() {
-  const container = document.getElementById('tutorias-list');
-  if (tutorias.length === 0) {
-    container.innerHTML = '<div style="text-align: center; padding: 20px; color: var(--text-light); font-size: 13px;"><i class="fas fa-calendar" style="font-size: 24px; color: var(--border); display: block; margin-bottom: 8px;"></i>No hay tutorías programadas todavía.</div>';
-    return;
-  }
-
-  const today = new Date();
-  today.setHours(0,0,0,0);
-  const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-
-  let html = '';
-  tutorias.forEach(t => {
-    const d = new Date(t.date);
-    const dayNum = d.getDate();
-    const monthStr = months[d.getMonth()];
-    const v = viaIcons[t.via];
-    const isPast = d < today && t.status === 'programada';
-    const isToday = d.toDateString() === today.toDateString();
-    const isSoon = !isPast && !isToday && (d - today) / (1000*60*60*24) <= 3;
-
-    let statusBadge = '';
-    if (t.status === 'realizada') {
-      statusBadge = '<span style="font-size:10px; padding: 2px 8px; border-radius: 10px; background: #c6f6d5; color: #276749; font-weight: 600;">Realizada</span>';
-    } else if (t.status === 'cancelada') {
-      statusBadge = '<span style="font-size:10px; padding: 2px 8px; border-radius: 10px; background: #fed7d7; color: #c53030; font-weight: 600;">Cancelada</span>';
-    } else if (isToday) {
-      statusBadge = '<span style="font-size:10px; padding: 2px 8px; border-radius: 10px; background: #fefcbf; color: #975a16; font-weight: 600;">Hoy</span>';
-    } else if (isPast) {
-      statusBadge = '<span style="font-size:10px; padding: 2px 8px; border-radius: 10px; background: #fed7d7; color: #c53030; font-weight: 600;">Pendiente de confirmar</span>';
-    } else if (isSoon) {
-      statusBadge = '<span style="font-size:10px; padding: 2px 8px; border-radius: 10px; background: #feebc8; color: #c05621; font-weight: 600;">Próxima</span>';
-    }
-
-    html += `
-    <div style="display: flex; align-items: center; gap: 14px; padding: 12px; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 8px; background: ${t.status === 'cancelada' ? '#fafafa' : '#fff'}; ${t.status === 'cancelada' ? 'opacity: 0.6;' : ''} transition: all 0.2s;" onmouseenter="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
-      <!-- Fecha compacta -->
-      <div style="width: 48px; text-align: center; min-width: 48px;">
-        <div style="font-size: 22px; font-weight: 700; color: var(--primary); line-height: 1;">${dayNum}</div>
-        <div style="font-size: 11px; color: var(--text-light); text-transform: uppercase; font-weight: 600;">${monthStr}</div>
-      </div>
-      <!-- Separador -->
-      <div style="width: 2px; height: 40px; background: ${v.color}; border-radius: 1px;"></div>
-      <!-- Info -->
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 3px;">
-          <span style="font-weight: 600; font-size: 14px; color: var(--primary);">${t.time}h</span>
-          <span style="display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 10px; background: ${v.color}15; color: ${v.color}; font-size: 11px; font-weight: 600;">
-            <i class="fas ${v.icon}" style="font-size: 10px;"></i> ${v.label}
-          </span>
-          ${statusBadge}
-        </div>
-        <div style="font-size: 13px; color: var(--text);">${t.subject}</div>
-      </div>
-      <!-- Acciones -->
-      <div style="display: flex; gap: 4px;">
-        ${t.status === 'programada' ? `
-          <button onclick="markTutoria(${t.id}, 'realizada')" title="Marcar como realizada" style="background: none; border: none; cursor: pointer; padding: 6px; border-radius: 6px; color: var(--success); font-size: 14px; transition: background 0.15s;" onmouseenter="this.style.background='#f0fff4'" onmouseleave="this.style.background='none'">
-            <i class="fas fa-check-circle"></i>
-          </button>
-          <button onclick="markTutoria(${t.id}, 'cancelada')" title="Cancelar" style="background: none; border: none; cursor: pointer; padding: 6px; border-radius: 6px; color: #cbd5e0; font-size: 14px; transition: all 0.15s;" onmouseenter="this.style.background='#fed7d7'; this.style.color='#c53030'" onmouseleave="this.style.background='none'; this.style.color='#cbd5e0'">
-            <i class="fas fa-times-circle"></i>
-          </button>
-        ` : `
-          <button onclick="deleteTutoria(${t.id})" title="Eliminar" style="background: none; border: none; cursor: pointer; padding: 6px; border-radius: 6px; color: #cbd5e0; font-size: 14px; transition: all 0.15s;" onmouseenter="this.style.background='#fed7d7'; this.style.color='#c53030'" onmouseleave="this.style.background='none'; this.style.color='#cbd5e0'">
-            <i class="fas fa-trash"></i>
-          </button>
-        `}
-      </div>
-    </div>`;
-  });
-  container.innerHTML = html;
-}
-
-function saveTutorias() {
-  Store.set('tfm-tutorias', JSON.stringify(tutorias));
-}
-
-function markTutoria(id, status) {
-  const t = tutorias.find(x => x.id === id);
-  if (t) { t.status = status; saveTutorias(); renderTutorias(); }
-}
-
-function deleteTutoria(id) {
-  tutorias = tutorias.filter(x => x.id !== id);
-  saveTutorias();
-  renderTutorias();
 }
 
 // ── TUTOR: MENSAJERÍA ──
